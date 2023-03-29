@@ -3,3 +3,4 @@ This repo contains the history of xml and txt files for all the versions of the 
 
 # How to modify the draft
 Modify the .xml corresponding to the current version. Make sure to commit the corresponding .txt so that diff with current version is correct.
+Please use https://author-tools.ietf.org/ to generate and download txt
