@@ -1,28 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE rfc [
-  <!ENTITY nbsp    "&#160;">
-  <!ENTITY zwsp   "&#8203;">
-  <!ENTITY nbhy   "&#8209;">
-  <!ENTITY wj     "&#8288;">
-]>
-<?xml-model href="rfc7991bis.rnc"?>
-<!-- <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> -->
-<rfc
-        xmlns:xi="http://www.w3.org/2001/XInclude"
-        docName="draft-opsawg-havel-digital-map-00"
-        category="std"
-        ipr="trust200902"
-        obsoletes=""
-        updates=""
-        submissionType="IETF"
-        xml:lang="en"
-        tocInclude="true"
-        sortRefs="true"
-        symRefs="true"
-        version="3" >
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<rfc category="std" docName="draft-opsawg-havel-digital-map-00"
+     ipr="trust200902">
   <front>
-    <title abbrev="Digital Map Modelling">Modeling the Digital Map based on RFC8345: Sharing Experience </title>
+    <title abbrev="Digital Map Modelling">Modeling the Digital Map based on RFC8345: Sharing Experience</title>
     <seriesInfo name="Internet-Draft" value="draft-opsawg-havel-digital-map-00"/>
+	
     <author fullname="Olga Havel" initials="O " surname="Havel">
       <organization>Huawei</organization>
       <address>
@@ -34,6 +27,7 @@
         <email>olga.havel@huawei.com</email>
       </address>
     </author>    
+	
 	<author fullname="Benoit Claise" initials="B " surname="Claise">
       <organization>Huawei</organization>
       <address>
@@ -45,6 +39,7 @@
         <email>benoit.claise@huawei.com</email>
       </address>
     </author>	
+	
     <author fullname="Oscar Gonzalez de Dios" initials="O. Gonzalez" surname="de Dios ">
       <organization>Telefonica</organization>
       <address>
@@ -56,6 +51,7 @@
         <email>oscar.gonzalezdedios@telefonica.com</email>
       </address>
     </author>
+	
     <author fullname="Ahmed.Elhassany" initials="A" surname="Elhassany">
       <organization>Swisscom</organization>
       <address>
@@ -68,6 +64,7 @@
         <email>Ahmed.Elhassany@swisscom.com</email>
       </address>
     </author>
+	
     <author fullname="Thomas Graf" initials="T" surname="Graf">
       <organization>Swisscom</organization>
       <address>
@@ -80,28 +77,31 @@
         <email>thomas.graf@swisscom.com</email>
       </address>
     </author>	
-    <date/>
-    <area>General</area>
+	
+    <date day="13" month="June" year="2023"/>
+	
+    <area>OPS</area>
     <workgroup>OPSAWG</workgroup>
     <abstract>
       <t>
 	      This document shares experience in modelling digital map based 
-		  on the IETF RFC8345 topology YANG modules and some of its extensions. 
-		  It also shares the open issues encountered during the modelling 
-		  phase of the Digital Map.
+		  on the IETF RFC8345 topology YANG modules and some of its augmentations.
+		  It also covers the open issues encountered during the modelling
+		  phase of the digital map.
 	  </t>
     </abstract>
+	
 	<note removeInRFC="true">
       <name>Discussion Venues</name>
       <t>Source for this draft and an issue tracker can be found at
        <eref target="https://github.com/OlgaHuawei"/>.</t>
     </note>
   </front>
+  
   <middle>
-    <section anchor="intro" >
-	  <name>Introduction</name>
+    <section anchor="intro" title="Introduction">
       <t>
-		The <xref target="RFC8345"/> is a topology based YANG model with many extensions for 
+		The <xref target="RFC8345"/> is a topology-based YANG model with many augmentations for
 		different technologies and service types. The modelling approach 
 		based on <xref target="RFC8345"/> provides the out of box standard IETF based API.
 	  </t>
@@ -119,17 +119,21 @@
 	  </t>
 		<ul>
 			<li>
+				Understanding how the different topology-related IETF YANG modules fit together,
+				starting from the central RFC 8345. We developed our proof of concept (PoC) with a real lab,
+				based on multi-vendor devices.
+			</li>
+			<li>
 			Modelling of digital map entities, relationships, and rules how to 
-		    build aggregated entities and relationships. Basically evaluating 
-		    how well the different drafts fit together
+		    build aggregated entities and relationships.
 			</li>
 			<li>
 			Modelling multiple underlay/overlay layers from L2 to customer 
 		    service layer
 			</li>
 			<li>
-			We based our modelling on <xref target="RFC8345"/> and we successfully modelled 
-		    the following using this approach:
+			Practically, the PoC based our modelling on <xref target="RFC8345"/> and we successfully modelled
+		    the following technologies:
 			</li>
 		</ul>
 			<t>
@@ -160,20 +164,18 @@
 			- L3 VPN Services
 			</t>
 	  <t>
-		This draft documents our experience implementing the modelling a 
-		real network with the topology YANG modules <xref target="RFC8345"/> model and its 
-		extensions. 
-	  </t>
-	  <t>
-		While we progress our Digital Map PoC, we want to share our experience and some open 
-		issues encountered.
+		This draft documents our experience in the modeling aspects of the digital map, based on our PoC
+		  implementation, basically documenting our work and the open issues encountered.
 	  </t>
 	  <t>
 		During the PoC, we also defined the requirements and verified the 
 		PoC approach by demoing it iteratively.
+		  <cref>
+		  	Discuss: should we have requirements in the separate document. If so, add
+		  	'The requirements are defined in a separate draft [I-D ref]'
+		  </cref>
       </t>	  
-	  	<section anchor="terminology">
-	    <name>Terminology</name>
+	  	<section anchor="terminology" title="Terminology">
 		<t>
           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
           NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
@@ -182,64 +184,83 @@
           when, and only when, they appear in all capitals, as shown here.
 		</t>
 		<dl>
-			<dt>Digital Map Modelling - </dt>
-			<dd>
-				Modelling the Digital Map using the IETF <xref target="RFC8345"/> approach, 
-				by defining the supported network types (layers and sublayers), entity types, 
-				entity roles (network, node, tp or link), entity properties and relationships 
-				types between entities. 
-			</dd>
-			<dt>Digital Map - </dt>
-			<dd>
-				A basis for the Digital Twin that provides a virtual instance 
-				of the topological information of the network. It provides the 
-				core multi-layer topology model of the digital twin that defines the 
-				core topological entities, their role in the network, core 
-				properties and relationships both inside each layer and 
-				between the layers. It is the basic topological model that is 
-				extended with other functional parts of the digital twin and 
-				connects them all: configuration, maintenance, assurance 
-				(KPIs, status, health, symptoms), traffic engineering, 
-				different behaviours, simulation, emulation, mathematical 
-				abstractions, AI algorithms, etc 
-			</dd>
 			<dt>Digital Twin - </dt>
 			<dd>
 				as defined in <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>,
-				it as 'a virtual instance of a physical system (twin) that is 
-				continually updated with the latter’s performance, maintenance 
-				and health status data throughout the physical system’s life 
-				cycle'.
+				it is: virtual instance of a physical system (twin) that is
+				continually updated with the latter's performance, maintenance
+				and health status data throughout the physical system's life
+				cycle.
+			</dd>
+		</dl>
+		<dl>
+			<dt>Digital Map - </dt>
+			<dd>
+				<cref>There is no digital map definition in the NMRG Digital Twin</cref>
+				basis for the Digital Twin that provides a virtual instance
+				of the topological information of the network. It provides the 
+				core multi-layer topology model and data for the digital twin
+				and connects them to the other digital twin models and data.
+			</dd>
+			<dt>Digital Map Modelling - </dt>
+			<dd>
+				modelling the Digital Map using the IETF <xref target="RFC8345"/> approach,
+				by defining the supported network types (layers and sublayers), entity types,
+				entity roles (network, node, tp or link), entity properties and relationships
+				types between entities.
+			</dd>
+		    <dt>Digital Map Model - </dt>
+			<dd>
+				defines the core topological entities, their role in the network,
+				core properties and relationships both inside each layer and
+				between the layers. It is the basic topological model that is
+				linked to other functional parts of the digital twin and
+				connects them all: configuration, maintenance, assurance
+				(KPIs, status, health, symptoms), traffic engineering,
+				different behaviours, simulation, emulation, mathematical
+				abstractions, AI algorithms, etc
+			</dd>
+			<dt>Digital Map Data - </dt>
+			<dd>
+				consists of virtual instances of network and service topologies at different layers.
+				The data can be historical, real-time or future data for what-if scenarios.
+			</dd>
+			<dt>Topology - </dt>
+			<dd>is defined in Oxford Dictionary as the way in which constituents parts of something
+				are interrelated or arranged. Network topology defines how physical or logical
+				nodes, links and interfaces are related and arranges. Service topology defines how service components
+				(e.g VRX, customer interfaces, customer links) between customer sites are interrelated and arranged.
 			</dd>
 		</dl>
 	  </section>
 	</section>
-	<section anchor="digital-map-and-digital-twin">
-	<name>Digital Map Intro and how it relates to Digital Twin</name>
-	  <section anchor="digital-twin">
-	  <name>What is Digital Twin?</name>
+	<section anchor="digital-map-and-digital-twin" title="Digital Map Intro and how it relates to Digital Twin">
+	  <section anchor="digital-twin" title="What is Digital Twin?">
 	  <t>
 		The digital twin concepts and the reference architecture of the 
 		network digital twin are proposed in the NMRG draft 
-		<xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>.
-		This draft defines the Digital Twin as 'a virtual instance of 
-		a physical system (twin) that is continually updated with 
-		the latter’s performance, maintenance and health status data
-		throughout the physical system’s life cycle'. 
+		<xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>. 
+		This NMRG draft defines the Digital Twin as 'a virtual instance of a 
+		physical system (twin) that is continually updated with the latter's performance,
+		maintenance and health status data throughout the physical system's life cycle'.
 	  </t>
 	  <t>
 		The draft <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>
-		also states that a digital twin network can be regarded as an 
+		  states that a digital twin network can be regarded as an
 		indispensable part of the overall network system and provides 
 		a general architecture involving the whole life cycle of 
 		physical networks in the future, serving the application of 
 		innovative network technologies such as network planning, 
 		construction, maintenance and optimization, improving the 
 		automation and intelligence level of the network.
+		<cref>TODO: Review with Benoit terminology and here, do we duplicate or add all in terminology?
+			Also, capitalized versus not capitalized. In other drafts capitalized is used for
+			terminology and definitions, but we may decide to have it unified.
+		</cref>
 	  </t>
 	  <t>
 		The draft <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>
-		defines the core elements of digital twin – Data, Models,
+		defines the core elements of digital twin - Data, Models,
 		Interfaces and Mapping. The digital twin network constructed based
 		on the four core technology elements can analyze, diagnose, emulate,
 		and control the physical network in its whole life cycle with the 
@@ -247,20 +268,19 @@
 		knowledge
 	  </t>
 	  </section>
-	  <section anchor="digital-map-definition">
-	    <name>Digital Map Definition</name>
+	  <section anchor="digital-map-definition" title="Digital Map Definition">
 		<t>
 			Digital Map provides the core multi-layer topology model and data
 			for the digital twin and connects them to the other digital twin models and data.
 		</t>
 		<t>			
-			The Digital Map Model defines the core topological entities, their role 
+			The Digital Map Modelling defines the core topological entities, their role
 			in the network, core properties and relationships both inside each 
 			layer and between the layers. 
 		</t>
 		<t>
-			The Digital Map Model is a basic topological model that is extended 
-			with other functional parts of the digital twin and connects them 
+			The Digital Map Model is a basic topological model that is linked
+			to other functional parts of the digital twin and connects them
 			all: configuration, maintenance, assurance (KPIs, status, health, 
 			symptoms), traffic engineering, different behaviours and actions, 
 			simulation, emulation, mathematical abstractions, AI algorithms, etc.
@@ -270,17 +290,19 @@
 			service topologies at different layers. The Digital Map provides the
 			access to this data via standard API for both read and write, 
 			with query capabilities and links to other YANG modules 
-			(SAIN, SAP, Inventory, Assets, …) and non-YANG mode. 
+			(SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/>,
+			SAP <xref target="I-D.ietf-opsawg-sap"/>,
+			Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"/>,
+			Assets <xref target="I-D.palmero-opsawg-dmlmo"/>, ...) and non-YANG mode.
 		</t>
 	  </section>
-	  <section anchor="why-digital-map">
-	    <name>Why Digital Map?</name>
+	  <section anchor="why-digital-map" title="Why Digital Map?">
 		<t>
 			One of the important requirements for the Digitalization 
 			and Digital Twin is to correlate all models and data to 
 			topological entities at different layers in the layered twin network. 
-			This draft proposes A Digital Map Model as a basis for the 
-			Digitalization and Digital Twin. The Digital Map would provide a 
+			This draft evaluates how well the RFC8345-based YANG models are suited for the
+			Digital Map Modelling. The Digital Map would provide a
 			virtual instance of the topological information of the network, 
 			based on this Digital Map Model. The Digital Map is the first 
 			step towards the Digital Twin. 
@@ -330,8 +352,7 @@
 
 		
 	  </section>
-	  <section anchor="other-ietf-activities">
-		<name>Other Related IETF Activities</name>
+	  <section anchor="other-ietf-activities" title="Other Related IETF Activities">
 		<t>
 			The following standards are core for the Digital Map.
 		</t>
@@ -393,6 +414,8 @@
 				</li>
 				<li>
 					Transaction ID
+					<cref>Benoit thinks we should remove it, lets discuss, I thought it would be good to have the link to the last
+						transaction IDs related to different services. </cref>
 				</li>
 				<li>
 					Etc?
@@ -400,10 +423,13 @@
 			</ul>
 		</section>
 	 </section>
-	 <section anchor="ditial-map-requirements">
-	 <name>Digital Map Requirements</name>
+	 <section anchor="ditial-map-requirements" title="Digital Map Requirements">
 	 <t>
 		The following are the core requirements for the Digital Map:
+		<cref>
+		   Further discussion: should we remove it from this draft and have a separate draft
+		</cref>
+
 	 </t>
 	 <ol>
 		<li>
@@ -465,6 +491,11 @@
 		The requirements [9-11] will need some extensions to the RFC8345. 
 	    In some cases for [10], the links are already sone by augmenting 'ietf-network' and 
 		'ietf-network-topology'. For others, we need to add some mechanims to link the models and data.
+		 <cref>
+		    If we remove requirements, we can focus on this section. Benoit's comment
+		    Maybe we can focus this section on "why RFC 8345 is a good approach for D.M." 
+            =>	because we have the point 1 to 6
+		 </cref>
 	 </t>
 	 <t>
 		The following are the scope requirements for the Digital Map:
@@ -508,31 +539,64 @@
 		</li>
 	  </ol>
 	  </section>
-	  <section anchor="digital-map-modelling-experience">
-	  <name>Digital Map Modelling Experience</name>
-		<section anchor="ietf-network-topology-approach">
-		<name> IETF Network Topology Approach</name>
-			<section anchor="ietf-network-topology">
-			<name>IETF Network Topology </name>
-			<section anchor="ietf-network-topology-te">
-			<name>IETF Network Topology TE</name>	
-			<section anchor="how-to-augment-generic">
-			<name>How to augment for generic Digital Map extensions</name>
+	  <section anchor="digital-map-modelling-experience" title="Digital Map Modelling Experience">
+		<section anchor="ietf-network-topology-approach" title="IETF Network Topology Approach">
+			<section anchor="ietf-network-topology" title="IETF Network Topology">
+			<section anchor="ietf-network-topology-te" title="IETF Network Topology TE">	
+			<section anchor="how-to-augment-generic" title="How to augment for generic Digital Map extensions">
 			<t>
-				Approaches that we can take
+				Generic Digital Map extensions are the RFC8345 extensions required for
+				all technologies and layers in the Digital Map. We have the following options:
+				- make backward compatible updates to RFC8345
+				- augment RFC8345 network, node, link and termination point for any changes needed
+
+				module: dm-network-topology
+					augment /nw:networks/nw:network:
+				 		....
+					augment /nw:networks/nw:network/nw:node:
+						....
+					augment /nw:networks/nw:network/nt:link:
+						....
+				 	augment /nw:networks/nw:network/nw:node/nt:termination-point:
+						....
+			<cref>
+			   This can be a separate draft
+			</cref>
 			</t>
 			</section>
-			<section anchor="how-to-augment-specific">
-			<name>How to augment for new technologies / layers</name>
-			<t>
-				Some guidelines and maybe example in the Anex
-				Also, how the existing augmentation work with Digital Map?
+			<section anchor="how-to-augment-specific" title="How to augment for new technologies / layers">
+			<t>				
+			    There are already drafts that support augmentation for specific technologies.
+				These drafts augment network, node, termination point and link, but also add different
+				topological entities inside augmentations.
+				For example, we have examples like this:
+				module: new-module
+				  augment /nw:networks/nw:network/nw:network-types:
+    				+--rw new-topology!
+					augment /nw:networks/nw:network:
+				 		....
+					augment /nw:networks/nw:network/nw:node:
+						.... adding list of tps of other type (e.g. tunnel TPs in te draft)
+						... adding new supporting relationship supporting-tunnel-termination-point (te draft)
+					augment /nw:networks/nw:network/nt:link:
+						.... adding tunnels (te draft)
+
+				 	augment /nw:networks/nw:network/nw:node/nt:termination-point:
+						....
+				There is need to agree some guidelines for augmenting IETF network topology, so that additional
+				topological information is not added in the custom way. This may either involve
+				- adding concepts from TE and SAP topological augmentations to the core digital map topology
+				in the similar way they were added in the corresponding drafts or
+				- using the TP to model SAP and 'link' to model tunnel in the core Digital Map
+				<cref>
+				   This can be a separate draft. Guidelines with examples?
+				</cref>
+
 			</t>
 			</section>
 			</section>
 		</section>
-		<section anchor = "what-is-not-in-basic">
-		<name>What is not in the basic model</name>
+		<section anchor = "what-is-not-in-basic" title="What is not in the basic model">
 		<t>
 			The following are the <xref target="RFC8345"/> extensions needed for Digital Map modelling and APIs:
 		</t>
@@ -570,8 +634,7 @@
 			</li>				
 		</ul>
 		</section>
-		<section anchor="layering-open-issues">
-		<name>Open issues for further analysis</name>
+		<section anchor="layering-open-issues" title="Open issues for further analysis">
 		<t>
 			The following are the open issues that need further analysis:
 		</t>
@@ -683,30 +746,30 @@
   </middle>
   <back>
     <references title="Normative References">
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml"?>	  
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8345.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8346.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8944.xml"?>
+	  <?rfc include='reference.RFC.2119'?>
+	  <?rfc include='reference.RFC.8174'?>
+	  <?rfc include='reference.RFC.8345'?>
+	  <?rfc include='reference.RFC.8346'?>
+	  <?rfc include='reference.RFC.8944'?>
     </references>
     <references title="Informative References">
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-irtf-nmrg-network-digital-twin-arch-02.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8795.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.9179.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ogondio-opsawg-ospf-topology-00.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ogondio-lsr-isis-topology-00.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-opsawg-sap-15.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-boro-opsawg-ntw-attachment-circuit-02.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-boro-opsawg-teas-attachment-circuit-05.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-opsawg-service-assurance-yang-11.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-opsawg-service-assurance-architecture-13.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-wzwb-opsawg-network-inventory-management-01.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-palmero-opsawg-dmlmo-09.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-feng-opsawg-incident-management-00.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8466.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.8049.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.9291.xml"?>
-	  <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.9182.xml"?>
+	  <?rfc include='reference.RFC.8049'?>
+	  <?rfc include='reference.RFC.8466'?>
+	  <?rfc include='reference.RFC.8795'?>
+	  <?rfc include='reference.RFC.9179'?>
+	  <?rfc include='reference.RFC.9182'?>
+	  <?rfc include='reference.RFC.9291'?>
+	  <?rfc include='reference.I-D.irtf-nmrg-network-digital-twin-arch'?>
+	  <?rfc include='reference.I-D.ogondio-opsawg-ospf-topology'?>
+	  <?rfc include='reference.I-D.ogondio-lsr-isis-topology'?>
+	  <?rfc include='reference.I-D.ietf-opsawg-sap'?>
+	  <?rfc include='reference.I-D.boro-opsawg-ntw-attachment-circuit'?>
+	  <?rfc include='reference.I-D.boro-opsawg-teas-attachment-circuit'?>
+	  <?rfc include='reference.I-D.ietf-opsawg-service-assurance-yang'?>
+	  <?rfc include='reference.I-D.ietf-opsawg-service-assurance-architecture'?>
+	  <?rfc include='reference.I-D.wzwb-opsawg-network-inventory-management'?>
+	  <?rfc include='reference.I-D.palmero-opsawg-dmlmo'?>
+	  <?rfc include='reference.I-D.feng-opsawg-incident-management'?>
     </references>
     <?rfc needLines="100"?>
 	<section numbered="false">
