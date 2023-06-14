@@ -14,7 +14,7 @@ Expires: 15 December 2023                           O. Gonzalez. de Dios
 
 
      Modeling the Digital Map based on RFC8345: Sharing Experience
-                   draft-opsawg-havel-digital-map-00
+                   draft-havel-opsawg-digital-map-00
 
 Abstract
 

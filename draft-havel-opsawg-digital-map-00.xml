@@ -10,7 +10,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-opsawg-havel-digital-map-00"
+<rfc category="std" docName="draft-havel-opsawg-digital-map-00"
      ipr="trust200902">
   <front>
     <title abbrev="Digital Map Modelling">Modeling the Digital Map based on RFC8345: Sharing Experience</title>
