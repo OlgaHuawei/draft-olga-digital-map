@@ -85,23 +85,25 @@
     <abstract>
       <t>
 	      This document shares experience in modelling digital map based 
-		  on the IETF RFC8345 topology YANG modules and some of its augmentations.
-		  It also covers the open issues encountered during the modelling
-		  phase of the digital map.
+		    on the IETF RFC8345 topology YANG modules and some of its augmentations.
+		    Next to sharing experience, it covers the open issues encountered during 
+		    the modelling phases.
 	  </t>
     </abstract>
 	
 	<note removeInRFC="true">
       <name>Discussion Venues</name>
-      <t>Source for this draft and an issue tracker can be found at
-       <eref target="https://github.com/OlgaHuawei"/>.</t>
+      <t>
+      	Source for this draft and an issue tracker can be found at
+        <eref target="https://github.com/OlgaHuawei"/>.
+      </t>
     </note>
   </front>
   
   <middle>
     <section anchor="intro" title="Introduction">
       <t>
-		The <xref target="RFC8345"/> is a topology-based YANG model with many augmentations for
+		The <xref target="RFC8345"/> is a topology-based YANG model with many YANG augmentations for
 		different technologies and service types. The modelling approach 
 		based on <xref target="RFC8345"/> provides the out of box standard IETF based API.
 	  </t>
@@ -109,38 +111,44 @@
 		At the time of writing those lines, there are 60 YANG Modules augmenting <xref target="RFC8345"/>,
 		59 IETF and 1 BBF. 8 have maturity level 'ratified', 15 have maturity level 'adopted', 
 		21 have maturity level 'latest-approved' and 16 have maturity level 'initial'.
-		The up to date information can be found in the YANG Catalogue at 
+		The up-to-date information can be found in the YANG Catalog at 
 		<eref target="https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26"/>.
 	  </t>
 	  <t>
 		From this long series of IETF RFCs and IETF drafts, we attempted 
 		to create a Digital Map PoC, with the following objectives and 
-		functionality:
+		functionalities:
 	  </t>
 		<ul>
 			<li>
-				Understanding how the different topology-related IETF YANG modules fit together,
-				starting from the central RFC 8345. We developed our proof of concept (PoC) with a real lab,
-				based on multi-vendor devices.
+				Can the central RFC 8345 YANG Module be a good basis to model a Digital Map? 
 			</li>
 			<li>
-			Modelling of digital map entities, relationships, and rules how to 
-		    build aggregated entities and relationships.
+				Understanding how the different topology-related IETF YANG modules fit together/
 			</li>
 			<li>
-			Modelling multiple underlay/overlay layers from L2 to customer 
-		    service layer
+				Modelling of digital map entities, relationships, and rules how to 
+		    build aggregated entities and relationships. Does the base model support all the 
+		    requirements?
 			</li>
 			<li>
-			Practically, the PoC based our modelling on <xref target="RFC8345"/> and we successfully modelled
-		    the following technologies:
+			  Modelling multiple underlay/overlay layers from layer 2 to layer 3 to customer 
+		    service layer. Can the base model be augmented for any new technologies?
+			</li>
+			<li>
+        Can the base model be augmented for any new layer and technologies?
+			</li>
+			<li>
+			  Practically, we developed our proof of concept (PoC) with a real lab, based 
+			  on multi-vendor devices, with <xref target="RFC8345"/> as the base YANG module. 
+			  The PoC successfully modelled the following technologies:
 			</li>
 		</ul>
 			<t>
-			- L2 Network Topology (used <xref target="RFC8944"/>)
+			- Layer 2 Network Topology (used <xref target="RFC8944"/>)
 			</t>
 			<t>
-			- L3 Network Topology (used <xref target="RFC8346"/>)
+			- Layer 3 Network Topology (used <xref target="RFC8346"/>)
 			</t>
 			<t>
 			- OSPF Routing (to be further aligned with <xref target="I-D.ogondio-opsawg-ospf-topology"/>)
@@ -164,7 +172,7 @@
 			- L3 VPN Services
 			</t>
 	  <t>
-		This draft documents our experience in the modeling aspects of the digital map, based on our PoC
+		  This draft documents our experience in the modeling aspects of the digital map, based on our PoC
 		  implementation, basically documenting our work and the open issues encountered.
 	  </t>
 	  <t>
@@ -186,32 +194,32 @@
 		<dl>
 			<dt>Digital Twin - </dt>
 			<dd>
-				as defined in <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>,
-				it is: virtual instance of a physical system (twin) that is
+				Virtual instance of a physical system (twin) that is
 				continually updated with the latter's performance, maintenance
 				and health status data throughout the physical system's life
-				cycle.
+				cycle (as defined in <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>)
 			</dd>
 		</dl>
 		<dl>
 			<dt>Digital Map - </dt>
 			<dd>
-				<cref>There is no digital map definition in the NMRG Digital Twin</cref>
-				basis for the Digital Twin that provides a virtual instance
+				Basis for the Digital Twin that provides a virtual instance
 				of the topological information of the network. It provides the 
 				core multi-layer topology model and data for the digital twin
 				and connects them to the other digital twin models and data.
+				<cref>There is no digital map definition in the NMRG Digital Twin</cref>
 			</dd>
 			<dt>Digital Map Modelling - </dt>
 			<dd>
-				modelling the Digital Map using the IETF <xref target="RFC8345"/> approach,
-				by defining the supported network types (layers and sublayers), entity types,
-				entity roles (network, node, tp or link), entity properties and relationships
-				types between entities.
+				The set of principles, guidelines, and conventions to model the Digital Map 
+				using the IETF <xref target="RFC8345"/> approach. They cover the network 
+				types (layers and sublayers), entity types, entity roles (network, node, 
+				termination point or link), entity properties and relationships types 
+				between entities.
 			</dd>
 		    <dt>Digital Map Model - </dt>
 			<dd>
-				defines the core topological entities, their role in the network,
+				Defines the core topological entities, their role in the network,
 				core properties and relationships both inside each layer and
 				between the layers. It is the basic topological model that is
 				linked to other functional parts of the digital twin and
@@ -222,133 +230,131 @@
 			</dd>
 			<dt>Digital Map Data - </dt>
 			<dd>
-				consists of virtual instances of network and service topologies at different layers.
+				Consists of virtual instances of network and service topologies at different layers.
 				The data can be historical, real-time or future data for what-if scenarios.
+				<cref>Olga, there is more than this, right? All the components of the Digital Map Model. 
+					Btw, not sure why we need this one? </cref>
 			</dd>
 			<dt>Topology - </dt>
 			<dd>is defined in Oxford Dictionary as the way in which constituents parts of something
 				are interrelated or arranged. Network topology defines how physical or logical
 				nodes, links and interfaces are related and arranges. Service topology defines how service components
 				(e.g VRX, customer interfaces, customer links) between customer sites are interrelated and arranged.
+				<cref>Olga, what's VRX? Not sure it's appropriate to mention Oxford dictionary here</cref>
 			</dd>
 		</dl>
 	  </section>
 	</section>
-	<section anchor="digital-map-and-digital-twin" title="Digital Map Intro and how it relates to Digital Twin">
-	  <section anchor="digital-twin" title="What is Digital Twin?">
-	  <t>
-		The digital twin concepts and the reference architecture of the 
-		network digital twin are proposed in the NMRG draft 
-		<xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>. 
-		This NMRG draft defines the Digital Twin as 'a virtual instance of a 
-		physical system (twin) that is continually updated with the latter's performance,
-		maintenance and health status data throughout the physical system's life cycle'.
-	  </t>
-	  <t>
-		The draft <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>
-		  states that a digital twin network can be regarded as an
-		indispensable part of the overall network system and provides 
-		a general architecture involving the whole life cycle of 
-		physical networks in the future, serving the application of 
-		innovative network technologies such as network planning, 
-		construction, maintenance and optimization, improving the 
-		automation and intelligence level of the network.
-		<cref>TODO: Review with Benoit terminology and here, do we duplicate or add all in terminology?
-			Also, capitalized versus not capitalized. In other drafts capitalized is used for
-			terminology and definitions, but we may decide to have it unified.
-		</cref>
-	  </t>
-	  <t>
-		The draft <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>
-		defines the core elements of digital twin - Data, Models,
-		Interfaces and Mapping. The digital twin network constructed based
-		on the four core technology elements can analyze, diagnose, emulate,
-		and control the physical network in its whole life cycle with the 
-		help of optimization algorithms, management methods, and expert 
-		knowledge
-	  </t>
-	  </section>
-	  <section anchor="digital-map-definition" title="Digital Map Definition">
-		<t>
-			Digital Map provides the core multi-layer topology model and data
-			for the digital twin and connects them to the other digital twin models and data.
-		</t>
-		<t>			
-			The Digital Map Modelling defines the core topological entities, their role
-			in the network, core properties and relationships both inside each 
-			layer and between the layers. 
-		</t>
-		<t>
-			The Digital Map Model is a basic topological model that is linked
-			to other functional parts of the digital twin and connects them
-			all: configuration, maintenance, assurance (KPIs, status, health, 
-			symptoms), traffic engineering, different behaviours and actions, 
-			simulation, emulation, mathematical abstractions, AI algorithms, etc.
-		</t>
-		<t>
-			The Digital Map Data consists of virtual instances of network and
-			service topologies at different layers. The Digital Map provides the
-			access to this data via standard API for both read and write, 
-			with query capabilities and links to other YANG modules 
-			(SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/>,
-			SAP <xref target="I-D.ietf-opsawg-sap"/>,
-			Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"/>,
-			Assets <xref target="I-D.palmero-opsawg-dmlmo"/>, ...) and non-YANG mode.
-		</t>
-	  </section>
-	  <section anchor="why-digital-map" title="Why Digital Map?">
-		<t>
-			One of the important requirements for the Digitalization 
-			and Digital Twin is to correlate all models and data to 
-			topological entities at different layers in the layered twin network. 
-			This draft evaluates how well the RFC8345-based YANG models are suited for the
-			Digital Map Modelling. The Digital Map would provide a
-			virtual instance of the topological information of the network, 
-			based on this Digital Map Model. The Digital Map is the first 
-			step towards the Digital Twin. 
-			
-			The Digital Map Model and Data will provide this missing correlation 
-			between the topology models and data and all other models and data: 
-			KPIs, alarms, incidents, inventory (with UUIDs), 
-			configuration, traffic engineering, planning (what if), 
-			simulation, emulations, actions, behaviours.
-			
-			Some of these models and data are in the context of device, 
-			some in context of network or subnetwork and some in context of 
-			customer services, needed for both inner and outer closed-loops.
-			
-			Therefore, Digital Map is needed to break down data islands and 
-			have a digital twin for simulation and closed loop, which is 
-			required to solve autonomous networking.
+	<section anchor="digital-map-and-digital-twin-relationship" title="Digital Map and Digital Twin Relationship">
+	  <section anchor="digital-twin" title="Digital Twin?">
+  	  <t>
+	  	  The digital twin concepts and the reference architecture of the 
+		    network digital twin are proposed in the "Digital Twin Network: 
+	  	  Concepts and Reference Architecture" NMRG draft 
+		    <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>. 
+	    </t>
+	    <t>
+		    This draft defines the core elements of digital twin - Data, Models,
+	  	  Interfaces and Mapping. The digital twin network constructed based
+   		  on the four core technology elements can analyze, diagnose, emulate,
+    		and control the physical network in its whole life cycle with the 
+	    	help of optimization algorithms, management methods, and expert 
+		    knowledge.
+	    </t>
+	    <t>
+  		  Finally, it states that a digital twin network can be regarded as an
+	    	indispensable part of the overall network system and provides 
+		    a general architecture involving the whole life cycle of 
+  		  physical networks in the future, serving the application of 
+  	  	innovative network technologies such as network planning, 
+	  	  construction, maintenance and optimization, improving the 
+  	  	automation and intelligence level of the network.
+	    	<cref>TODO: Review with Benoit terminology and here, do we duplicate or add all in terminology?
+		  	Also, capitalized versus not capitalized. In other drafts capitalized is used for
+  			terminology and definitions, but we may decide to have it unified.
+	    	</cref>
+	    </t>
 
-			The following are some use cases that require Digital Map:
+	  </section>
+	  <section anchor="digital-map" title="Digital Map">
+  		<t>
+	  		Digital Map provides the core multi-layer topology model and data
+		  	for the digital twin and connects them to the other digital twin models and data.
+  		</t>
+	  	<t>			
+		  	The Digital Map Modelling defines the core topological entities, their role
+			  in the network, core properties and relationships both inside each 
+  			layer and between the layers. 
+	  	</t>
+		  <t>
+			  The Digital Map Model is a basic topological model that is linked
+  			to other functional parts of the digital twin and connects them
+	  		all: configuration, maintenance, assurance (KPIs, status, health, 
+		  	symptoms), traffic engineering, different behaviours and actions, 
+			  simulation, emulation, mathematical abstractions, AI algorithms, etc.
+		  </t>
+  		<t>
+	  		The Digital Map Data consists of virtual instances of network and
+		  	service topologies at different layers. The Digital Map provides the
+			  access to this data via standard API for both read and write, 
+  			with query capabilities and links to other YANG modules 
+	  		(SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/>,
+		  	SAP <xref target="I-D.ietf-opsawg-sap"/>,
+			  Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"/>,
+  			Assets <xref target="I-D.palmero-opsawg-dmlmo"/>, ...) and non-YANG mode.
+	  	</t>
+	  </section>
+	  <section anchor="digital-map-as-a-prerequisite-digital-twin" title="Digital Map as a Prerequisite for Digital Twin">
+  		<t>
+	  		One of the important requirements for the Digitalization 
+		  	and Digital Twin is to correlate all models and data to 
+			  topological entities at different layers in the layered twin network. 
+  			The Digital Map would provide a virtual instance of the topological 
+	  		information of the network, based on this Digital Map Model. The 
+		  	Digital Map is the first step towards the Digital Twin. 
+			
+        The Digital Map Model and Data will provide this missing correlation 
+  			between the topology models and data and all other models and data: 
+	  		KPIs, alarms, incidents, inventory (with UUIDs), 
+		  	configuration, traffic engineering, planning (what if), 
+			  simulation, emulations, actions, behaviours.
+			  
+  			Some of these models and data are in the context of device, 
+	  		some in context of network or subnetwork and some in context of 
+		  	customer services, needed for both inner and outer closed-loops.
+			
+  			Therefore, Digital Map is needed to break down data islands and 
+	  		have a digital twin for simulation and closed loop, which is 
+		  	required to solve autonomous networking.
+
+  			The following are some use cases that require Digital Map:
 			</t>
-			<ul>
-				<li>
-					Generic Inventory Queries 
-				</li>
-				<li>
-						o	Service-> subservice -> resource
-				</li>
-				<li>
-						o	Resource -> subservice -> service
-				</li>
-				<li>
-					Intent/Service Assurance
-				</li>
-				<li>					
-					Service E2E and Per-Link KPIs on the digital map (delay, jitter, loss)
-				</li>
-				<li>
-					Capacity Planning
-				</li>
-				<li>
-					Simulation
-				</li>
-				<li>	
-					Closed Loop 
-				</li>
-			</ul>
+	  		<ul>
+		  		<li>
+			  		Generic Inventory Queries 
+ 				  </li>
+  				<li>
+	 					Service-> subservice -> resource
+	  			</li>
+		  		<li>
+						Resource -> subservice -> service
+			  	</li>
+				  <li>
+					  Intent/Service Assurance
+  				</li>
+	  			<li>					
+		  			Service E2E and Per-Link KPIs on the digital map (delay, jitter, loss)
+			  	</li>
+				  <li>
+		  			Capacity Planning
+			  	</li>
+	  			<li>
+		  			Simulation
+			  	</li>
+  				<li>	
+	  				Closed Loop 
+		  		</li>
+			 </ul>
 
 		
 	  </section>
@@ -433,39 +439,32 @@
 	 </t>
 	 <ol>
 		<li>
-			Basic model with Network, Node, Link, Interface
+			Basic model with Network, Node, Link, Interface entity types
 		</li>
 		<li>
-			Layered Digital Map, from physical network up to customer 
-			service and intent
+			Layered Digital Map, from physical network (layer 2, layer 3) up to customer service and intent
 		</li>
 		<li>			
-			Open and Programmable Digital Map. This includes read / Write for Digital Map 
-			(write important for future simulations and what if scenarios). Doing what-if 
-            analysis requires the ability to take snapshots and to switch easily between them.  
-            Because we have to distinguish between a change on the digital map for future simulation 
-            and a change that reflects the current reality of the network.
+			Open and Programmable Digital Map. This includes "Read" to understand the view of the network. 
+			It also "Write", not for the ability to directly change the Digital Map Data (ex: changing the 
+			network or service parameters), but for offline simulations, also known as what-if scenarios. 
+			Doing what-if analysis requires the ability to take snapshots and to switch easily between them.  
+      Because we have to distinguish between a change on the digital map for future simulation 
+      and a change that reflects the current reality of the network.
 		</li>
 		<li>			
-			Standard based Digital Map Models and APIs (e.g. based 
-			on IETF Network Topology). Digital Map must provide 
-			the standards APIs that provide for Read / Write and 
-			queries. This API must also provide the capability 
+			Standard based Digital Map Models and APIs, for multi-vendor support. Digital Map must provide 
+			the standard APIs that provide for Read / Write and queries. This API must also provide the capability 
 			to retrieve the links to external data / models.  
 		</li>
 		<li>
 			Digital Map Models and APIs must be common over different network domains
 		</li>
 		<li>
-			Digital Map must be multi-vendor
+			Digital Map must provide semantics for layered network topologies and for linking external models/data
 		</li>
 		<li>
-			Digital Map must provide semantics for layered network 
-			topologies and for linking external models/data
-		</li>
-		<li>
-			Digital Map must provide inter-layer and between layer 
-			relationships
+			Digital Map must provide inter-layer and between layer relationships
 		</li>
 		<li>
 			Digital Map must be extensible with meta data
@@ -489,7 +488,7 @@
 		The requirements [1-6] are automatically fulfilled with RFC8345 and extensions.
 		The requirements [7-8] are partially fulfiled, there may be need for some additional semantics.
 		The requirements [9-11] will need some extensions to the RFC8345. 
-	    In some cases for [10], the links are already sone by augmenting 'ietf-network' and 
+	  In some cases for [10], the links are already sone by augmenting 'ietf-network' and 
 		'ietf-network-topology'. For others, we need to add some mechanims to link the models and data.
 		 <cref>
 		    If we remove requirements, we can focus on this section. Benoit's comment

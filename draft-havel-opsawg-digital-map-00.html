@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html class="Internet-Draft" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Modeling the Digital Map based on RFC8345: Sharing Experience</title>
+<meta content="Olga Havel" name="author">
+<meta content="Benoit Claise" name="author">
+<meta content="Oscar Gonzalez de Dios" name="author">
+<meta content="Ahmed.Elhassany" name="author">
+<meta content="Thomas Graf" name="author">
+<meta content="
+       
+       This document shares experience in modelling digital map based 
+     on the IETF RFC8345 topology YANG modules and some of its augmentations.
+     Next to sharing experience, it covers the open issues encountered during 
+     the modelling phases.
+       
+    " name="description">
+<meta content="xml2rfc 3.17.3" name="generator">
+<meta content="draft-havel-opsawg-digital-map-00" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.17.3
+    Python 3.10.6
+    appdirs 1.4.4
+    ConfigArgParse 1.5.3
+    google-i18n-address 3.0.0
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.2
+    pycountry 22.3.5
+    PyYAML 6.0
+    requests 2.31.0
+    setuptools 59.6.0
+    six 1.16.0
+    wcwidth 0.2.6
+    weasyprint 59.0
+-->
+<link href="https://author-tools.ietf.org/usr/src/app/tmp/fed79bd6-5cb6-415a-9504-3eb4143457d1/draft-havel-opsawg-digital-map-00.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">/*
+
+  NOTE: Changes at the bottom of this file overrides some earlier settings.
+
+  Once the style has stabilized and has been adopted as an official RFC style,
+  this can be consolidated so that style settings occur only in one place, but
+  for now the contents of this file consists first of the initial CSS work as
+  provided to the RFC Formatter (xml2rfc) work, followed by itemized and
+  commented changes found necessary during the development of the v3
+  formatters.
+
+*/
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans'); /* Sans-serif */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif'); /* Serif (print) */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); /* Monospace */
+
+:root {
+  --font-sans: 'Noto Sans', Arial, Helvetica, sans-serif;
+  --font-serif: 'Noto Serif', 'Times', 'Times New Roman', serif;
+  --font-mono: 'Roboto Mono', Courier, 'Courier New', monospace;
+}
+
+@viewport {
+  zoom: 1.0;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+/* general and mobile first */
+html {
+}
+body {
+  max-width: 90%;
+  margin: 1.5em auto;
+  color: #222;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+.ears {
+  display: none;
+}
+
+/* headings */
+#title, h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 0.5em;
+  font-weight: bold;
+  line-height: 1.3;
+}
+#title {
+  clear: both;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 0.5em 0;
+  padding: 1em 0 0.5em;
+}
+.author {
+  padding-bottom: 4px;
+}
+h1 {
+  font-size: 26px;
+  margin: 1em 0;
+}
+h2 {
+  font-size: 22px;
+  margin-top: -20px;  /* provide offset for in-page anchors */
+  padding-top: 33px;
+}
+h3 {
+  font-size: 18px;
+  margin-top: -36px;  /* provide offset for in-page anchors */
+  padding-top: 42px;
+}
+h4 {
+  font-size: 16px;
+  margin-top: -36px;  /* provide offset for in-page anchors */
+  padding-top: 42px;
+}
+h5, h6 {
+  font-size: 14px;
+}
+#n-copyright-notice {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+/* general structure */
+p {
+  padding: 0;
+  margin: 0 0 1em 0;
+  text-align: left;
+}
+div, span {
+  position: relative;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 1em 1em 0;
+  margin-bottom: 1.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+svg[font-family~="serif" i], svg [font-family~="serif" i] {
+  font-family: var(--font-serif);
+}
+svg[font-family~="sans-serif" i], svg [font-family~="sans-serif" i] {
+  font-family: var(--font-sans);
+}
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 1em 1em 0;
+  margin-bottom: 1.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  display: table;
+  border: none;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 1em 2em;
+}
+ol ol, ul ul, ol ul, ul ol {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+ul.ulBare, li.ulBare {
+  margin-left: 0em !important;
+}
+ul.compact, .ulCompact,
+ol.compact, .olCompact {
+  line-height: 100%;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+/* 
+dl.nohang > dt {
+  float: none;
+}
+*/
+dl > dd {
+  margin-bottom: .8em;
+  min-height: 1.3em;
+}
+dl.compact > dd, .dlCompact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+
+/* links */
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #22e; /* Arlen: WCAG 2019 */
+}
+a[href]:hover {
+  background-color: #f2f2f2;
+}
+figcaption a[href],
+a[href].selfRef,
+.iref + a[href].internal {
+  color: #222;
+}
+/* XXX probably not this:
+a.selfRef:hover {
+  background-color: transparent;
+  cursor: default;
+} */
+
+/* Figures */
+tt, code, pre {
+  background-color: #f9f9f9;
+  font-family: var(--font-mono);
+}
+pre {
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 1em;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption {
+  font-style: italic;
+  margin: 0 0 1em 0;
+}
+@media screen {
+  pre {
+    overflow-x: auto;
+    max-width: 100%;
+    max-width: calc(100% - 22px);
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 1.2em 2em;
+}
+blockquote {
+  background-color: #f9f9f9;
+  color: #111; /* Arlen: WCAG 2019 */
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5em 0.75em;
+}
+th {
+  text-align: left;
+  background-color: #e9e9e9;
+}
+tr:nth-child(2n+1) > td {
+  background-color: #f5f5f5;
+}
+table caption {
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+table p {
+  /* XXX to avoid bottom margin on table row signifiers. If paragraphs should
+     be allowed within tables more generally, it would be far better to select on a class. */
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  color: #666; /* Arlen: AHDJ 2019 */
+  text-decoration: none;
+  visibility: hidden;
+  user-select: none;
+  -ms-user-select: none;
+  -o-user-select:none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+@media screen {
+  aside:hover > a.pilcrow,
+  p:hover > a.pilcrow,
+  blockquote:hover > a.pilcrow,
+  div:hover > a.pilcrow,
+  li:hover > a.pilcrow,
+  pre:hover > a.pilcrow {
+    visibility: visible;
+  }
+  a.pilcrow:hover {
+    background-color: transparent;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.bcp14 {
+  font-variant: small-caps;
+}
+
+.role {
+  font-variant: all-small-caps;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: 0.9em;
+}
+#identifiers dt {
+  width: 3em;
+  clear: left;
+}
+#identifiers dd {
+  float: left;
+  margin-bottom: 0;
+}
+/* Fix PDF info block run off issue */
+@media print {
+  #identifiers dd {
+    float: none;
+  }
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #666; /* Arlen: WCAG 2019 */
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc  {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+nav.toc ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+nav.toc li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dd {
+  margin-left: 8em;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+.index ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+}
+.index ul ul {
+  margin: 0;
+}
+.index li {
+  margin: 0;
+  text-indent: -2em;
+  padding-left: 2em;
+  padding-bottom: 5px;
+}
+.indexIndex {
+  margin: 0.5em 0 1em;
+}
+.index a {
+  font-weight: 700;
+}
+/* make the index two-column on all but the smallest screens */
+@media (min-width: 600px) {
+  .index ul {
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+  }
+  .index ul ul {
+    -moz-column-count: 1;
+    -moz-column-gap: 0;
+  }
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  font-family: var(--font-sans);
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+
+/* temporary notes */
+.rfcEditorRemove::before {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  padding: 0.2em;
+  content: "The RFC Editor will remove this note";
+  color: #9e2a00; /* Arlen: WCAG 2019 */
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+}
+.rfcEditorRemove {
+  position: relative;
+  padding-top: 1.8em;
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+  border-radius: 3px;
+}
+.cref {
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 1023px) {
+  body {
+    padding-top: 2em;
+  }
+  #title {
+    padding: 1em 0;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: -18px;  /* provide offset for in-page anchors */
+    padding-top: 38px;
+  }
+  #identifiers dd {
+    max-width: 60%;
+  }
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+    border-bottom: 1px solid #ccc;
+  }
+  #toc h2 {
+    margin: -1px 0 0 0;
+    padding: 4px 0 4px 6px;
+    padding-right: 1em;
+    min-width: 190px;
+    font-size: 1.1em;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 6px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 724px;
+    margin: 42px auto;
+    padding-left: 1.5em;
+    padding-right: 29em;
+  }
+  #toc {
+    position: fixed;
+    top: 42px;
+    right: 42px;
+    width: 25%;
+    margin: 0;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  #toc h2 {
+    border-top: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 0;
+    overflow: auto;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  .breakable pre {
+    break-inside: auto;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+/* This is commented out here, as the string-set: doesn't
+   pass W3C validation currently */
+/*
+.ears thead .left {
+  string-set: ears-top-left content();
+}
+
+.ears thead .center {
+  string-set: ears-top-center content();
+}
+
+.ears thead .right {
+  string-set: ears-top-right content();
+}
+
+.ears tfoot .left {
+  string-set: ears-bottom-left content();
+}
+
+.ears tfoot .center {
+  string-set: ears-bottom-center content();
+}
+
+.ears tfoot .right {
+  string-set: ears-bottom-right content();
+}
+*/
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+  /* The following is commented out here, but set appropriately by in code, as
+     the content depends on the document */
+  /*
+  @top-left {
+    content: 'Internet-Draft';
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-left {
+    content: string(ears-top-left);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-center {
+    content: string(ears-top-center);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-right {
+    content: string(ears-top-right);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @bottom-left {
+    content: string(ears-bottom-left);
+    vertical-align: top;
+    border-top: solid 1px #ccc;
+  }
+  @bottom-center {
+    content: string(ears-bottom-center);
+    vertical-align: top;
+    border-top: solid 1px #ccc;
+  }
+  @bottom-right {
+      content: '[Page ' counter(page) ']';
+      vertical-align: top;
+      border-top: solid 1px #ccc;
+  }
+  */
+
+}
+
+/* Changes introduced to fix issues found during implementation */
+/* Make sure links are clickable even if overlapped by following H* */
+a {
+  z-index: 2;
+}
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Leave room in document info to show Internet-Draft on one line */
+#identifiers dt {
+  width: 8em;
+}
+
+/* Don't waste quite as much whitespace between label and value in doc info */
+#identifiers dd {
+  margin-left: 1em;
+}
+
+/* Give floating toc a background color (needed when it's a div inside section */
+#toc {
+  background-color: white;
+}
+
+/* Make the collapsed ToC header render white on gray also when it's a link */
+@media screen and (max-width: 1023px) {
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+}
+
+/* Give the bottom of the ToC some whitespace */
+@media screen and (min-width: 1024px) {
+  #toc {
+    padding: 0 0 1em 1em;
+  }
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* prevent monospace from becoming overly large */
+tt, code, pre {
+  font-size: 95%;
+}
+
+/* Fix the height/width aspect for ascii art*/
+.sourcecode pre,
+.art-text pre {
+  line-height: 1.12;
+}
+
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin-right: 0.5em;
+}
+
+/* Fix the dl styling to match the RFC 7992 attributes */
+dl > dt,
+dl.dlParallel > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+
+/* Provide styling for table cell text alignment */
+table td.text-left,
+table th.text-left {
+  text-align: left;
+}
+table td.text-center,
+table th.text-center {
+  text-align: center;
+}
+table td.text-right,
+table th.text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 30em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Provide table alignment support.  We can't use the alignX classes above
+   since they do unwanted things with caption and other styling. */
+table.right {
+ margin-left: auto;
+ margin-right: 0;
+}
+table.center {
+ margin-left: auto;
+ margin-right: auto;
+}
+table.left {
+ margin-left: 0;
+ margin-right: auto;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+caption a[href] {
+  color: #222;
+}
+
+@media print {
+  .toplink {
+    display: none;
+  }
+
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
+
+  /* Avoid page breaks inside dl and author address entries */
+  .vcard {
+    page-break-inside: avoid;
+  }
+
+}
+/* Tweak the bcp14 keyword presentation */
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+/* Tweak the invisible space above H* in order not to overlay links in text above */
+ h2 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 31px;
+ }
+ h3 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 24px;
+ }
+ h4 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 24px;
+ }
+/* Float artwork pilcrow to the right */
+@media screen {
+  .artwork a.pilcrow {
+    display: block;
+    line-height: 0.7;
+    margin-top: 0.15em;
+  }
+}
+/* Make pilcrows on dd visible */
+@media screen {
+  dd:hover > a.pilcrow {
+    visibility: visible;
+  }
+}
+/* Make the placement of figcaption match that of a table's caption
+   by removing the figure's added bottom margin */
+.alignLeft.art-text,
+.alignCenter.art-text,
+.alignRight.art-text {
+   margin-bottom: 0;
+}
+.alignLeft,
+.alignCenter,
+.alignRight {
+  margin: 1em 0 0 0;
+}
+/* In print, the pilcrow won't show on hover, so prevent it from taking up space,
+   possibly even requiring a new line */
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+/* Styling for the external metadata */
+div#external-metadata {
+  background-color: #eee;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  display: none;
+}
+div#internal-metadata {
+  padding: 0.5em;                       /* to match the external-metadata padding */
+}
+/* Styling for title RFC Number */
+h1#rfcnum {
+  clear: both;
+  margin: 0 0 -1em;
+  padding: 1em 0 0 0;
+}
+/* Make .olPercent look the same as <ol><li> */
+dl.olPercent > dd {
+  margin-bottom: 0.25em;
+  min-height: initial;
+}
+/* Give aside some styling to set it apart */
+aside {
+  border-left: 1px solid #ddd;
+  margin: 1em 0 1em 2em;
+  padding: 0.2em 2em;
+}
+aside > dl,
+aside > ol,
+aside > ul,
+aside > table,
+aside > p {
+  margin-bottom: 0.5em;
+}
+/* Additional page break settings */
+@media print {
+  figcaption, table caption {
+    page-break-before: avoid;
+  }
+}
+/* Font size adjustments for print */
+@media print {
+  body  { font-size: 10pt;      line-height: normal; max-width: 96%; }
+  h1    { font-size: 1.72em;    padding-top: 1.5em; } /* 1*1.2*1.2*1.2 */
+  h2    { font-size: 1.44em;    padding-top: 1.5em; } /* 1*1.2*1.2 */
+  h3    { font-size: 1.2em;     padding-top: 1.5em; } /* 1*1.2 */
+  h4    { font-size: 1em;       padding-top: 1.5em; }
+  h5, h6 { font-size: 1em;      margin: initial; padding: 0.5em 0 0.3em; }
+}
+/* Sourcecode margin in print, when there's no pilcrow */
+@media print {
+  .artwork,
+  .artwork > pre,
+  .sourcecode {
+    margin-bottom: 1em;
+  }
+}
+/* Avoid narrow tables forcing too narrow table captions, which may render badly */
+table {
+  min-width: 20em;
+}
+/* ol type a */
+ol.type-a { list-style-type: lower-alpha; }
+ol.type-A { list-style-type: upper-alpha; }
+ol.type-i { list-style-type: lower-roman; }
+ol.type-I { list-style-type: lower-roman; }
+/* Apply the print table and row borders in general, on request from the RPC,
+and increase the contrast between border and odd row background slightly */
+table {
+  border: 1px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+}
+tr {
+  break-inside: avoid;
+}
+tr:nth-child(2n+1) > td {
+  background-color: #f8f8f8;
+}
+/* Use style rules to govern display of the TOC. */
+@media screen and (max-width: 1023px) {
+  #toc nav { display: none; }
+  #toc.active nav { display: block; }
+}
+/* Add support for keepWithNext */
+.keepWithNext {
+  break-after: avoid-page;
+  break-after: avoid-page;
+}
+/* Add support for keepWithPrevious */
+.keepWithPrevious {
+  break-before: avoid-page;
+}
+/* Change the approach to avoiding breaks inside artwork etc. */
+figure, pre, table, .artwork, .sourcecode  {
+  break-before: auto;
+  break-after: auto;
+}
+/* Avoid breaks between <dt> and <dd> */
+dl {
+  break-before: auto;
+  break-inside: auto;
+}
+dt {
+  break-before: auto;
+  break-after: avoid-page;
+}
+dd {
+  break-before: avoid-page;
+  break-after: auto;
+  orphans: 3;
+  widows: 3
+}
+span.break, dd.break {
+  margin-bottom: 0;
+  min-height: 0;
+  break-before: auto;
+  break-inside: auto;
+  break-after: auto;
+}
+/* Undo break-before ToC */
+@media print {
+  #toc {
+    break-before: auto;
+  }
+}
+/* Text in compact lists should not get extra bottom margin space,
+   since that would makes the list not compact */
+ul.compact p, .ulCompact p,
+ol.compact p, .olCompact p {
+ margin: 0;
+}
+/* But the list as a whole needs the extra space at the end */
+section ul.compact,
+section .ulCompact,
+section ol.compact,
+section .olCompact {
+  margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
+}
+/* The tt and code background above interferes with for instance table cell
+   backgrounds.  Changed to something a bit more selective. */
+tt, code {
+  background-color: transparent;
+}
+p tt, p code, li tt, li code {
+  background-color: #f8f8f8;
+}
+/* Tweak the pre margin -- 0px doesn't come out well */
+pre {
+   margin-top: 0.5px;
+}
+/* Tweak the compact list text */
+ul.compact, .ulCompact,
+ol.compact, .olCompact,
+dl.compact, .dlCompact {
+  line-height: normal;
+}
+/* Don't add top margin for nested lists */
+li > ul, li > ol, li > dl,
+dd > ul, dd > ol, dd > dl,
+dl > dd > dl {
+  margin-top: initial;
+}
+/* Elements that should not be rendered on the same line as a <dt> */
+/* This should match the element list in writer.text.TextWriter.render_dl() */
+dd > div.artwork:first-child,
+dd > aside:first-child,
+dd > figure:first-child,
+dd > ol:first-child,
+dd > div.sourcecode:first-child,
+dd > table:first-child,
+dd > ul:first-child {
+  clear: left;
+}
+/* fix for weird browser behaviour when <dd/> is empty */
+dt+dd:empty::before{
+  content: "\00a0";
+}
+/* Make paragraph spacing inside <li> smaller than in body text, to fit better within the list */
+li > p {
+  margin-bottom: 0.5em
+}
+/* Don't let p margin spill out from inside list items */
+li > p:last-of-type:only-child {
+  margin-bottom: 0;
+}
+</style>
+<link href="draft-havel-opsawg-digital-map-00_files/rfc-local.css" rel="stylesheet" type="text/css">
+<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
+</head>
+<body class="xml2rfc">
+<script src="draft-havel-opsawg-digital-map-00_files/metadata.min.js"></script>
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">Digital Map Modelling</td>
+<td class="right">June 2023</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Havel, et al.</td>
+<td class="center">Expires 15 December 2023</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">OPSAWG</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-opsawg-havel-digital-map-00</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2023-06-13" class="published">13 June 2023</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2023-12-15">15 December 2023</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">O. Havel</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">B. Claise</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">O. Gonzalez. de Dios</div>
+<div class="org">Telefonica</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Elhassany</div>
+<div class="org">Swisscom</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Graf</div>
+<div class="org">Swisscom</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Modeling the Digital Map based on RFC8345: Sharing Experience</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">
+       This document shares experience in modelling digital map based 
+     on the IETF RFC8345 topology YANG modules and some of its augmentations.
+     Next to sharing experience, it covers the open issues encountered during 
+     the modelling phases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+       Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/OlgaHuawei">https://github.com/OlgaHuawei</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 15 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2023 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.&nbsp;&nbsp;<a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.&nbsp;&nbsp;<a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.&nbsp;&nbsp;<a href="#name-digital-map-and-digital-twi" class="internal xref">Digital Map and Digital Twin Relationship</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.&nbsp;&nbsp;<a href="#name-digital-twin" class="internal xref">Digital Twin?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.&nbsp;&nbsp;<a href="#name-digital-map" class="internal xref">Digital Map</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.&nbsp;&nbsp;<a href="#name-digital-map-as-a-prerequisi" class="internal xref">Digital Map as a Prerequisite for Digital Twin</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.&nbsp;&nbsp;<a href="#name-other-related-ietf-activiti" class="internal xref">Other Related IETF Activities</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.&nbsp;&nbsp;<a href="#name-digital-map-requirements" class="internal xref">Digital Map Requirements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.&nbsp;&nbsp;<a href="#name-digital-map-modelling-exper" class="internal xref">Digital Map Modelling Experience</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.&nbsp;&nbsp;<a href="#name-ietf-network-topology-appro" class="internal xref">IETF Network Topology Approach</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.&nbsp;&nbsp;<a href="#name-ietf-network-topology" class="internal xref">IETF Network Topology</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.&nbsp;&nbsp;<a href="#name-what-is-not-in-the-basic-mo" class="internal xref">What is not in the basic model</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.3">
+                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="auto internal xref">4.1.3</a>.&nbsp;&nbsp;<a href="#name-open-issues-for-further-ana" class="internal xref">Open issues for further analysis</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.4">
+                    <p id="section-toc.1-1.4.2.1.2.4.1"><a href="#section-4.1.4" class="auto internal xref">4.1.4</a>.&nbsp;&nbsp;<a href="#name-how-to-connect-to-the-exter" class="internal xref">How to connect to the external world</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.5">
+                    <p id="section-toc.1-1.4.2.1.2.5.1"><a href="#section-4.1.5" class="auto internal xref">4.1.5</a>.&nbsp;&nbsp;<a href="#name-digital-map-apis" class="internal xref">Digital Map APIs</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.6">
+                    <p id="section-toc.1-1.4.2.1.2.6.1"><a href="#section-4.1.6" class="auto internal xref">4.1.6</a>.&nbsp;&nbsp;<a href="#name-digital-map-knowledge" class="internal xref">Digital Map Knowledge</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.&nbsp;&nbsp;<a href="#name-conclusions" class="internal xref">Conclusions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.&nbsp;&nbsp;<a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.&nbsp;&nbsp;<a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.&nbsp;&nbsp;<a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.&nbsp;&nbsp;<a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.&nbsp;&nbsp;<a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="intro">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">
+ The <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is a topology-based YANG model with many YANG augmentations for
+ different technologies and service types. The modelling approach 
+ based on <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> provides the out of box standard IETF based API.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">
+ At the time of writing those lines, there are 60 YANG Modules augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
+ 59 IETF and 1 BBF. 8 have maturity level 'ratified', 15 have maturity level 'adopted', 
+ 21 have maturity level 'latest-approved' and 16 have maturity level 'initial'.
+ The up-to-date information can be found in the YANG Catalog at 
+ <span><a href="https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26">https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26</a></span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">
+ From this long series of IETF RFCs and IETF drafts, we attempted 
+ to create a Digital Map PoC, with the following objectives and 
+ functionalities:<a href="#section-1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1-4.1">
+ Can the central RFC 8345 YANG Module be a good basis to model a Digital Map?<a href="#section-1-4.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-1-4.2">
+ Understanding how the different topology-related IETF YANG modules fit together/<a href="#section-1-4.2" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-1-4.3">
+ Modelling of digital map entities, relationships, and rules how to 
+     build aggregated entities and relationships. Does the base model support all the 
+     requirements?<a href="#section-1-4.3" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-1-4.4">
+   Modelling multiple underlay/overlay layers from layer 2 to layer 3 to customer 
+     service layer. Can the base model be augmented for any new technologies?<a href="#section-1-4.4" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-1-4.5">
+        Can the base model be augmented for any new layer and technologies?<a href="#section-1-4.5" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-1-4.6">
+   Practically, we developed our proof of concept (PoC) with a real lab, based 
+   on multi-vendor devices, with <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> as the base YANG module. 
+   The PoC successfully modelled the following technologies:<a href="#section-1-4.6" class="pilcrow">¶</a>
+</li>
+      </ul>
+<p id="section-1-5">
+ - Layer 2 Network Topology (used <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span>)<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">
+ - Layer 3 Network Topology (used <span>[<a href="#RFC8346" class="cite xref">RFC8346</a>]</span>)<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">
+ - OSPF Routing (to be further aligned with <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span>)<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">
+ - IS-IS Routing (to be further aligned with <span>[<a href="#I-D.ogondio-lsr-isis-topology" class="cite xref">I-D.ogondio-lsr-isis-topology</a>]</span>)<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">
+ - BGP Routing<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">
+ - MPLS LDP<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">
+ - MPLS TE Tunnels<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">
+ - SRv6 Tunnels<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13">
+ - L3 VPN Services<a href="#section-1-13" class="pilcrow">¶</a></p>
+<p id="section-1-14">
+   This draft documents our experience in the modeling aspects of the digital map, based on our PoC
+   implementation, basically documenting our work and the open issues encountered.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-15">
+ During the PoC, we also defined the requirements and verified the 
+ PoC approach by demoing it iteratively.
+   <span class="cref">
+    Discuss: should we have requirements in the separate document. If so, add
+    'The requirements are defined in a separate draft [I-D ref]'
+        </span><a href="#section-1-15" class="pilcrow">¶</a></p>
+<div id="terminology">
+<section id="section-1.1">
+        <h3 id="name-terminology">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+        </h3>
+<p id="section-1.1-1">
+          The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+          NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+          "MAY", and "OPTIONAL" in this document are to be interpreted as
+          described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span>
+          when, and only when, they appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-1.1-2">
+          <dt id="section-1.1-2.1">Digital Twin - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-2.2">
+ Virtual instance of a physical system (twin) that is
+ continually updated with the latter's performance, maintenance
+ and health status data throughout the physical system's life
+ cycle (as defined in <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>)<a href="#section-1.1-2.2" class="pilcrow">¶</a>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<span class="break"></span><dl class="dlParallel" id="section-1.1-3">
+          <dt id="section-1.1-3.1">Digital Map - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-3.2">
+ Basis for the Digital Twin that provides a virtual instance
+ of the topological information of the network. It provides the 
+ core multi-layer topology model and data for the digital twin
+ and connects them to the other digital twin models and data.
+ <span class="cref">There is no digital map definition in the NMRG Digital Twin</span><a href="#section-1.1-3.2" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-3.3">Digital Map Modelling - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-3.4">
+ The set of principles, guidelines, and conventions to model the Digital Map 
+ using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach. They cover the network 
+ types (layers and sublayers), entity types, entity roles (network, node, 
+ termination point or link), entity properties and relationships types 
+ between entities.<a href="#section-1.1-3.4" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-3.5">Digital Map Model - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-3.6">
+ Defines the core topological entities, their role in the network,
+ core properties and relationships both inside each layer and
+ between the layers. It is the basic topological model that is
+ linked to other functional parts of the digital twin and
+ connects them all: configuration, maintenance, assurance
+ (KPIs, status, health, symptoms), traffic engineering,
+ different behaviours, simulation, emulation, mathematical
+ abstractions, AI algorithms, etc<a href="#section-1.1-3.6" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-3.7">Digital Map Data - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-3.8">
+ Consists of virtual instances of network and service topologies at different layers.
+ The data can be historical, real-time or future data for what-if scenarios.
+ <span class="cref">Olga, there is more than this, right? All the components of the Digital Map Model. 
+ Btw, not sure why we need this one? </span><a href="#section-1.1-3.8" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-3.9">Topology - </dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-3.10">is defined in Oxford Dictionary as the way in which constituents parts of something
+ are interrelated or arranged. Network topology defines how physical or logical
+ nodes, links and interfaces are related and arranges. Service topology defines how service components
+ (e.g VRX, customer interfaces, customer links) between customer sites are interrelated and arranged.
+ <span class="cref">Olga, what's VRX? Not sure it's appropriate to mention Oxford dictionary here</span><a href="#section-1.1-3.10" class="pilcrow">¶</a>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="digital-map-and-digital-twin-relationship">
+<section id="section-2">
+      <h2 id="name-digital-map-and-digital-twi">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-digital-map-and-digital-twi" class="section-name selfRef">Digital Map and Digital Twin Relationship</a>
+      </h2>
+<div id="digital-twin">
+<section id="section-2.1">
+        <h3 id="name-digital-twin">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-digital-twin" class="section-name selfRef">Digital Twin?</a>
+        </h3>
+<p id="section-2.1-1">
+      The digital twin concepts and the reference architecture of the 
+     network digital twin are proposed in the "Digital Twin Network: 
+      Concepts and Reference Architecture" NMRG draft 
+     <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">
+     This draft defines the core elements of digital twin - Data, Models,
+      Interfaces and Mapping. The digital twin network constructed based
+      on the four core technology elements can analyze, diagnose, emulate,
+     and control the physical network in its whole life cycle with the 
+      help of optimization algorithms, management methods, and expert 
+     knowledge.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">
+     Finally, it states that a digital twin network can be regarded as an
+      indispensable part of the overall network system and provides 
+     a general architecture involving the whole life cycle of 
+     physical networks in the future, serving the application of 
+      innovative network technologies such as network planning, 
+      construction, maintenance and optimization, improving the 
+      automation and intelligence level of the network.
+      <span class="cref">TODO: Review with Benoit terminology and here, do we duplicate or add all in terminology?
+    Also, capitalized versus not capitalized. In other drafts capitalized is used for
+   terminology and definitions, but we may decide to have it unified.
+          </span><a href="#section-2.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="digital-map">
+<section id="section-2.2">
+        <h3 id="name-digital-map">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-digital-map" class="section-name selfRef">Digital Map</a>
+        </h3>
+<p id="section-2.2-1">
+    Digital Map provides the core multi-layer topology model and data
+    for the digital twin and connects them to the other digital twin models and data.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-2"> 
+    The Digital Map Modelling defines the core topological entities, their role
+   in the network, core properties and relationships both inside each 
+   layer and between the layers.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-3">
+   The Digital Map Model is a basic topological model that is linked
+   to other functional parts of the digital twin and connects them
+    all: configuration, maintenance, assurance (KPIs, status, health, 
+    symptoms), traffic engineering, different behaviours and actions, 
+   simulation, emulation, mathematical abstractions, AI algorithms, etc.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<p id="section-2.2-4">
+    The Digital Map Data consists of virtual instances of network and
+    service topologies at different layers. The Digital Map provides the
+   access to this data via standard API for both read and write, 
+   with query capabilities and links to other YANG modules 
+    (SAIN <span>[<a href="#I-D.ietf-opsawg-service-assurance-architecture" class="cite xref">I-D.ietf-opsawg-service-assurance-architecture</a>]</span>,
+    SAP <span>[<a href="#I-D.ietf-opsawg-sap" class="cite xref">I-D.ietf-opsawg-sap</a>]</span>,
+   Inventory <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span>,
+   Assets <span>[<a href="#I-D.palmero-opsawg-dmlmo" class="cite xref">I-D.palmero-opsawg-dmlmo</a>]</span>, ...) and non-YANG mode.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="digital-map-as-a-prerequisite-digital-twin">
+<section id="section-2.3">
+        <h3 id="name-digital-map-as-a-prerequisi">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-digital-map-as-a-prerequisi" class="section-name selfRef">Digital Map as a Prerequisite for Digital Twin</a>
+        </h3>
+<p id="section-2.3-1">
+    One of the important requirements for the Digitalization 
+    and Digital Twin is to correlate all models and data to 
+   topological entities at different layers in the layered twin network. 
+   The Digital Map would provide a virtual instance of the topological 
+    information of the network, based on this Digital Map Model. The 
+    Digital Map is the first step towards the Digital Twin. 
+ 
+        The Digital Map Model and Data will provide this missing correlation 
+   between the topology models and data and all other models and data: 
+    KPIs, alarms, incidents, inventory (with UUIDs), 
+    configuration, traffic engineering, planning (what if), 
+   simulation, emulations, actions, behaviours.
+   
+   Some of these models and data are in the context of device, 
+    some in context of network or subnetwork and some in context of 
+    customer services, needed for both inner and outer closed-loops.
+ 
+   Therefore, Digital Map is needed to break down data islands and 
+    have a digital twin for simulation and closed loop, which is 
+    required to solve autonomous networking.
+
+   The following are some use cases that require Digital Map:<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.3-2.1">
+    Generic Inventory Queries<a href="#section-2.3-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.2">
+   Service-&gt; subservice -&gt; resource<a href="#section-2.3-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.3">
+ Resource -&gt; subservice -&gt; service<a href="#section-2.3-2.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.4">
+   Intent/Service Assurance<a href="#section-2.3-2.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.5"> 
+    Service E2E and Per-Link KPIs on the digital map (delay, jitter, loss)<a href="#section-2.3-2.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.6">
+    Capacity Planning<a href="#section-2.3-2.6" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.7">
+    Simulation<a href="#section-2.3-2.7" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.3-2.8"> 
+    Closed Loop<a href="#section-2.3-2.8" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="other-ietf-activities">
+<section id="section-2.4">
+        <h3 id="name-other-related-ietf-activiti">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-other-related-ietf-activiti" class="section-name selfRef">Other Related IETF Activities</a>
+        </h3>
+<p id="section-2.4-1">
+ The following standards are core for the Digital Map.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.4-2.1">
+ IETF Network Model and Network Topology Model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-2.4-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.2">
+ A YANG Grouping for Geographic Location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#section-2.4-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.3">
+ IETF Modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for differenet technologies:<a href="#section-2.4-2.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.4">
+ o A YANG Data Model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#section-2.4-2.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.5">
+ o A YANG Data Model for Layer 2 Network Topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#section-2.4-2.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.6">
+ o A YANG Data Model for OSFP Topology <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#section-2.4-2.6" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-2.7">
+ o A YANG Data Model for IS-IS Topology <span>[<a href="#I-D.ogondio-lsr-isis-topology" class="cite xref">I-D.ogondio-lsr-isis-topology</a>]</span><a href="#section-2.4-2.7" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-2.4-3">
+ The Digital Map may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>,
+ we need further investigation for each of these items:<a href="#section-2.4-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.4-4.1">
+ Service Access Point (SAP) <span>[<a href="#I-D.ietf-opsawg-sap" class="cite xref">I-D.ietf-opsawg-sap</a>]</span>, 
+                    augments 'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>  by adding the
+ SAP inventory<a href="#section-2.4-4.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.2">
+ SAIN <span>[<a href="#I-D.ietf-opsawg-service-assurance-architecture" class="cite xref">I-D.ietf-opsawg-service-assurance-architecture</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-service-assurance-yang" class="cite xref">I-D.ietf-opsawg-service-assurance-yang</a>]</span><a href="#section-2.4-4.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.3">
+ An Inventory Management Model for Enterprise Networks <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span> 
+ augments 'ietf-network-topology' with inventory information for node, link and termination-point. It also has UUIDs.<a href="#section-2.4-4.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.4">
+ Data Model for Lifecycle Management and Operations <span>[<a href="#I-D.palmero-opsawg-dmlmo" class="cite xref">I-D.palmero-opsawg-dmlmo</a>]</span><a href="#section-2.4-4.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.5">
+ KPIs: delay, jitter, loss<a href="#section-2.4-4.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.6">
+ Attachement Circuits (ACs) <span>[<a href="#I-D.boro-opsawg-ntw-attachment-circuit" class="cite xref">I-D.boro-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.boro-opsawg-teas-attachment-circuit" class="cite xref">I-D.boro-opsawg-teas-attachment-circuit</a>]</span><a href="#section-2.4-4.6" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.7">
+ Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8049" class="cite xref">RFC8049</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-2.4-4.7" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.8">
+ Incident Management for Network Services <span>[<a href="#I-D.feng-opsawg-incident-management" class="cite xref">I-D.feng-opsawg-incident-management</a>]</span><a href="#section-2.4-4.8" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.9">
+ Transaction ID
+ <span class="cref">Benoit thinks we should remove it, lets discuss, I thought it would be good to have the link to the last
+ transaction IDs related to different services. </span><a href="#section-2.4-4.9" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-2.4-4.10">
+ Etc?<a href="#section-2.4-4.10" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="ditial-map-requirements">
+<section id="section-3">
+      <h2 id="name-digital-map-requirements">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-digital-map-requirements" class="section-name selfRef">Digital Map Requirements</a>
+      </h2>
+<p id="section-3-1">
+ The following are the core requirements for the Digital Map:
+ <span class="cref">
+    Further discussion: should we remove it from this draft and have a separate draft
+        </span><a href="#section-3-1" class="pilcrow">¶</a></p>
+<ol class="normal type-1" id="section-3-2" type="1" start="1">
+ <li id="section-3-2.1">
+ Basic model with Network, Node, Link, Interface entity types<a href="#section-3-2.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.2">
+ Layered Digital Map, from physical network (layer 2, layer 3) up to customer service and intent<a href="#section-3-2.2" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.3"> 
+ Open and Programmable Digital Map. This includes "Read" to understand the view of the network. 
+ It also "Write", not for the ability to directly change the Digital Map Data (ex: changing the 
+ network or service parameters), but for offline simulations, also known as what-if scenarios. 
+ Doing what-if analysis requires the ability to take snapshots and to switch easily between them.  
+      Because we have to distinguish between a change on the digital map for future simulation 
+      and a change that reflects the current reality of the network.<a href="#section-3-2.3" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.4"> 
+ Standard based Digital Map Models and APIs, for multi-vendor support. Digital Map must provide 
+ the standard APIs that provide for Read / Write and queries. This API must also provide the capability 
+ to retrieve the links to external data / models.<a href="#section-3-2.4" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.5">
+ Digital Map Models and APIs must be common over different network domains<a href="#section-3-2.5" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.6">
+ Digital Map must provide semantics for layered network topologies and for linking external models/data<a href="#section-3-2.6" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.7">
+ Digital Map must provide inter-layer and between layer relationships<a href="#section-3-2.7" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.8">
+ Digital Map must be extensible with meta data<a href="#section-3-2.8" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.9">
+ Digital Map must be pluggable
+ a)  We must connect to other YANG modules for Configuration, 
+     Inventory, Intent Assurance (SAIN), etc
+ b) Not everything can be in YANG, we need to connect Digital Map 
+     YANG model with other modelling mechanisms, both southbound, 
+ northbound and internally<a href="#section-3-2.9" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-2.10">
+ Digital Map must be optimized for graph traversal for paths. This means
+ that only providing link nodes and source and sink relationships to 
+ termination-points may not be sufficient, we may need to have the direct relationship
+ between the termination points or nodes<a href="#section-3-2.10" class="pilcrow">¶</a>
+</li>
+      </ol>
+<p id="section-3-3">
+ The requirements [1-6] are automatically fulfilled with RFC8345 and extensions.
+ The requirements [7-8] are partially fulfiled, there may be need for some additional semantics.
+ The requirements [9-11] will need some extensions to the RFC8345. 
+   In some cases for [10], the links are already sone by augmenting 'ietf-network' and 
+ 'ietf-network-topology'. For others, we need to add some mechanims to link the models and data.
+  <span class="cref">
+     If we remove requirements, we can focus on this section. Benoit's comment
+     Maybe we can focus this section on "why RFC 8345 is a good approach for D.M." 
+            =&gt; because we have the point 1 to 6
+        </span><a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">
+ The following are the scope requirements for the Digital Map:<a href="#section-3-4" class="pilcrow">¶</a></p>
+<ol class="normal type-1" id="section-3-5" type="1" start="1">
+ <li id="section-3-5.1"> 
+ Digital Map should contain only topological information<a href="#section-3-5.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.2">
+ Digital Map entities should contain only properties used to identify topological entities at different layers, 
+     identify their roles and topological relationships between them<a href="#section-3-5.2" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.3">
+ Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay)<a href="#section-3-5.3" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.4">
+ Digital Map should only have links to other functional Digital Twin data and models.<a href="#section-3-5.4" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.5">
+ ACLs and Route Policies will be outside of the digital map, they would be linked to digital map<a href="#section-3-5.5" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.6">
+ Dynamic paths may either be outside of the digital map, part of traffic engineering data/models<a href="#section-3-5.6" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.7">
+ Provide capability for conditional retrieval of parts of digital map<a href="#section-3-5.7" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-5.8">
+ Must support geo-spatial, temporal, and historical data<a href="#section-3-5.8" class="pilcrow">¶</a>
+</li>
+      </ol>
+<p id="section-3-6">
+ The following are the arch requirements for the Digital Map:<a href="#section-3-6" class="pilcrow">¶</a></p>
+<ol class="normal type-1" id="section-3-7" type="1" start="1">
+ <li id="section-3-7.1">
+ Scale, performance, integration<a href="#section-3-7.1" class="pilcrow">¶</a>
+</li>
+        <li id="section-3-7.2">
+ Initial discovery and dynamic (change only) synch<a href="#section-3-7.2" class="pilcrow">¶</a>
+</li>
+      </ol>
+</section>
+</div>
+<div id="digital-map-modelling-experience">
+<section id="section-4">
+      <h2 id="name-digital-map-modelling-exper">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-digital-map-modelling-exper" class="section-name selfRef">Digital Map Modelling Experience</a>
+      </h2>
+<div id="ietf-network-topology-approach">
+<section id="section-4.1">
+        <h3 id="name-ietf-network-topology-appro">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-ietf-network-topology-appro" class="section-name selfRef">IETF Network Topology Approach</a>
+        </h3>
+<div id="ietf-network-topology">
+<section id="section-4.1.1">
+          <h4 id="name-ietf-network-topology">
+<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-ietf-network-topology" class="section-name selfRef">IETF Network Topology</a>
+          </h4>
+<div id="ietf-network-topology-te">
+<section id="section-4.1.1.1">
+            <h5 id="name-ietf-network-topology-te">
+<a href="#section-4.1.1.1" class="section-number selfRef">4.1.1.1. </a><a href="#name-ietf-network-topology-te" class="section-name selfRef">IETF Network Topology TE</a>
+            </h5>
+<div id="how-to-augment-generic">
+<section id="section-4.1.1.1.1">
+              <h6 id="name-how-to-augment-for-generic-">
+<a href="#section-4.1.1.1.1" class="section-number selfRef">4.1.1.1.1. </a><a href="#name-how-to-augment-for-generic-" class="section-name selfRef">How to augment for generic Digital Map extensions</a>
+              </h6>
+<p id="section-4.1.1.1.1-1">
+ Generic Digital Map extensions are the RFC8345 extensions required for
+ all technologies and layers in the Digital Map. We have the following options:
+ - make backward compatible updates to RFC8345
+ - augment RFC8345 network, node, link and termination point for any changes needed
+
+ module: dm-network-topology
+ augment /nw:networks/nw:network:
+   ....
+ augment /nw:networks/nw:network/nw:node:
+ ....
+ augment /nw:networks/nw:network/nt:link:
+ ....
+   augment /nw:networks/nw:network/nw:node/nt:termination-point:
+ ....
+ <span class="cref">
+    This can be a separate draft
+                </span><a href="#section-4.1.1.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="how-to-augment-specific">
+<section id="section-4.1.1.1.2">
+              <h6 id="name-how-to-augment-for-new-tech">
+<a href="#section-4.1.1.1.2" class="section-number selfRef">4.1.1.1.2. </a><a href="#name-how-to-augment-for-new-tech" class="section-name selfRef">How to augment for new technologies / layers</a>
+              </h6>
+<p id="section-4.1.1.1.2-1"> 
+     There are already drafts that support augmentation for specific technologies.
+ These drafts augment network, node, termination point and link, but also add different
+ topological entities inside augmentations.
+ For example, we have examples like this:
+ module: new-module
+   augment /nw:networks/nw:network/nw:network-types:
+     +--rw new-topology!
+ augment /nw:networks/nw:network:
+   ....
+ augment /nw:networks/nw:network/nw:node:
+ .... adding list of tps of other type (e.g. tunnel TPs in te draft)
+ ... adding new supporting relationship supporting-tunnel-termination-point (te draft)
+ augment /nw:networks/nw:network/nt:link:
+ .... adding tunnels (te draft)
+
+   augment /nw:networks/nw:network/nw:node/nt:termination-point:
+ ....
+ There is need to agree some guidelines for augmenting IETF network topology, so that additional
+ topological information is not added in the custom way. This may either involve
+ - adding concepts from TE and SAP topological augmentations to the core digital map topology
+ in the similar way they were added in the corresponding drafts or
+ - using the TP to model SAP and 'link' to model tunnel in the core Digital Map
+ <span class="cref">
+    This can be a separate draft. Guidelines with examples?
+                </span><a href="#section-4.1.1.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="what-is-not-in-basic">
+<section id="section-4.1.2">
+          <h4 id="name-what-is-not-in-the-basic-mo">
+<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-what-is-not-in-the-basic-mo" class="section-name selfRef">What is not in the basic model</a>
+          </h4>
+<p id="section-4.1.2-1">
+ The following are the <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> extensions needed for Digital Map modelling and APIs:<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.2-2.1">
+ Bidirectional links<a href="#section-4.1.2-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.2">
+ Multi-point connectivity (hub and spoke, full mesh, complex)<a href="#section-4.1.2-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.3">
+ We may need additional supporting relationships: supporting for TP-&gt;Node,
+ supporting for Node-&gt;Network<a href="#section-4.1.2-2.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.4">
+ More Network-related semantic is needed, for example:<a href="#section-4.1.2-2.4" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.5">
+ We modelled Tunnels ad Paths via <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> but we lost some semantics that is in RFC8795<a href="#section-4.1.2-2.5" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.6">
+ We modelled all relationships via supporting, maybe extend with how underlay is done in RFC8795<a href="#section-4.1.2-2.6" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.7">
+ Relationship Properties<a href="#section-4.1.2-2.7" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.8">
+ Subtypes<a href="#section-4.1.2-2.8" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.9">
+ Layers/ sub-layers<a href="#section-4.1.2-2.9" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.2-2.10">
+ Some common roles: primary, backup, aggregation, hub, spoke<a href="#section-4.1.2-2.10" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+<div id="layering-open-issues">
+<section id="section-4.1.3">
+          <h4 id="name-open-issues-for-further-ana">
+<a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-open-issues-for-further-ana" class="section-name selfRef">Open issues for further analysis</a>
+          </h4>
+<p id="section-4.1.3-1">
+ The following are the open issues that need further analysis:<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.3-2.1">
+ Do we need separation of L2 and L3 topologies?<a href="#section-4.1.3-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.3-2.2">
+ Do we need sublayers as well? Layers versus sublayers? E.g. Routing versus OSPF, IS-IS<a href="#section-4.1.3-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.3-2.3">
+ Same technology at service versus underlay? BGP per VPN vs common BGP shared 
+ between multiple VPNs. Different layers, same model, relationship define the layer.<a href="#section-4.1.3-2.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+<div id="how-external-world">
+<section id="section-4.1.4">
+          <h4 id="name-how-to-connect-to-the-exter">
+<a href="#section-4.1.4" class="section-number selfRef">4.1.4. </a><a href="#name-how-to-connect-to-the-exter" class="section-name selfRef">How to connect to the external world</a>
+          </h4>
+<p id="section-4.1.4-1">
+ How to connect to other YANG modules<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.4-2">
+ How to connect YANG models with other modelling mechanisms<a href="#section-4.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="digital-map-apis">
+<section id="section-4.1.5">
+          <h4 id="name-digital-map-apis">
+<a href="#section-4.1.5" class="section-number selfRef">4.1.5. </a><a href="#name-digital-map-apis" class="section-name selfRef">Digital Map APIs</a>
+          </h4>
+<p id="section-4.1.5-1"> 
+ This will include hierarchical APIs for cross-domain figure, IETF YANG Based API 
+ (read and write, change subscription and notify) and Query API<a href="#section-4.1.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="digital-map-knowledge">
+<section id="section-4.1.6">
+          <h4 id="name-digital-map-knowledge">
+<a href="#section-4.1.6" class="section-number selfRef">4.1.6. </a><a href="#name-digital-map-knowledge" class="section-name selfRef">Digital Map Knowledge</a>
+          </h4>
+<p id="section-4.1.6-1">
+ The following knowledge was needed to build digital map:<a href="#section-4.1.6-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.6-2.1">
+ Abstract IETF Entities and Relationships as in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-4.1.6-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-2.2">
+              <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> Augmentations for a)Layers/sublayers b)Entities (services and subservices),
+ c)Properties<a href="#section-4.1.6-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-2.3">
+ Rules for aggregating entities<a href="#section-4.1.6-2.3" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-2.4">
+ Rules for instantiating relationships Relationships (inter-layer and intra-layer)<a href="#section-4.1.6-2.4" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-2.5">
+ Mapping from devices and controllers<a href="#section-4.1.6-2.5" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-4.1.6-3">
+ What can be achieved with existing RFC8345 YANG:<a href="#section-4.1.6-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.6-4.1">
+ Entities (base class IETF Network, IETF Node, IETF Link, IETF TP)<a href="#section-4.1.6-4.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-4.2">
+ Properties<a href="#section-4.1.6-4.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-4.3">
+ Relationships<a href="#section-4.1.6-4.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-4.1.6-5">
+ Next steps<a href="#section-4.1.6-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1.6-6.1">
+ How to add temporal<a href="#section-4.1.6-6.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-6.2">
+ How to add spacial<a href="#section-4.1.6-6.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-4.1.6-6.3">
+ How to add historical<a href="#section-4.1.6-6.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="Conclusions">
+<section id="section-5">
+      <h2 id="name-conclusions">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-conclusions" class="section-name selfRef">Conclusions</a>
+      </h2>
+<p id="section-5-1">
+ Digital Map Modelling and Data are basis for the Digital Twin. 
+ During our PoC we have proven that Digital Map can be modelled using <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.
+ Nevertheless, we proposed some extensions/augmentations to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> to support Digital Maps.
+ There must be some constraints in regards to how to augment the core Digital Map model for different 
+ Layers and Technologies in order to support the approach in our PoC. All entities must augment IETF node, 
+ IETF network, IETF link or IETF Termination Point and augmentation can only include new properties.<a href="#section-5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-6">
+      <h2 id="name-security-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+    </h2>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-7">
+      <h2 id="name-iana-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-7-1">
+ This document has no actions for IANA.<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-8">
+      <h2 id="name-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<section id="section-8.1">
+        <h3 id="name-normative-references">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8345">[RFC8345]</dt>
+        <dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8345">https://www.rfc-editor.org/info/rfc8345</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8346">[RFC8346]</dt>
+        <dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">N. Bahadur</span>, <span class="refTitle">"A YANG Data Model for Layer 3 Topologies"</span>, <span class="seriesInfo">RFC 8346</span>, <span class="seriesInfo">DOI 10.17487/RFC8346</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8346">https://www.rfc-editor.org/info/rfc8346</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8944">[RFC8944]</dt>
+      <dd>
+<span class="refAuthor">Dong, J.</span>, <span class="refAuthor">Wei, X.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">A. Liu</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Network Topologies"</span>, <span class="seriesInfo">RFC 8944</span>, <span class="seriesInfo">DOI 10.17487/RFC8944</span>, <time datetime="2020-11" class="refDate">November 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8944">https://www.rfc-editor.org/info/rfc8944</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<section id="section-8.2">
+        <h3 id="name-informative-references">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.boro-opsawg-ntw-attachment-circuit">[I-D.boro-opsawg-ntw-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-boro-opsawg-ntw-attachment-circuit-02</span>, <time datetime="2023-03-09" class="refDate">9 March 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ntw-attachment-circuit-02">https://datatracker.ietf.org/doc/html/draft-boro-opsawg-ntw-attachment-circuit-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.boro-opsawg-teas-attachment-circuit">[I-D.boro-opsawg-teas-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-boro-opsawg-teas-attachment-circuit-06</span>, <time datetime="2023-05-03" class="refDate">3 May 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-boro-opsawg-teas-attachment-circuit-06">https://datatracker.ietf.org/doc/html/draft-boro-opsawg-teas-attachment-circuit-06</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.feng-opsawg-incident-management">[I-D.feng-opsawg-incident-management]</dt>
+        <dd>
+<span class="refAuthor">Feng, C.</span>, <span class="refAuthor">Hu, T.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Incident Management for Network Services"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-feng-opsawg-incident-management-00</span>, <time datetime="2023-03-13" class="refDate">13 March 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-feng-opsawg-incident-management-00">https://datatracker.ietf.org/doc/html/draft-feng-opsawg-incident-management-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-sap">[I-D.ietf-opsawg-sap]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Model for Service Attachment Points (SAPs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-sap-15</span>, <time datetime="2023-01-18" class="refDate">18 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-sap-15">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-sap-15</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-service-assurance-architecture">[I-D.ietf-opsawg-service-assurance-architecture]</dt>
+        <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Voyer, D.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"Service Assurance for Intent-based Networking Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-service-assurance-architecture-13</span>, <time datetime="2023-01-03" class="refDate">3 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-architecture-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-architecture-13</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-service-assurance-yang">[I-D.ietf-opsawg-service-assurance-yang]</dt>
+        <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"YANG Modules for Service Assurance"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-service-assurance-yang-11</span>, <time datetime="2023-01-03" class="refDate">3 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-yang-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-yang-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.irtf-nmrg-network-digital-twin-arch">[I-D.irtf-nmrg-network-digital-twin-arch]</dt>
+        <dd>
+<span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Yang, H.</span>, <span class="refAuthor">Duan, X.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Pastor, A.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">C. Jacquenet</span>, <span class="refTitle">"Digital Twin Network: Concepts and Reference Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-network-digital-twin-arch-03</span>, <time datetime="2023-04-27" class="refDate">27 April 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-03">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ogondio-lsr-isis-topology">[I-D.ogondio-lsr-isis-topology]</dt>
+        <dd>
+<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Intermediate System to intermediate System (ISIS) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-lsr-isis-topology-00</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-lsr-isis-topology-00">https://datatracker.ietf.org/doc/html/draft-ogondio-lsr-isis-topology-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ogondio-opsawg-ospf-topology">[I-D.ogondio-opsawg-ospf-topology]</dt>
+        <dd>
+<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Open Source Path First (OSPF) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-opsawg-ospf-topology-00</span>, <time datetime="2022-03-07" class="refDate">7 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-00">https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.palmero-opsawg-dmlmo">[I-D.palmero-opsawg-dmlmo]</dt>
+        <dd>
+<span class="refAuthor">Palmero, M.</span>, <span class="refAuthor">Brockners, F.</span>, <span class="refAuthor">Kumar, S.</span>, <span class="refAuthor">Bhandari, S.</span>, <span class="refAuthor">Cardona, C.</span>, and <span class="refAuthor">D. Lopez</span>, <span class="refTitle">"Data Model for Lifecycle Management and Operations"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-palmero-opsawg-dmlmo-09</span>, <time datetime="2023-01-17" class="refDate">17 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-palmero-opsawg-dmlmo-09">https://datatracker.ietf.org/doc/html/draft-palmero-opsawg-dmlmo-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.wzwb-opsawg-network-inventory-management">[I-D.wzwb-opsawg-network-inventory-management]</dt>
+        <dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"An Inventory Management Model for Enterprise Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wzwb-opsawg-network-inventory-management-01</span>, <time datetime="2023-02-10" class="refDate">10 February 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-01">https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8049">[RFC8049]</dt>
+        <dd>
+<span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8049</span>, <span class="seriesInfo">DOI 10.17487/RFC8049</span>, <time datetime="2017-02" class="refDate">February 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8049">https://www.rfc-editor.org/info/rfc8049</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8466">[RFC8466]</dt>
+        <dd>
+<span class="refAuthor">Wen, B.</span>, <span class="refAuthor">Fioccola, G., Ed.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Jalil</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Virtual Private Network (L2VPN) Service Delivery"</span>, <span class="seriesInfo">RFC 8466</span>, <span class="seriesInfo">DOI 10.17487/RFC8466</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8466">https://www.rfc-editor.org/info/rfc8466</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8795">[RFC8795]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V.</span>, <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Shah, H.</span>, and <span class="refAuthor">O. Gonzalez de Dios</span>, <span class="refTitle">"YANG Data Model for Traffic Engineering (TE) Topologies"</span>, <span class="seriesInfo">RFC 8795</span>, <span class="seriesInfo">DOI 10.17487/RFC8795</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8795">https://www.rfc-editor.org/info/rfc8795</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9179">[RFC9179]</dt>
+        <dd>
+<span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"A YANG Grouping for Geographic Locations"</span>, <span class="seriesInfo">RFC 9179</span>, <span class="seriesInfo">DOI 10.17487/RFC9179</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9179">https://www.rfc-editor.org/info/rfc9179</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9182">[RFC9182]</dt>
+        <dd>
+<span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9182">https://www.rfc-editor.org/info/rfc9182</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9291">[RFC9291]</dt>
+      <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">L. Munoz</span>, <span class="refTitle">"A YANG Network Data Model for Layer 2 VPNs"</span>, <span class="seriesInfo">RFC 9291</span>, <span class="seriesInfo">DOI 10.17487/RFC9291</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9291">https://www.rfc-editor.org/info/rfc9291</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</section>
+<section id="appendix-A">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<p id="appendix-A-1">
+ The following people all contributed to creating this document:<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+</section>
+<section id="appendix-B">
+      <h2 id="name-acknowledgements">
+<a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      </h2>
+<p id="appendix-B-1">
+          Thanks to xx for their reviews and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+</section>
+<div id="authors-addresses">
+<section id="appendix-C">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Olga Havel</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div dir="auto" class="left"><span class="street-address">Townsend Street, George's Court</span></div>
+<div dir="auto" class="left"><span class="locality">Dublin</span></div>
+<div dir="auto" class="left"><span class="country-name">Ireland</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:olga.havel@huawei.com" class="email">olga.havel@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Benoit Claise</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div dir="auto" class="left"><span class="street-address">ADD</span></div>
+<div dir="auto" class="left"><span class="locality">ADD</span></div>
+<div dir="auto" class="left"><span class="country-name">Belgium</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:benoit.claise@huawei.com" class="email">benoit.claise@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Oscar Gonzalez de Dios</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div dir="auto" class="left"><span class="street-address">ADD</span></div>
+<div dir="auto" class="left">
+<span class="locality">Madrid</span> </div>
+<div dir="auto" class="left"><span class="country-name">Spain</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:oscar.gonzalezdedios@telefonica.com" class="email">oscar.gonzalezdedios@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Ahmed.Elhassany</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div dir="auto" class="left"><span class="street-address">Binzring 17</span></div>
+<div dir="auto" class="left">CH-<span class="postal-code">8045</span> <span class="locality">Zurich</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Ahmed.Elhassany@swisscom.com" class="email">Ahmed.Elhassany@swisscom.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Thomas Graf</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div dir="auto" class="left"><span class="street-address">Binzring 17</span></div>
+<div dir="auto" class="left">CH-<span class="postal-code">8045</span> <span class="locality">Zurich</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:thomas.graf@swisscom.com" class="email">thomas.graf@swisscom.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+
+
+</body></html>
