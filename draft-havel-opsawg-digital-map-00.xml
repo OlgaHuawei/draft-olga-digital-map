@@ -78,7 +78,7 @@
       </address>
     </author>	
 	
-    <date day="13" month="June" year="2023"/>
+    <date day="16" month="June" year="2023"/>
 	
     <area>OPS</area>
     <workgroup>OPSAWG</workgroup>
@@ -355,80 +355,9 @@
 	  				Closed Loop 
 		  		</li>
 			 </ul>
-
-		
-	  </section>
-	  <section anchor="other-ietf-activities" title="Other Related IETF Activities">
-		<t>
-			The following standards are core for the Digital Map.
-		</t>
-			<ul>
-				<li>
-					IETF Network Model and Network Topology Model <xref target="RFC8345"/>
-				</li>
-				<li>
-					A YANG Grouping for Geographic Location <xref target="RFC9179"/>
-				</li>
-				<li>
-					IETF Modules that augment <xref target="RFC8345"/> for differenet technologies:
-				</li>
-				<li>
-					o	A YANG Data Model for Traffic Engineering (TE) Topologies <xref target="RFC8795"/>
-				</li>
-				<li>
-					o	A YANG Data Model for Layer 2 Network Topologies <xref target="RFC8944"/>
-				</li>
-				<li>
-					o	A YANG Data Model for OSFP Topology <xref target="I-D.ogondio-opsawg-ospf-topology"/>
-				</li>
-				<li>
-					o	A YANG Data Model for IS-IS Topology <xref target="I-D.ogondio-lsr-isis-topology"/>
-				</li>
-			</ul>
-
-		<t>
-			The Digital Map may need to link to the following models, some are already augmenting <xref target="RFC8345"/>,
-			we need further investigation for each of these items:
-		</t>
-			<ul>
-				<li>
-					Service Access Point (SAP) <xref target="I-D.ietf-opsawg-sap"/>, 
-                    augments 'ietf-network' data model <xref target="RFC8345"/>  by adding the
-					SAP inventory
-				</li>
-				<li>
-					SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/> and <xref target="I-D.ietf-opsawg-service-assurance-yang"/>
-				</li>				
-				<li>
-					An Inventory Management Model for Enterprise Networks <xref target="I-D.wzwb-opsawg-network-inventory-management"/> 
-					augments 'ietf-network-topology' with inventory information for node, link and termination-point. It also has UUIDs.
-				</li>
-				<li>
-					Data Model for Lifecycle Management and Operations <xref target="I-D.palmero-opsawg-dmlmo"/>
-				</li>
-				<li>
-					KPIs: delay, jitter, loss
-				</li>
-				<li>
-					Attachement Circuits (ACs) <xref target="I-D.boro-opsawg-ntw-attachment-circuit"/> and <xref target="I-D.boro-opsawg-teas-attachment-circuit"/>
-				</li>	
-				<li>
-					Configuration: L2SM <xref target="RFC8466"/>, L3SM <xref target="RFC8049"/>, L2NM <xref target="RFC9291"/>, L3NM <xref target="RFC9182"/>
-				</li>
-				<li>
-					Incident Management for Network Services <xref target="I-D.feng-opsawg-incident-management"/>
-				</li>
-				<li>
-					Transaction ID
-					<cref>Benoit thinks we should remove it, lets discuss, I thought it would be good to have the link to the last
-						transaction IDs related to different services. </cref>
-				</li>
-				<li>
-					Etc?
-				</li> 
-			</ul>
-		</section>
+	   </section>
 	 </section>
+
 	 <section anchor="ditial-map-requirements" title="Digital Map Requirements">
 	 <t>
 		The following are the core requirements for the Digital Map:
@@ -721,6 +650,104 @@
 		</section>
 		</section>
 	</section>
+
+	   <section anchor="Related-ietf-activities" title="Related IETF Activities">
+ 	 	   <section anchor="core-digital-map-components" title="Core Digital Map Components">
+	  	  <t>
+		  	  The following standards are core for the Digital Map.
+		    </t>
+			  <ul>
+				  <li>
+				   IETF Network Model and Network Topology Model <xref target="RFC8345"/>
+    		  </li>
+	    		<li>
+		    	 A YANG Grouping for Geographic Location <xref target="RFC9179"/>
+			    </li>
+  			  <li>
+	  			 	IETF Modules that augment <xref target="RFC8345"/> for different technologies:
+  		  	</li>
+	  		  <li>
+		  		 	-	A YANG Data Model for Traffic Engineering (TE) Topologies <xref target="RFC8795"/>
+	  	  	</li>
+		  	  <li>
+			  	 	-	A YANG Data Model for Layer 2 Network Topologies <xref target="RFC8944"/>
+    			</li>
+	    		<li>
+		    		-	A YANG Data Model for OSFP Topology <xref target="I-D.ogondio-opsawg-ospf-topology"/>
+			    </li>
+				   <li>
+					   -	A YANG Data Model for IS-IS Topology <xref target="I-D.ogondio-lsr-isis-topology"/>
+  	  		</li>
+	  	  </ul>
+		  </section>
+ 	 	  
+ 	 	  <section anchor="additional-digital-map-components" title="Additional Digital Map Components">
+    		<t>
+	    		The Digital Map may need to link to the following models, some are already augmenting <xref target="RFC8345"/>,
+		    	we need further investigation for each of these items:
+  		  </t>
+	  		<ul>
+		  		<li>
+			  		Service Access Point (SAP) <xref target="I-D.ietf-opsawg-sap"/>, 
+            augments 'ietf-network' data model <xref target="RFC8345"/>  by adding the
+	  				SAP .
+		  		</li>
+			  	<li>
+				  	SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/> and <xref target="I-D.ietf-opsawg-service-assurance-yang"/>
+  				</li>				
+	  			<li>
+		  			An Inventory Management Model for Enterprise Networks <xref target="I-D.wzwb-opsawg-network-inventory-management"/> 
+			  		augments 'ietf-network-topology' with inventory information for node, link and termination-point. It also has UUIDs.
+				  </li>
+  				<li>
+	  				Data Model for Lifecycle Management and Operations <xref target="I-D.palmero-opsawg-dmlmo"/>
+		  		</li>
+			  	<li>
+  					KPIs: delay, jitter, loss
+	  			</li>
+		  		<li>
+			  		Attachement Circuits (ACs) <xref target="I-D.boro-opsawg-ntw-attachment-circuit"/> and <xref target="I-D.boro-opsawg-teas-attachment-circuit"/>
+  				</li>	
+	  			<li>
+		  			Configuration: L2SM <xref target="RFC8466"/>, L3SM <xref target="RFC8049"/>, L2NM <xref target="RFC9291"/>, L3NM <xref target="RFC9182"/>
+  				</li>
+	  			<li>
+		  			Incident Management for Network Services <xref target="I-D.feng-opsawg-incident-management"/>
+			  	</li>
+  				<li>
+	  				Transaction ID
+		  			<cref>Benoit thinks we should remove it, lets discuss, I thought it would be good to have the link to the last
+						transaction IDs related to different services. Similarly, I would remove the entries for L2SM and L3SM, and Incident Management for Network Services ... unless we clearly explain how they relate to the Digital Map. </cref>
+			  	</li>
+  				<li>
+	  				Etc?
+		  		</li> 
+			  </ul>
+		  </section>
+
+ 	 	  <section anchor="ivy" title="Network Inventory (ivy) Proposed Working">
+    		<t>
+	    		At the time of writing these lines, a new IETF Working Group (WG) is under consideration: Network Inventory (ivy), with the reference at https://datatracker.ietf.org/doc/charter-ietf-ivy/. Understanding how the two efforts complement each others is important.
+  		  </t>		  
+  		  <t>
+	    		First off, "ivy" focuses on the network inventory (as written in the charter proposal, "including a variety of information such as product name, vendor, product series, embedded software, and hardware/software versions"). The network inventory is just one of the use cases for the Digital Map: probably the first one. Therefore, it's important to have a consistent view of what a network node id. While a Digital Map must have a pointer to the hardware and software inventory information, we don't consider that all the inventory information are actually part of the digital map. Also, it must be noted that the set of use cases for the digital map is wider than just the network inventory.
+  		  </t>	
+  		  <t>
+	    		Secondly, the proposed charter correctly mentions that "The Working Group will consider existing IETF work, including RFC 8348 and RFC 8345.". In this document, RFC 8345 is also considered as the base YANG module. Therefore, there is clearly common ground, which is a good thing. This document goes beyond RFC 8345 and tries to evaluate whether the RFC 8345, along with all the augmented YANG modules would be a good fit for all the Digital Map requirements. 
+  		  </t>	
+  		  <t>
+	    		Thirdly, as written in the charter proposal "The WG will also identify a set of requirements and guidelines to ensure consistency across models related to inventory.", the requirements and guidelines are focusing on inventory ... while there are also requirements, guidelines, and potentially new building blocks required for the other use cases described in this document, next to inventory. Clearly, we can already observe that some building blocks are missing. "point to multipoint" comes to mind, which is required for the Digital Map but not the inventory.
+  		  </t>	
+  		  <t>
+	    		In conclusion, we can say that this Digital Map Modelling effort is complimentary to the "ivy". It focuses more specifically on this aspect of the "ivy" proposed charter with a focus on all the Digital Map use case requirements:
+
+          E. Mapping and correlation semantics: Correlating the inventory with
+          existing IETF models e.g., topology, service attachment points
+          (SAP), etc.
+  		  </t>	
+		  </section>
+
+		</section>
 	  
 	<section anchor="Conclusions">
 	  <name>Conclusions</name>
