@@ -124,7 +124,7 @@
 				Can the central RFC 8345 YANG Module be a good basis to model a Digital Map? 
 			</li>
 			<li>
-				Understanding how the different topology-related IETF YANG modules fit together/
+				How the different topology-related IETF YANG modules fit (or not) together?
 			</li>
 			<li>
 				Modelling of digital map entities, relationships, and rules how to 
@@ -138,12 +138,17 @@
 			<li>
         Can the base model be augmented for any new layer and technologies?
 			</li>
-			<li>
-			  Practically, we developed our proof of concept (PoC) with a real lab, based 
-			  on multi-vendor devices, with <xref target="RFC8345"/> as the base YANG module. 
-			  The PoC successfully modelled the following technologies:
-			</li>
 		</ul>
+	  <t>
+		  This draft documents our experience in the modeling aspects of the digital map, based on our 
+		  Proof of concept (PoC) implementation, basically documenting our work and the open issues encountered. During the PoC, 
+		  we also defined the requirements and verified the PoC approach by demoing it iteratively.
+     </t>	
+     <t>
+			  Practically, we developed PoC with a real lab, based on multi-vendor devices, 
+			  with <xref target="RFC8345"/> as the base YANG module. 
+			  The PoC successfully modelled the following technologies:
+     </t>	  
 			<t>
 			- Layer 2 Network Topology (used <xref target="RFC8944"/>)
 			</t>
@@ -170,15 +175,7 @@
 			</t>
 			<t>
 			- L3 VPN Services
-			</t>
-	  <t>
-		  This draft documents our experience in the modeling aspects of the digital map, based on our PoC
-		  implementation, basically documenting our work and the open issues encountered.
-	  </t>
-	  <t>
-		During the PoC, we also defined the requirements and verified the 
-		PoC approach by demoing it iteratively.
-      </t>	  
+			</t>  
 	  	<section anchor="terminology" title="Terminology">
 		<t>
           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
@@ -209,7 +206,6 @@
 				of the topological information of the network. It provides the 
 				core multi-layer topology model and data for the digital twin
 				and connects them to the other digital twin models and data.
-				<cref>There is no digital map definition in the NMRG Digital Twin</cref>
 			</dd>
 			<dt>Digital Map Modelling - </dt>
 			<dd>

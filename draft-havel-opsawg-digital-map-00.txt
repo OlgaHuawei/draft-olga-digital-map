@@ -80,32 +80,32 @@ Table of Contents
      2.1.  Digital Twin? . . . . . . . . . . . . . . . . . . . . . .   6
      2.2.  Digital Map . . . . . . . . . . . . . . . . . . . . . . .   6
      2.3.  Digital Map as a Prerequisite for Digital Twin  . . . . .   7
-   3.  Digital Map Requirements  . . . . . . . . . . . . . . . . . .   8
+   3.  Digital Map Requirements  . . . . . . . . . . . . . . . . . .   7
    4.  Digital Map Modelling Experience  . . . . . . . . . . . . . .   9
      4.1.  IETF Network Topology Approach  . . . . . . . . . . . . .   9
-       4.1.1.  IETF Network Topology . . . . . . . . . . . . . . . .  10
+       4.1.1.  IETF Network Topology . . . . . . . . . . . . . . . .   9
        4.1.2.  IETF Network Topology TE  . . . . . . . . . . . . . .  10
        4.1.3.  Why RFC8345 is a good approach for Digital Map
-               Modelling . . . . . . . . . . . . . . . . . . . . . .  11
-     4.2.  What is not in the basic model  . . . . . . . . . . . . .  12
+               Modelling . . . . . . . . . . . . . . . . . . . . . .  10
+     4.2.  What is not in the basic model  . . . . . . . . . . . . .  11
        4.2.1.  Bidirectional Links . . . . . . . . . . . . . . . . .  12
        4.2.2.  Multi-point connectivity  . . . . . . . . . . . . . .  12
        4.2.3.  Links between networks  . . . . . . . . . . . . . . .  13
        4.2.4.  Missing supporting relationships  . . . . . . . . . .  13
        4.2.5.  Missing topology semantics  . . . . . . . . . . . . .  13
      4.3.  Open issues for further analysis  . . . . . . . . . . . .  14
-     4.4.  How to augment for generic Digital Map extensions . . . .  15
+     4.4.  How to augment for generic Digital Map extensions . . . .  14
      4.5.  How to augment for new technologies / layers  . . . . . .  15
      4.6.  How to connect to the external world  . . . . . . . . . .  16
      4.7.  Digital Map APIs  . . . . . . . . . . . . . . . . . . . .  16
      4.8.  Digital Map Knowledge . . . . . . . . . . . . . . . . . .  16
    5.  Related IETF Activities . . . . . . . . . . . . . . . . . . .  17
      5.1.  Core Digital Map Components . . . . . . . . . . . . . . .  17
-     5.2.  Additional Digital Map Components . . . . . . . . . . . .  18
+     5.2.  Additional Digital Map Components . . . . . . . . . . . .  17
      5.3.  Network Inventory (ivy) Proposed Working  . . . . . . . .  18
    6.  Conclusions . . . . . . . . . . . . . . . . . . . . . . . . .  19
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  20
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  19
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  19
 
 
 
@@ -114,12 +114,12 @@ Havel, et al.           Expires 22 December 2023                [Page 2]
 Internet-Draft            Digital Map Modelling                June 2023
 
 
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  20
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  20
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  20
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  23
-   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  23
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
+   Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  22
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Introduction
 
@@ -143,8 +143,8 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Can the central RFC 8345 YANG Module be a good basis to model a
       Digital Map?
 
-   *  Understanding how the different topology-related IETF YANG modules
-      fit together/
+   *  How the different topology-related IETF YANG modules fit (or not)
+      together?
 
    *  Modelling of digital map entities, relationships, and rules how to
       build aggregated entities and relationships.  Does the base model
@@ -157,11 +157,11 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Can the base model be augmented for any new layer and
       technologies?
 
-   *  Practically, we developed our proof of concept (PoC) with a real
-      lab, based on multi-vendor devices, with [RFC8345] as the base
-      YANG module.  The PoC successfully modelled the following
-      technologies:
-
+   This draft documents our experience in the modeling aspects of the
+   digital map, based on our Proof of concept (PoC) implementation,
+   basically documenting our work and the open issues encountered.
+   During the PoC, we also defined the requirements and verified the PoC
+   approach by demoing it iteratively.
 
 
 
@@ -169,6 +169,10 @@ Havel, et al.           Expires 22 December 2023                [Page 3]
 
 Internet-Draft            Digital Map Modelling                June 2023
 
+
+   Practically, we developed PoC with a real lab, based on multi-vendor
+   devices, with [RFC8345] as the base YANG module.  The PoC
+   successfully modelled the following technologies:
 
    - Layer 2 Network Topology (used [RFC8944])
 
@@ -190,13 +194,6 @@ Internet-Draft            Digital Map Modelling                June 2023
 
    - L3 VPN Services
 
-   This draft documents our experience in the modeling aspects of the
-   digital map, based on our PoC implementation, basically documenting
-   our work and the open issues encountered.
-
-   During the PoC, we also defined the requirements and verified the PoC
-   approach by demoing it iteratively.
-
 1.1.  Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -216,7 +213,10 @@ Internet-Draft            Digital Map Modelling                June 2023
       defined in [I-D.irtf-nmrg-network-digital-twin-arch])
 
    Digital Map -  Basis for the Digital Twin that provides a virtual
-
+      instance of the topological information of the network.  It
+      provides the core multi-layer topology model and data for the
+      digital twin and connects them to the other digital twin models
+      and data.
 
 
 
@@ -225,12 +225,6 @@ Havel, et al.           Expires 22 December 2023                [Page 4]
 
 Internet-Draft            Digital Map Modelling                June 2023
 
-
-      instance of the topological information of the network.  It
-      provides the core multi-layer topology model and data for the
-      digital twin and connects them to the other digital twin models
-      and data.
-      // There is no digital map definition in the NMRG Digital Twin
 
    Digital Map Modelling -  The set of principles, guidelines, and
       conventions to model the Digital Map using the IETF [RFC8345]
@@ -274,6 +268,12 @@ Internet-Draft            Digital Map Modelling                June 2023
       of the network and service that needs to be configured, controlled
       and monitored.  Some topology layers may relate closely to OSI
       layers, like L1 topology for physical topology, L2 for link
+      topology and L3 for IPv4 and IPv6 Topologies.  Some topology
+      layers represent the control aspects of L3, like OSPF, IS-IS and
+      BGP.  The top layer represent the service view of the
+      connectivity, that can differ for different types of services and
+      for different providers/solutions.
+
 
 
 
@@ -281,12 +281,6 @@ Havel, et al.           Expires 22 December 2023                [Page 5]
 
 Internet-Draft            Digital Map Modelling                June 2023
 
-
-      topology and L3 for IPv4 and IPv6 Topologies.  Some topology
-      layers represent the control aspects of L3, like OSPF, IS-IS and
-      BGP.  The top layer represent the service view of the
-      connectivity, that can differ for different types of services and
-      for different providers/solutions.
 
 2.  Digital Map and Digital Twin Relationship
 
@@ -328,16 +322,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    symptoms), traffic engineering, different behaviours and actions,
    simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023                [Page 6]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    The Digital Map Data consists of virtual instances of network and
    service topologies at different layers.  The Digital Map provides the
    access to this data via standard API for both read and write, with
@@ -346,6 +330,13 @@ Internet-Draft            Digital Map Modelling                June 2023
    [I-D.ietf-opsawg-sap], Inventory
    [I-D.wzwb-opsawg-network-inventory-management], Assets
    [I-D.palmero-opsawg-dmlmo], ...) and non-YANG mode.
+
+
+
+Havel, et al.           Expires 22 December 2023                [Page 6]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
 2.3.  Digital Map as a Prerequisite for Digital Twin
 
@@ -384,16 +375,6 @@ Internet-Draft            Digital Map Modelling                June 2023
 
    *  Closed Loop
 
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023                [Page 7]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
 3.  Digital Map Requirements
 
 
@@ -404,6 +385,14 @@ Internet-Draft            Digital Map Modelling                June 2023
    The following are the core requirements for the Digital Map:
 
    1.   Basic model with Network, Node, Link, Interface entity types
+
+
+
+
+Havel, et al.           Expires 22 December 2023                [Page 7]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    2.   Layered Digital Map, from physical network (layer 2, layer 3) up
         to customer service and intent
@@ -441,15 +430,6 @@ Internet-Draft            Digital Map Modelling                June 2023
         Map YANG model with other modelling mechanisms, both southbound,
         northbound and internally
 
-
-
-
-
-Havel, et al.           Expires 22 December 2023                [Page 8]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    10.  Digital Map must be optimized for graph traversal for paths.
         This means that only providing link nodes and source and sink
         relationships to termination-points may not be sufficient, we
@@ -459,6 +439,16 @@ Internet-Draft            Digital Map Modelling                June 2023
    The following are the scope requirements for the Digital Map:
 
    1.  Digital Map should contain only topological information
+
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023                [Page 8]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    2.  Digital Map entities should contain only properties used to
        identify topological entities at different layers, identify their
@@ -493,19 +483,6 @@ Internet-Draft            Digital Map Modelling                June 2023
 
 4.1.  IETF Network Topology Approach
 
-
-
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023                [Page 9]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
 4.1.1.  IETF Network Topology
 
    The [RFC8345] provides a simple generic topological model.  It
@@ -518,6 +495,16 @@ Internet-Draft            Digital Map Modelling                June 2023
    topology.  The ietf-network module defines networks and nodes, while
    ietf-network-topology modules adds definitions for links and
    termination points.
+
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023                [Page 9]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    The relationships inside the the layer are containment/aggregation (a
    network contains nodes, a network contains/has links, a node contains
@@ -553,15 +540,6 @@ Internet-Draft            Digital Map Modelling                June 2023
 
       -  TE link augments link with te information
 
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 10]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
       -  TE termination point augments termination point with te-tp-id
          and te information
 
@@ -576,6 +554,13 @@ Internet-Draft            Digital Map Modelling                June 2023
    and that is supports majority of the core requiremenets.  The
    requirements [1-7] are automatically fulfilled with RFC8345 and
    extensions:
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 10]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    *  basic model with network, node, link and interface entoty types
 
@@ -607,17 +592,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    topology'.  For others, we need to add some mechanims to link the
    models and data.
 
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 11]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
 4.2.  What is not in the basic model
 
    The following are the [RFC8345] extensions needed for Digital Map
@@ -632,6 +606,17 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Supporting relationships between different types of entities
 
    *  More Network topology related semantic is needed
+
+
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 11]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
 4.2.1.  Bidirectional Links
 
@@ -666,14 +651,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    and we are increasing the amount of data transfered via API, stored
    in the database or managed/monitored.
 
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 12]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    One of the core characteristics of any network topology is its type
    and link cardinality.  Any topology model should be able to model any
    topology type in a simple and explicit way, including point to point,
@@ -687,6 +664,15 @@ Internet-Draft            Digital Map Modelling                June 2023
    significantly increasing the complexity of API and data, but also
    lacking full topology sematics in the model.  The model cannot be
    fully used to validate if topology instances are valid or not.
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 12]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
 4.2.3.  Links between networks
 
@@ -723,13 +709,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    topology model, like bidirectional and multi-point.  The following is
    also missing from the model:
 
-
-
-Havel, et al.           Expires 22 December 2023               [Page 13]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    *  Relationship Properties.  The supporting relationship could have
       additional attributes that give more information about the
       supporting relationship.  That way we could use it for
@@ -738,6 +717,18 @@ Internet-Draft            Digital Map Modelling                June 2023
 
    *  Termination point roles.  We are missing semantics for the common
       topology roles: primary, backup, hub, spoke
+
+
+
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 13]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    *  Layers / Sublayers.  We need further analysis to determine in
       network types are sufficient to support all scenarios for layers/
@@ -777,15 +768,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Do we need sublayers as well?  Layers versus sublayers versus
       layered instances?  Further analysis is needed.
 
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 14]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    *  Same technology at service versus underlay?  BGP per VPN vs common
       BGP shared between multiple VPNs.  Different layers, same model,
       relationship define the layer.
@@ -795,6 +777,14 @@ Internet-Draft            Digital Map Modelling                June 2023
    Generic Digital Map extensions are the RFC8345 extensions required
    for all technologies and layers in the Digital Map. We have the
    following options:
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 14]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    1.  make backward compatible updates to RFC8345, either via changing
        or augmenting the network, node, link and termination point in
@@ -826,22 +816,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    augmentations.  For example, we have examples like this:
 
 
-
-
-
-
-
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 15]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
 module: new-module
         augment /nw:networks/nw:network/nw:network-types:
         +--rw new-topology!
@@ -858,6 +832,15 @@ module: new-module
    There is need to agree some guidelines for augmenting IETF network
    topology, so that additional topological information is not added in
    the custom way.  This may either involve
+
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 15]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    *  adding concepts from TE and SAP topological augmentations to the
       core digital map topology in the similar way they were added in
@@ -891,13 +874,6 @@ module: new-module
    *  [RFC8345] Augmentations for a)Layers/sublayers b)Entities
       (services and subservices), c)Properties
 
-
-
-Havel, et al.           Expires 22 December 2023               [Page 16]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
    *  Rules for aggregating entities
 
    *  Rules for instantiating relationships Relationships (inter-layer
@@ -914,6 +890,13 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Relationships
 
    Next steps
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 16]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
 
    *  How to support temporal
 
@@ -944,16 +927,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  - A YANG Data Model for IS-IS Topology
       [I-D.ogondio-lsr-isis-topology]
 
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 17]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
 5.2.  Additional Digital Map Components
 
    The Digital Map may need to link to the following models, some are
@@ -974,6 +947,13 @@ Internet-Draft            Digital Map Modelling                June 2023
    *  Data Model for Lifecycle Management and Operations
       [I-D.palmero-opsawg-dmlmo]
 
+
+
+Havel, et al.           Expires 22 December 2023               [Page 17]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    *  KPIs: delay, jitter, loss
 
    *  Attachement Circuits (ACs)
@@ -992,23 +972,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    under consideration: Network Inventory (ivy), with the reference at
    https://datatracker.ietf.org/doc/charter-ietf-ivy/. Understanding how
    the two efforts complement each others is important.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 18]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
 
    First off, "ivy" focuses on the network inventory (as written in the
    charter proposal, "including a variety of information such as product
@@ -1040,6 +1003,13 @@ Internet-Draft            Digital Map Modelling                June 2023
    missing. "point to multipoint" comes to mind, which is required for
    the Digital Map but not the inventory.
 
+
+
+Havel, et al.           Expires 22 December 2023               [Page 18]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    In conclusion, we can say that this Digital Map Modelling effort is
    complimentary to the "ivy".  It focuses more specifically on this
    aspect of the "ivy" proposed charter with a focus on all the Digital
@@ -1057,14 +1027,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    Layers and Technologies in order to support the approach in our PoC.
    All entities must augment IETF node, IETF network, IETF link or IETF
    Termination Point and augmentation can only include new properties.
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 19]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
 
 7.  Security Considerations
 
@@ -1095,6 +1057,15 @@ Internet-Draft            Digital Map Modelling                June 2023
               for Layer 3 Topologies", RFC 8346, DOI 10.17487/RFC8346,
               March 2018, <https://www.rfc-editor.org/info/rfc8346>.
 
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 19]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    [RFC8944]  Dong, J., Wei, X., Wu, Q., Boucadair, M., and A. Liu, "A
               YANG Data Model for Layer 2 Network Topologies", RFC 8944,
               DOI 10.17487/RFC8944, November 2020,
@@ -1114,14 +1085,6 @@ Internet-Draft            Digital Map Modelling                June 2023
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for 'Attachment Circuits'-as-
               a-Service (ACaaS)", Work in Progress, Internet-Draft,
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 20]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
               draft-boro-opsawg-teas-attachment-circuit-06, 3 May 2023,
               <https://datatracker.ietf.org/doc/html/draft-boro-opsawg-
               teas-attachment-circuit-06>.
@@ -1150,6 +1113,15 @@ Internet-Draft            Digital Map Modelling                June 2023
               2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
               opsawg-service-assurance-architecture-13>.
 
+
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 20]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    [I-D.ietf-opsawg-service-assurance-yang]
               Claise, B., Quilbeuf, J., Lucente, P., Fasano, P., and T.
               Arumugam, "YANG Modules for Service Assurance", Work in
@@ -1170,14 +1142,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    [I-D.ogondio-lsr-isis-topology]
               de Dios, O. G., Barguil, S., and V. Lopez, "A YANG Data
               Model for Intermediate System to intermediate System
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 21]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
-
               (ISIS) Topology", Work in Progress, Internet-Draft, draft-
               ogondio-lsr-isis-topology-00, 24 October 2022,
               <https://datatracker.ietf.org/doc/html/draft-ogondio-lsr-
@@ -1207,6 +1171,13 @@ Internet-Draft            Digital Map Modelling                June 2023
               <https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-
               network-inventory-management-01>.
 
+
+
+Havel, et al.           Expires 22 December 2023               [Page 21]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    [RFC8049]  Litkowski, S., Tomotaki, L., and K. Ogaki, "YANG Data
               Model for L3VPN Service Delivery", RFC 8049,
               DOI 10.17487/RFC8049, February 2017,
@@ -1226,13 +1197,6 @@ Internet-Draft            Digital Map Modelling                June 2023
    [RFC9179]  Hopps, C., "A YANG Grouping for Geographic Locations",
               RFC 9179, DOI 10.17487/RFC9179, February 2022,
               <https://www.rfc-editor.org/info/rfc9179>.
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 22]
-
-Internet-Draft            Digital Map Modelling                June 2023
-
 
    [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
               Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
@@ -1262,6 +1226,14 @@ Authors' Addresses
    Email: olga.havel@huawei.com
 
 
+
+
+
+Havel, et al.           Expires 22 December 2023               [Page 22]
+
+Internet-Draft            Digital Map Modelling                June 2023
+
+
    Benoit Claise
    Huawei
    ADD
@@ -1276,18 +1248,6 @@ Authors' Addresses
    Madrid
    Spain
    Email: oscar.gonzalezdedios@telefonica.com
-
-
-
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 23]
-
-Internet-Draft            Digital Map Modelling                June 2023
 
 
    Ahmed.Elhassany
@@ -1325,20 +1285,4 @@ Internet-Draft            Digital Map Modelling                June 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Havel, et al.           Expires 22 December 2023               [Page 24]
+Havel, et al.           Expires 22 December 2023               [Page 23]
