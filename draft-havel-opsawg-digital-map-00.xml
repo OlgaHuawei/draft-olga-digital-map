@@ -86,8 +86,10 @@
       <t>
 	      This document shares experience in modelling digital map based 
 		    on the IETF RFC8345 topology YANG modules and some of its augmentations.
-		    Next to sharing experience, it covers the open issues encountered during 
-		    the modelling phases.
+		    The Digital Map is first defined and its connection to the Digital Twin is 
+		    explained. Next to Digital Map requirements and use cases, the document covers 
+		    the open issues encountered during the modelling phases, the missing features in RFC 8345, 
+		    and some tracks on how to address those.
 	  </t>
     </abstract>
 	
@@ -115,8 +117,8 @@
 		<eref target="https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26"/>.
 	  </t>
 	  <t>
-		From this long series of IETF RFCs and IETF drafts, we attempted 
-		to create a Digital Map PoC, with the following objectives and 
+		From this long series of IETF RFCs and IETF drafts (at different level of maturity), we attempted 
+		to create a Digital Map Proof of concept (PoC), with the following objectives and 
 		functionalities:
 	  </t>
 		<ul>
@@ -141,7 +143,7 @@
 		</ul>
 	  <t>
 		  This draft documents our experience in the modeling aspects of the digital map, based on our 
-		  Proof of concept (PoC) implementation, basically documenting our work and the open issues encountered. During the PoC, 
+		  PoC implementation, basically documenting our work and the open issues encountered. During the PoC, 
 		  we also defined the requirements and verified the PoC approach by demoing it iteratively.
      </t>	
      <t>
@@ -236,13 +238,11 @@
 				The data can be historical, real-time or future data for what-if scenarios.
 			</dd>
 			<dt>Topology - </dt>
-			<dd>is defined in Oxford Dictionary as the way in which constituents parts of something
-				are interrelated or arranged. Network topology defines how physical or logical
-				nodes, links and interfaces are related and arranges. Service topology defines how service components
+			<dd>Network topology defines how physical or logical nodes, links and interfaces are 
+				related and arranges. Service topology defines how service components
 				(e.g VPN instances, customer interfaces, customer links) between customer sites are interrelated
 				and arranged. There are 8 types of topologies: point to point, bus, ring, star, tree, mesh, hybrid and
 				daisy chain. Topologies may be unidirectional or bidirectional (bus, some rings).
-				<cref>We can review this further, if we find something better than Oxford Dictionary</cref>
 			</dd>
 			<dt>Topology Layer - </dt>
 			<dd>Defines a layer in the multilayer topology. A multilayer topology models relationships between
@@ -257,7 +257,7 @@
 	    </section>
 	</section>
 	<section anchor="digital-map-and-digital-twin-relationship" title="Digital Map and Digital Twin Relationship">
-	  <section anchor="digital-twin" title="Digital Twin?">
+	  <section anchor="digital-twin" title="Digital Twin">
   	  <t>
 	  	  The digital twin concepts and the reference architecture of the 
 		    network digital twin are proposed in the "Digital Twin Network: 
@@ -306,9 +306,9 @@
 			  access to this data via standard API for both read and write, 
   			with query capabilities and links to other YANG modules 
 	  		(SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"/>,
-		  	SAP <xref target="I-D.ietf-opsawg-sap"/>,
+		  	SAP <xref target="RFC9408"/>,
 			  Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"/>,
-  			Assets <xref target="I-D.palmero-opsawg-dmlmo"/>, ...) and non-YANG mode.
+  			Assets <xref target="I-D.palmero-opsawg-dmlmo"/>, ...) and non-YANG models.
 	  	</t>
 	  </section>
 	  <section anchor="digital-map-as-a-prerequisite-digital-twin" title="Digital Map as a Prerequisite for Digital Twin">
@@ -319,21 +319,28 @@
   			The Digital Map would provide a virtual instance of the topological 
 	  		information of the network, based on this Digital Map Model. The 
 		  	Digital Map is the first step towards the Digital Twin. 
-			
+		  </t>
+  		<t>			
         The Digital Map Model and Data will provide this missing correlation 
   			between the topology models and data and all other models and data: 
 	  		KPIs, alarms, incidents, inventory (with UUIDs), 
 		  	configuration, traffic engineering, planning (what if), 
 			  simulation, emulations, actions, behaviours.
-			  
+		  </t>
+  		<t>			  
   			Some of these models and data are in the context of device, 
 	  		some in context of network or subnetwork and some in context of 
 		  	customer services, needed for both inner and outer closed-loops.
-			
-  			Therefore, Digital Map is needed to break down data islands and 
-	  		have a digital twin for simulation and closed loop, which is 
-		  	required to solve autonomous networking.
-
+		  	It's debatable what is actually part of the digita map itself versus
+		  	what are pointers from the digital map to some other sources of information.
+		  	As an example, the Digital Map should not specifically include all information 
+		    about the device inventory (product name, vendor, product series, embedded
+        software, and hardware/software versions): a pointer from the Digital Map to
+        another inventory system might be sufficient. Similarly, the Digital Map
+        should not necessarily contain all incidents, configuration, data plane 
+        monitoring or even assurance information, just to name a few.
+		  </t>
+  		<t>	
   			The following are some use cases that require Digital Map:
 			</t>
 	  		<ul>
@@ -362,28 +369,34 @@
 	  				Closed Loop 
 		  		</li>
 			 </ul>
+  		<t>			
+  			From a high level point of view, the Digital Map is needed to break down 
+  			data islands and have a digital twin for simulation and closed loop, which is 
+		  	required to solve autonomous networking.
+		  </t>
 	  </section>
 	</section>
 	<section anchor="ditial-map-requirements" title="Digital Map Requirements">
 	  <t>
 	 	<cref>
-		  	We discussed if requirements should be in a separate document.
+		  We discussed if requirements should be in a separate document.
 			We will leave them in this document for now, later we can create a separate draft.
 		</cref>
 	  </t>
 	  <t>
-		The following are the core requirements for the Digital Map:
+		The following are the core requirements for the Digital Map (note that some of them are supported by default by
+		<xref target="RFC8345"/>:
 	  </t>
 	 <ol>
 		<li>
 			Basic model with Network, Node, Link, Interface entity types
 		</li>
 		<li>
-			Layered Digital Map, from physical network (layer 2, layer 3) up to customer service and intent
+			Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent
 		</li>
 		<li>			
 			Open and Programmable Digital Map. This includes "Read" to understand the view of the network. 
-			It also "Write", not for the ability to directly change the Digital Map Data (ex: changing the 
+			It also includes "Write", not for the ability to directly change the Digital Map Data (ex: changing the 
 			network or service parameters), but for offline simulations, also known as what-if scenarios. 
 			Doing what-if analysis requires the ability to take snapshots and to switch easily between them.  
       Because we have to distinguish between a change on the digital map for future simulation 
@@ -395,7 +408,7 @@
 			to retrieve the links to external data / models.  
 		</li>
 		<li>
-			Digital Map Models and APIs must be common over different network domains
+			Digital Map Models and APIs must be common over different network domains (campus, core, data centre, etc.)
 		</li>
 		<li>
 			Digital Map must provide semantics for layered network topologies and for linking external models/data
@@ -408,11 +421,11 @@
 		</li>
 		<li>
 			Digital Map must be pluggable
-			a)	 We must connect to other YANG modules for Configuration, 
-			    Inventory, Intent Assurance (SAIN), etc
+			a)	We must connect to other YANG modules for inventory, configuration, 
+			    assurance, etc
 			b)	Not everything can be in YANG, we need to connect Digital Map 
 			    YANG model with other modelling mechanisms, both southbound, 
-				northbound and internally
+				  northbound and internally
 		</li>
 		<li>
 			Digital Map must be optimized for graph traversal for paths. This means
@@ -828,7 +841,55 @@ module: new-module
 		</section>
 	</section>
 	<section anchor="Related-ietf-activities" title="Related IETF Activities">
- 	 	<section anchor="core-digital-map-components" title="Core Digital Map Components">
+ 	 	<section anchor="network-topology" title="Network Topology">
+	  	  <t>
+		  	  Interestingly, we could not find any Network Topology definition in IETF RFCs (not even in 
+		  	  <xref target="RFC8345"/>) or drafts. However, it's mentioned in multiple documents. As an example, in 
+		  	  Overview and Principles of Internet Traffic Engineering <xref target="I-D.ietf-teas-rfc3272bis"/>,
+		  	  which mentioned:
+		    </t>
+	    	<t>
+		  	  To conduct performance studies and to support planning of existing
+          and future networks, a routing analysis may be performed to determine
+          the paths the routing protocols will choose for various traffic
+          demands, and to ascertain the utilization of network resources as
+          traffic is routed through the network.  Routing analysis captures the
+          selection of paths through the network, the assignment of traffic
+          across multiple feasible routes, and the multiplexing of IP traffic
+          over traffic trunks (if such constructs exist) and over the
+          underlying network infrastructure.  A model of network topology is
+          necessary to perform routing analysis.  A network topology model may
+          be extracted from:
+	    	</t>
+        <ul>
+					<li>
+            *  network architecture documents
+					</li>
+					<li>
+            *  network designs
+					</li>
+					<li>
+            *  information contained in router configuration files
+					</li>
+					<li>
+            *  routing databases such as the link state database of an interior
+               gateway protocol (IGP)					
+          </li>
+					<li>
+            *  routing tables
+					</li>
+					<li>
+               *  automated tools that discover and collate network topology
+                  information.
+					</li>					
+				</ul>
+	    	<t>
+            Topology information may also be derived from servers that monitor
+             network state, and from servers that perform provisioning functions.
+
+		    </t>
+		</section>
+		<section anchor="core-digital-map-components" title="Core Digital Map Components">
 	  	  <t>
 		  	  The following standards are core for the Digital Map.
 		    </t>
@@ -863,7 +924,7 @@ module: new-module
   		  	</t>
 	  	  	<ul>
 		  		<li>
-			  		Service Access Point (SAP) <xref target="I-D.ietf-opsawg-sap"/>, 
+			  		Service Access Point (SAP) <xref target="RFC9408"/>, 
             		augments 'ietf-network' data model <xref target="RFC8345"/>  by adding the
 	  				SAP .
 		  		</li>
@@ -951,10 +1012,11 @@ module: new-module
 	  <?rfc include='reference.RFC.9179'?>
 	  <?rfc include='reference.RFC.9182'?>
 	  <?rfc include='reference.RFC.9291'?>
+	  <?rfc include='reference.RFC.9408'?>
+	  <?rfc include='reference.I-D.ietf-teas-rfc3272bis'?>
 	  <?rfc include='reference.I-D.irtf-nmrg-network-digital-twin-arch'?>
 	  <?rfc include='reference.I-D.ogondio-opsawg-ospf-topology'?>
 	  <?rfc include='reference.I-D.ogondio-lsr-isis-topology'?>
-	  <?rfc include='reference.I-D.ietf-opsawg-sap'?>
 	  <?rfc include='reference.I-D.boro-opsawg-ntw-attachment-circuit'?>
 	  <?rfc include='reference.I-D.boro-opsawg-teas-attachment-circuit'?>
 	  <?rfc include='reference.I-D.ietf-opsawg-service-assurance-yang'?>
