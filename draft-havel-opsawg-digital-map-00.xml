@@ -254,8 +254,9 @@
 				for different types of services and for different providers/solutions.
 			</dd>
 		</dl>
-	    </section>
+	  </section>
 	</section>
+
 	<section anchor="digital-map-and-digital-twin-relationship" title="Digital Map and Digital Twin Relationship">
 	  <section anchor="digital-twin" title="Digital Twin">
   	  <t>
@@ -265,7 +266,8 @@
 		    <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/>. 
 	    </t>
 	    <t>
-		    This draft defines the core elements of digital twin - Data, Models,
+		    This <xref target="I-D.irtf-nmrg-network-digital-twin-arch"/> draft defines 
+		    the core elements of digital twin - Data, Models,
 	  	  Interfaces and Mapping. The digital twin network constructed based
    		  on the four core technology elements can analyze, diagnose, emulate,
     		and control the physical network in its whole life cycle with the 
@@ -337,7 +339,7 @@
 		    about the device inventory (product name, vendor, product series, embedded
         software, and hardware/software versions): a pointer from the Digital Map to
         another inventory system might be sufficient. Similarly, the Digital Map
-        should not necessarily contain all incidents, configuration, data plane 
+        should not necessarily contain incidents, configuration, data plane 
         monitoring or even assurance information, just to name a few.
 		  </t>
   		<t>	
@@ -376,6 +378,61 @@
 		  </t>
 	  </section>
 	</section>
+
+	<section anchor="ietf-network-topology-approach" title="IETF Network Topology Approach">
+			<section anchor="ietf-network-topology" title="IETF Network Topology">
+				<t>
+					The <xref target="RFC8345"/> provides a simple generic topological model. 
+					It defines the abstract / generic / base model for network and service topologies. 
+					It provides the mechanism to model networks and services as layered topologies with common relationships 
+					at the same layer and underlay/overlay relationships between the layers.
+				</t>
+				<t>
+					The RFC8345 consists of 2 modules ietf-network and ietf-network-topology. The ietf-network module defines networks and nodes, 
+					while ietf-network-topology modules adds definitions for links and termination points. 
+				</t>
+				<t>
+					The relationships inside the the layer are containment/aggregation (a network contains nodes, a network contains/has links, 
+					a node contains termination points), source (a link has one source termination point) and destination (a link has one 
+					destination termination point)
+				</t>
+				<t>
+					The relationships between the the layer modelled via supporting relationship 
+					<ul>
+						<li>network A is supported by network B - this may model overlay/underaly relationship</li>
+						<li>nodes, links and termination points of network A are supported by nodes, links and termination points of network B. 
+						Overlay and underlay nodes, links and termination points must match underlay and overlay networks supporting it </li>
+					</ul>
+				</t>
+			</section>
+			<section anchor="ietf-network-topology-te" title="IETF Network Topology TE">	
+				<t>
+					The <xref target="RFC8795"/> defines a YANG model for representing, retrieving and manipulating TE topologies. This is
+					a more complex model than RFC8345, it augments the RFC8345 with traffic engineering topology as follows:
+					<ul>
+						<li> TE topology, node, link and termination point are defined using the core RFC9345 concepts
+
+							<ul>
+								<li>
+									TE topology augments network with topology identifier (provider, client and topology id), 
+									as well as other te information 
+								</li>
+								<li>TE node augments node with te-node-id and other te information
+								</li>	
+								<li>TE link augments link with te information
+								</li>				
+								<li>TE termination point augments termination point with te-tp-id and te information
+								</li>	
+							</ul>	
+						</li>
+						<li>Tunnel, tunnel termination point, local link connectivity, node connectivity matrix, and some supporting 
+							and underlay relationships are defined outside of the core RFC8345 entites and relationships
+						</li>									
+					</ul>
+				</t>
+			</section>
+	</section>
+
 	<section anchor="ditial-map-requirements" title="Digital Map Requirements">
 	  <t>
 	 	<cref>
@@ -435,7 +492,7 @@
 		</li>
 	  </ol>
 	 <t>
-		The following are the scope requirements for the Digital Map:
+		The following are requirements for determining the scope of the Digital Map:
 	 </t>
 	 <ol>
 		<li>			
@@ -465,7 +522,7 @@
 		</li>
 	 </ol>
 	 <t>
-		The following are the arch requirements for the Digital Map:
+		The following are the architectural requirements for the Digital Map:
 	 </t>
 	 <ol>
 		<li>
@@ -476,100 +533,48 @@
 		</li>
 	  </ol>
 	</section>
-	<section anchor="digital-map-modelling-experience" title="Digital Map Modelling Experience">
-		<section anchor="ietf-network-topology-approach" title="IETF Network Topology Approach">
-			<section anchor="ietf-network-topology" title="IETF Network Topology">
-				<t>
-					The <xref target="RFC8345"/> provides a simple generic topological model. 
-					It defines the abstract / generic / base model for network and service topologies. 
-					It provides the mechanism to model networks and services as layered topologies with common relationships 
-					at the same layer and underlay/overlay relationships between the layers.
-				</t>
-				<t>
-					The RFC8345 consists of 2 modules ietf-network and ietf-network-topology. The ietf-network module defines networks and nodes, 
-					while ietf-network-topology modules adds definitions for links and termination points. 
-				</t>
-				<t>
-					The relationships inside the the layer are containment/aggregation (a network contains nodes, a network contains/has links, 
-					a node contains termination points), source (a link has one source termination point) and destination (a link has one 
-					destination termination point)
-				</t>
-				<t>
-					The relationships between the the layer modelled via supporting relationship 
-					<ul>
-						<li>network A is supported by network B - this may model overlay/underaly relationship</li>
-						<li>nodes, links and termination points of network A are supported by nodes, links and termination points of network B. 
-						Overlay and underlay nodes, links and termination points must match underlay and overlay networks supporting it </li>
-					</ul>
-				</t>
-			</section>
-			<section anchor="ietf-network-topology-te" title="IETF Network Topology TE">	
-				<t>
-					The <xref target="RFC8795"/> defines a YANG model for representing, retrieving and manipulating TE topologies. This is
-					a more complex model than RFC8345, it augments the RFC8345 with traffic engineering topology as follows:
-					<ul>
-						<li> TE topology, node, link and termination point are defined using the core RFC9345 concepts
 
-							<ul>
-								<li>
-									TE topology augments network with topology identifier (provider, client and topology id), 
-									as well as other te information 
-								</li>
-								<li>TE node augments node with te-node-id and other te information
-								</li>	
-								<li>TE link augments link with te information
-								</li>				
-								<li>TE termination point augments termination point with te-tp-id and te information
-								</li>	
-							</ul>	
-						</li>
-						<li>Tunnel, tunnel termination point, local link connectivity, node connectivity matrix, and some supporting 
-							and underlay relationships are defined outside of the core RFC8345 entites and relationships
-						</li>									
-					</ul>
-				</t>
-			</section>
-			<section anchor="why-ietf-network-topology" title="Why RFC8345  is a good approach for Digital Map Modelling">
-				<t>
-				 	The main reason for selecting RFC8345 for modelling is its simplicity and that is supports majority of 
-					the core requiremenets. The requirements [1-7] are automatically fulfilled with RFC8345 and extensions:
-				<ul>
-					<li>basic model with network, node, link and interface entoty types
-					</li>
-					<li>layered topology
-					</li>
-					<li>open and programmable
-					</li>
-					<li>standard, multi-vendor
-					</li>
-					<li>multi-domain
-					</li>
-					<li>semantics for layered topology
-					</li>
-					<li>inter-layer and between-layer relationships
-					</li>
+  <section anchor="why-ietf-network-topology" title="Why RFC8345 is a good Approach for Digital Map Modelling">
+	  <t>
+		 	The main reason for selecting RFC8345 for modelling is its simplicity and that is supports majority of 
+			the core requiremenets. The requirements [1-7] are automatically fulfilled with RFC8345 and extensions:
+		<ul>
+			<li>basic model with network, node, link and interface entity types
+			</li>
+			<li>layered topology
+			</li>
+			<li>open and programmable
+			</li>
+			<li>standard, multi-vendor
+			</li>
+			<li>multi-domain
+			</li>
+			<li>semantics for layered topology
+			</li>
+			<li>inter-layer and between-layer relationships
+			</li>
 
-				</ul>
-				The requirements [6-7] for sematics for layered topology and relationships are partially fulfiled, 
-				there may be need for some additional semantics.
-				Other core requirements [8-10] are not supported by RFC8345:
-				<ul>
-					<li>
-						extensible with meta data
-					</li>
-					<li>
-						pluggable to other YANG modules and non-YANG data
-					</li>
-					<li>
-						optimized for graph traversal
-					</li>
-				</ul>
-	  			In some cases for [9] for pluggable to other YANG modules, the links are already done by augmenting 'ietf-network' and 
+		</ul>
+		  The requirements [6-7] for semantics for layered topology and relationships are partially fulfiled, 
+			there may be need for some additional semantics.
+			Other core requirements [8-10] are not supported by RFC8345:
+			<ul>
+				<li>
+					extensible with meta data
+				</li>
+				<li>
+					pluggable to other YANG modules and non-YANG data
+				</li>
+				<li>
+					optimized for graph traversal
+				</li>
+			</ul>
+	  		In some cases for [9] for pluggable to other YANG modules, the links are already done by augmenting 'ietf-network' and 
 				'ietf-network-topology'. For others, we need to add some mechanims to link the models and data.
-	 			</t>
-			</section>
-		</section>			
+	 		</t>
+		</section>
 
+	<section anchor="digital-map-modelling-experience" title="Digital Map Modelling Experience">
 		<section anchor = "what-is-not-in-basic" title="What is not in the basic model">
 			<t>
 				The following are the <xref target="RFC8345"/> extensions needed for Digital Map modelling and APIs:
@@ -594,47 +599,43 @@
 			</ul>
 			<section anchor="bidirectional-links" title="Bidirectional Links">
 				<t>The RFC8345 defines all links as unidirectional, it does not support bidirectional links. 
-				It was done intentially to keep the model as simple as possible. The RFC suggest to model the bidirectional 
+				It was done intentially to keep the model as simple as possible. The RFC suggests to model the bidirectional 
 				connections as pairs of unidirectional links.
 				</t>	
 				<t>
-				Nevertheless, while simplifying the model itself, we are making data and API more complex for the cases where we 
+				Nevertheless, while simplifying the model itself, we are making data and APIs more complex for the cases where we 
 				have bidirectional links. And we are increasing the amount of instances / data transfered via API, 
 				stored in the database or managed/monitored.
 				</t>
 				<t>
-				One of the core characteristics of any network topology is the link directionality. While data flows are unidirectional, the bidirectional links are 
-				also commmon in networking. Examples are Ethernet cables, bidirectional SONET rings,  socket connection to the server, etc. We also encounter
-				requirements for simplified customer service layer topology, where we want to model link as bidirectional to be supported by unidiretional 
-				links at the lower layer.
+				One of the core characteristics of any network topology is the link directionality. While data flows are unidirectional, the bidirectional links are also commmon in networking. Examples are Ethernet cables, bidirectional SONET rings, socket connection to the server, etc. We also encounter requirements for simplified service layer topology, where we want to model link as bidirectional to be supported by unidirectional links at the lower layer.
 				</t>
 			</section>
 			<section anchor="multipoint-connectivity" title="Multi-point connectivity">
 				<t>The RFC8345 defines all links as point to point and unidirectional, it does not support multi-point links 
-				(hub and spoke, full mesh, complex).It was done intentially to keep the model as simple as possible. 
+				(hub and spoke, full mesh, complex). It was done intentially to keep the model as simple as possible. 
 				The RFC suggests to model the multi-point networks via pseudo nodes.
 				</t>	
 				<t>
-				Same as with unidirectionality, while simplifying the model itself, we are making data and API more complex for multi point topologies 
-				and we are increasing the amount of data transfered via API, stored in the database or managed/monitored.
+				Same as with unidirectionality, while simplifying the model itself, we are making data and APIs more complex for multi point topologies and we are increasing the amount of data transfered via API, stored in the database or managed/monitored.
 				</t>
 				<t>
 				One of the core characteristics of any network topology is its type and link cardinality. Any topology
-				model should be able to model any topology type in a simple and explicit way, including point to point, 
+				model should be able to model any topology type in a simple and explicit way, including point to multipoint, 
 				bus, ring, star, tree, mesh, hybrid and daisy chain. 
 				Any topology model should also be able to model any link cardinality in a simple and explicit way,
 				including point to point, point to multipoint, multipoint to multipoint or hybrid. 
 				</t>
 				<t>
-				By forcing the implementation of all topology types and all options for cardinality via uni-directional links and pseudo nodes, 
-				we are significantly increasing the complexity of API and data, but also lacking full topology sematics in the model. 
-				The model cannot be fully used to validate if topology instances are valid or not.
+				By forcing the implementation of all topology types and all options for cardinality via uni-directional links and pseudo nodes, we are significantly increasing the complexity of APIs and data, but also lacking full topology semantics in the model. The model cannot be fully used to validate if topology instances are valid or not.
+				</t>
+				<t>
+				Note that, next to layer 2 mentioned above, the point to multipoint network type is also required in some cases at the  OSPF layer. 
 				</t>
 			</section>			
-			<section anchor="multi-domain-links" title="Links between networks">
-				<t>The RFC8345 defines all links as belonging to one instance of the network and having the source and destination as node and 
-				termination point only, not allowing to link to tp of another network. This does not allow for links between networks 
-				in the case of multi-domains or partitioning. The only way would be to model each domain as node and have links between them.
+			<section anchor="multi-domain-links" title="Links between Networks">
+				<t>The RFC8345 defines all links as belonging to one network instance and having the source and destination as node and 
+				termination point only, not allowing to link to termination point of another network. This does not allow for links between networks in the case of multi-domains or partitioning. The only way would be to model each domain as node and have links between them.
 				</t>	
 				<t>
 					We modelled OSPF and IS-IS Areas as networks during the PoC and we needed to extend the capability to have links between different areas.
@@ -642,24 +643,20 @@
 					The RFC8795 also augments links with external-domain info for the case of links that connect different domains.
 				</t>
 			</section>				
-			<section anchor="suoporting-relationships" title="Missing supporting relationships">
-				<t>The RFC8345 defines supporting relationships only between the same type of entities. Networks can only be supported by networks,
-				nodes can only be supported by nodes, termination points can only be supported by terminations points and links can only be supported by links.
+			<section anchor="suoporting-relationships" title="Missing Supporting Relationships">
+				<t>The RFC8345 defines supporting relationships only between the same type of entities. Networks can only be supported by networks, nodes can only be supported by nodes, termination points can only be supported by terminations points and links can only be supported by links.
 				</t>	
-				<t>During the PoC, we encountered need to have TP supported by Node and Node supported by Network. 
+				<t>During the PoC, we encountered the need to have TP supported by node and node supported by Network. 
 				The RFC8795 also adds additional underlay relationship between node and topology and link and topology, 
 				but via a new underlay topology and not via the core supporting relationship.
 				</t>
 			</section>		
 			<section anchor="missing-semantics" title="Missing topology semantics">
-				<t>We already mentioned some semantic that is missing from the RFC8345 topology model, like bidirectional and multi-point. 
-				The following is also missing from the model: 
+				<t>We already mentioned that some semantic is missing from the RFC8345 topology model, like bidirectional and multi-point. The following is also missing from the model: 
 				</t>	
 				<ul>
 				<li>
-					Relationship Properties. The supporting relationship could have additional attributes that give more information about 
-					the supporting relationship. That way we could use it for aggregation, underlay with primary/backup, load balancing, hop, 
-					sequence, etc.
+					Relationship Properties. The supporting relationship could have additional attributes that give more information about the supporting relationship. That way we could use it for aggregation, underlay with primary/backup, load balancing, hop, sequence, etc.
 				</li>	
 				<li>
 					Termination point roles. We are missing semantics for the common topology roles: primary, backup, hub, spoke
@@ -670,7 +667,7 @@
 					different layers, we may need some additional information in the model. For further study. 
 				</li>	
 				<li>
-					Tunnels and Paths. We modelled Tunnels ad Paths via <xref target="RFC8345"/> but we lost some semantics that is in RFC8795
+					Tunnels and Paths. We modelled Tunnels ad Paths via <xref target="RFC8345"/> but we lost some semantics that is in RFC8795.
 				</li>		
 				<li>Supporting or underlay. We modelled all underlay relationships via supporting, further analysis is needed to determine 
 				pros and cons of this approach versus RFC8795 approach of using underlay topology.		
@@ -678,7 +675,8 @@
 				</ul>
 			</section>				
 		</section>
-		<section anchor="layering-open-issues" title="Open issues for further analysis">
+
+		<section anchor="layering-open-issues" title="Open Issues for Further Analysis">
 		<t>
 			The following are the open issues that need further analysis:
 		</t>
@@ -690,7 +688,7 @@
 				In one solution, the L2 and L3 topology were the same with separate set of attributes, while in another solution we had difference
 				in L2 and L3 topology (e.g. Links Aggregation, Switches and Routers). 
 				</t>
-				<t>The RFC8944 defines L2 topology and RFC8346 defines the L3 topology. They allow the have either 1 or 2 instances of this topology.
+				<t>The RFC8944 defines L2 topology and RFC8346 defines the L3 topology. They allow to have either one or two instances of this topology.
 				</t>
 				<t>The decision if we need separate network instances for L2 and L3 topologies may be based on specific network topology and 
 				provider's preferences.
@@ -705,6 +703,7 @@
 			</li>			
 		</ul>
 		</section>
+
 		<section anchor="how-to-augment-generic" title="How to augment for generic Digital Map extensions">
 		<t>
 			Generic Digital Map extensions are the RFC8345 extensions required for
@@ -732,6 +731,7 @@ module: dm-network-topology
 			</cref>
 		</t>
 		</section>
+
 		<section anchor="how-to-augment-specific" title="How to augment for new technologies / layers">
 			<t>				
 			    There are already drafts that support augmentation for specific technologies.
@@ -839,7 +839,8 @@ module: new-module
 			</li>
 		</ul>
 		</section>
-	</section>
+	</section>		
+
 	<section anchor="Related-ietf-activities" title="Related IETF Activities">
  	 	<section anchor="network-topology" title="Network Topology">
 	  	  <t>
@@ -955,7 +956,7 @@ module: new-module
 
  	 	<section anchor="ivy" title="Network Inventory (ivy) Proposed Working">
     		<t>
-	    		At the time of writing these lines, a new IETF Working Group (WG) is under consideration: Network Inventory (ivy), with the reference at https://datatracker.ietf.org/doc/charter-ietf-ivy/. Understanding how the two efforts complement each others is important.
+	    		The new Network Inventory (ivy) IETF Working Group (WG) has just been created, with the charter at https://datatracker.ietf.org/doc/charter-ietf-ivy/. Understanding how the two efforts complement each others is important.
   		  </t>		  
   		  <t>
 	    		First off, "ivy" focuses on the network inventory (as written in the charter proposal, "including a variety of information such as product name, vendor, product series, embedded software, and hardware/software versions"). The network inventory is just one of the use cases for the Digital Map: probably the first one. Therefore, it's important to have a consistent view of what a network node id. While a Digital Map must have a pointer to the hardware and software inventory information, we don't consider that all the inventory information are actually part of the digital map. Also, it must be noted that the set of use cases for the digital map is wider than just the network inventory.
