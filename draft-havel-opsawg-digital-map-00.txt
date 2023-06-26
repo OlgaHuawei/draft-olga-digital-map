@@ -853,19 +853,22 @@ Internet-Draft            Digital Map Modelling                June 2023
    and link, but also add different topological entities inside
    augmentations.  For example, we have examples like this:
 
-
-module: new-module
-        augment /nw:networks/nw:network/nw:network-types:
-        +--rw new-topology!
-                        augment /nw:networks/nw:network:
-                                ....
-                        augment /nw:networks/nw:network/nw:node:
-                                .... adding list of tps of other type (e.g. tunnel TPs in te draft)
-                                ... adding new supporting relationship supporting-tunnel-termination-point (te draft)
-                        augment /nw:networks/nw:network/nt:link:
-                                .... adding tunnels (te draft)
-                        augment /nw:networks/nw:network/nw:node/nt:termination-point:
-                                ....
+   module: new-module
+           augment /nw:networks/nw:network/nw:network-types:
+         +--rw new-topology!
+                   augment /nw:networks/nw:network:
+                                   ....
+                   augment /nw:networks/nw:network/nw:node:
+                           .... adding list of tps of other type
+                                    (e.g. tunnel TPs in te draft)
+                           ... adding new supporting relationship
+                                    supporting-tunnel-termination-point
+                                    (te draft)
+                   augment /nw:networks/nw:network/nt:link:
+                                   .... adding tunnels (te draft)
+                   augment /nw:networks/nw:network/nw:node/
+                                                 nt:termination-point:
+                                   ....
 
    There is need to agree some guidelines for augmenting IETF network
    topology, so that additional topological information is not added in
@@ -887,9 +890,6 @@ module: new-module
    How to connect to other YANG modules
 
    How to connect YANG models with other modelling mechanisms
-
-
-
 
 
 

@@ -291,9 +291,10 @@
           topology models relationships between different layers of
           connectivity, where each layer represents a connectivity aspect of
           the network and service that needs to be configured, controlled and
-          monitored. The layer can also represent what needs to be managed by a specific user,
-          for example IGP layer can be of interest to the user troubleshooting the routing,
-          while the Optical Layer may be of interest to the user managing the Optical Network.
+          monitored. The layer can also represent what needs to be managed
+          by a specific user, for example IGP layer can be of interest
+          to the user troubleshooting the routing, while the Optical Layer
+          may be of interest to the user managing the Optical Network.
           Some topology layers may relate closely to OSI layers,
           like L1 topology for physical topology, L2 for link topology and L3
           for IPv4 and IPv6 Topologies. Some topology layers represent the
@@ -310,8 +311,8 @@
       <section anchor="digital-twin" title="Digital Twin">
         <t>The network digital twin (referred to simply as digital twin)
         concepts and a reference architecture are proposed in the "Digital
-        Twin Network: Concepts and Reference Architecture" NMRG I-D <xref
-        target="I-D.irtf-nmrg-network-digital-twin-arch"></xref>.</t>
+        Twin Network: Concepts and Reference Architecture" NMRG I-D
+        <xref target="I-D.irtf-nmrg-network-digital-twin-arch"></xref>.</t>
 
         <t>The NMRG I-D defines the core elements of digital twin - Data,
         Models, Interfaces, and Mapping. The digital twin constructed based on
@@ -349,10 +350,9 @@
         service topologies at different layers. The Digital Map provides the
         access to this data via standard APIs for both read and write
         operations, with query capabilities and links to other YANG modules
-        (e.g., SAIN <xref
-        target="I-D.ietf-opsawg-service-assurance-architecture"></xref>, SAP
-        <xref target="RFC9408"></xref>, Inventory <xref
-        target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
+        (e.g., SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"></xref>,
+        SAP <xref target="RFC9408"></xref>,
+        Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
         Assets <xref target="I-D.palmero-opsawg-dmlmo"></xref>) and non-YANG
         models.</t>
       </section>
@@ -798,18 +798,22 @@ module: dm-network-topology
         <t>There are already drafts that support augmentation for specific
         technologies. These drafts augment network, node, termination point
         and link, but also add different topological entities inside
-        augmentations. For example, we have examples like this: <artwork><![CDATA[				
+        augmentations. For example, we have examples like this: <artwork><![CDATA[
 module: new-module
 	augment /nw:networks/nw:network/nw:network-types:
-    	+--rw new-topology!
-			augment /nw:networks/nw:network:
+      +--rw new-topology!
+		augment /nw:networks/nw:network:
 				....
-			augment /nw:networks/nw:network/nw:node:
-				.... adding list of tps of other type (e.g. tunnel TPs in te draft)
-				... adding new supporting relationship supporting-tunnel-termination-point (te draft)
-			augment /nw:networks/nw:network/nt:link:
+		augment /nw:networks/nw:network/nw:node:
+			.... adding list of tps of other type
+				 (e.g. tunnel TPs in te draft)
+			... adding new supporting relationship
+				 supporting-tunnel-termination-point
+				 (te draft)
+		augment /nw:networks/nw:network/nt:link:
 				.... adding tunnels (te draft)
-			augment /nw:networks/nw:network/nw:node/nt:termination-point:
+		augment /nw:networks/nw:network/nw:node/
+		                              nt:termination-point:
 				....
 				]]></artwork></t>
 
@@ -863,7 +867,6 @@ module: new-module
         </ul>
 
         <t>What can be achieved with existing RFC8345 YANG:</t>
-
         <ul>
           <li>Entities (base class IETF Network, IETF Node, IETF Link, IETF
           TP)</li>
