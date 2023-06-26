@@ -122,7 +122,7 @@
       </address>
     </author>
 
-    <date day="25" month="June" year="2023" />
+    <date day="26" month="June" year="2023"/>
 
     <area>OPS</area>
 
@@ -291,7 +291,10 @@
           topology models relationships between different layers of
           connectivity, where each layer represents a connectivity aspect of
           the network and service that needs to be configured, controlled and
-          monitored. Some topology layers may relate closely to OSI layers,
+          monitored. The layer can also represent what needs to be managed by a specific user,
+          for example IGP layer can be of interest to the user troubleshooting the routing,
+          while the Optical Layer may be of interest to the user managing the Optical Network.
+          Some topology layers may relate closely to OSI layers,
           like L1 topology for physical topology, L2 for link topology and L3
           for IPv4 and IPv6 Topologies. Some topology layers represent the
           control aspects of L3, like OSPF, IS-IS and BGP. The top layer
@@ -371,19 +374,18 @@
 
         <t>Some of these models/data provides a device view, some provides a
         network or subnetwork view, while others focus more on the customer
-        service perspective. All these views are needed for both inner and
-        outer closed-loops. It is debatable what is part of the Digital Map
+        service perspective.  are needed for both inner and
+        outer closed-loops. It is debatablAll these viewse what is part of the Digital Map
         itself versus what are pointers from the Digital Map to some other
-        sources of information. As an example, the Digital Map is not expected
-        to specifically include all information about the device inventory
-        (product name, vendor, product series, embedded software, and
-        hardware/software versions): a pointer from the Digital Map to another
-        inventory system might be sufficient. Similarly, the Digital Map is
-        not expected to necessarily contain incidents, configuration, data
-        plane monitoring, or even assurance information, simply to name a
-        few.</t>
+        sources of information. As an example, the Digital Map should not specifically
+        include all information about the device inventory (product name,
+        vendor, product series, embedded software, and hardware/software
+        versions): a pointer from the Digital Map to another inventory system
+        might be sufficient. Similarly, the Digital Map should not specifically
+        contain incidents, configuration, data plane monitoring, or even 
+        assurance information, simply to name a few.</t>
 
-        <t>The following are some use cases that require Digital Map:</t>
+        <t>The following are some Digital Twin use cases that require Digital Map:</t>
 
         <ul>
           <li>Generic Inventory Queries</li>
@@ -972,6 +974,13 @@ module: new-module
           'ietf-network-topology' with inventory information for node, link
           and termination-point. It also has UUIDs.</li>
 
+          <li>A YANG Data Model for Network Hardware Inventory <xref
+          target="I-D.ietf-ccamp-network-inventory-yang"/> augments 
+          network-topology' to provide a generic YANG data model
+          for network hardware inventory data information which
+          can be augmented with technology-specific (e.g., optical)
+          inventory data.</li>
+
           <li>Data Model for Lifecycle Management and Operations <xref
           target="I-D.palmero-opsawg-dmlmo" /></li>
 
@@ -990,48 +999,40 @@ module: new-module
         </ul>
       </section>
 
-      <section anchor="ivy" title="Network Inventory (ivy) Proposed Working">
-        <t>The new Network Inventory (ivy) IETF Working Group (WG) has just
-        been created, with the charter at
-        https://datatracker.ietf.org/doc/charter-ietf-ivy/. Understanding how
-        the two efforts complement each others is important.</t>
+      <section anchor="ivy" title="Network Inventory (IVY) Proposed Working">
+        <t>The charter of the Network Inventory (IVY) IETF Working Group (WG) 
+          can be found at https://datatracker.ietf.org/doc/charter-ietf-ivy/. 
+          Understanding how the two efforts complement each other is important.</t>
 
-        <t>First off, "ivy" focuses on the network inventory (as written in
-        the charter proposal, "including a variety of information such as
-        product name, vendor, product series, embedded software, and
-        hardware/software versions"). The network inventory is just one of the
-        use cases for the Digital Map: probably the first one. Therefore, it's
-        important to have a consistent view of what a network node id. While a
-        Digital Map must have a pointer to the hardware and software inventory
-        information, we don't consider that all the inventory information is
-        actually part of the digital map. Also, it must be noted that the set
-        of use cases for the digital map is wider than just the network
-        inventory.</t>
+        <t>The IVY effort focuses on the network inventory (as the charter says,
+          "including a variety of information such as product name, vendor, product
+          series, embedded software, and hardware/software versions").  The network
+          inventory is probably the first use cases for the Digital Map.  Therefore,
+          it is important to have a consistent view of what a network node is.  While
+          a Digital Map must include a pointer to the hardware and software inventory
+          information, we don't consider that all the inventory information is
+          actually part of the Digital Map.  It must also be noted that the set of use
+          cases for the Digital Map is wider than just the network inventory.</t>
 
-        <t>Secondly, the proposed charter correctly mentions that "The Working
-        Group will consider existing IETF work, including RFC 8348 and RFC
-        8345.". In this document, RFC 8345 is also considered as the base YANG
-        module. Therefore, there is clearly common ground, which is a good
-        thing. This document goes beyond RFC 8345 and tries to evaluate
-        whether the RFC 8345, along with all the augmented YANG modules would
-        be a good fit for all the Digital Map requirements.</t>
+        <t>The IVY charter also says that, "The Working Group will consider existing
+          IETF work, including RFC 8348 and RFC 8345.".  In this document, RFC 8345 is
+          considered as the base YANG module, therefore, there is clearly common
+          ground with the work of the ivy working group.  This document goes beyond
+          RFC 8345 to evaluate whether that RFC, along with all the augmented YANG
+          modules, would be a good fit for all the Digital Map requirements.</t>
 
-        <t>Thirdly, as written in the charter proposal "The WG will also
-        identify a set of requirements and guidelines to ensure consistency
-        across models related to inventory.", the requirements and guidelines
-        are focusing on inventory ... while there are also requirements,
-        guidelines, and potentially new building blocks required for the other
-        use cases described in this document, next to inventory. Clearly, we
-        can already observe that some building blocks are missing. "point to
-        multipoint" comes to mind, which is required for the Digital Map but
-        not the inventory.</t>
+        <t>Additionally, the IVY charter says, "The WG will also identify a set of
+          requirements and guidelines to ensure consistency across models related to
+          inventory."  While the IVY requirements and guidelines focus on inventory,
+          this document looks at the full set of requirements, guidelines, and
+          building blocks for all the Digital Map use cases.  The inventory use case
+          does not cover that full set, and other building blocks will be required:
+          for example, to support point-to-multipoint connectivity</t>
 
-        <t>In conclusion, we can say that this Digital Map Modelling effort is
-        complimentary to the "ivy". It focuses more specifically on this
-        aspect of the "ivy" proposed charter with a focus on all the Digital
-        Map use case requirements: E. Mapping and correlation semantics:
-        Correlating the inventory with existing IETF models e.g., topology,
-        service attachment points (SAP), etc.</t>
+        <t>Thus, this Digital Map modelling effort is complementary to the inventory
+           work in IVY. It has a broader outlook covering all Digital Map use case
+           requirements, and will correlate with the existing IETF models, e.g.,
+           topology, service attachment points (SAP), etc.</t>
       </section>
     </section>
 
@@ -1051,6 +1052,12 @@ module: new-module
 
     <section anchor="security-considerations">
       <name>Security Considerations</name>
+
+      <t>The digital map exposes a lot of key details about the network
+        that may be confidential and might be valuable to an attacker.</t>
+
+      <t>Future revisions will add more details of what information
+        needs to be protected and how it may be protected</t>
     </section>
 
     <section anchor="iana-considerations">
@@ -1089,6 +1096,8 @@ module: new-module
       <?rfc include='reference.RFC.9408'?>
 
       <?rfc include='reference.I-D.ietf-teas-rfc3272bis'?>
+
+      <?rfc include='reference.I-D.ietf-ccamp-network-inventory-yang'?>
 
       <?rfc include='reference.I-D.irtf-nmrg-network-digital-twin-arch'?>
 
