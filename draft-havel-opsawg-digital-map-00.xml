@@ -17,7 +17,7 @@
     RFC 8345: Sharing Experience and Perspectives</title>
 
     <seriesInfo name="Internet-Draft"
-                value="draft-opsawg-havel-digital-map-00"/>
+                value="draft-opsawg-havel-digital-map-00" />
 
     <author fullname="Olga Havel" initials="O " surname="Havel">
       <organization>Huawei</organization>
@@ -104,7 +104,25 @@
       </address>
     </author>
 
-    <date day="25" month="June" year="2023"/>
+    <author fullname="Mohamed Boucadair" initials="M." surname="Boucadair">
+      <organization>Orange</organization>
+
+      <address>
+        <postal>
+          <street />
+
+          <city>Rennes</city>
+
+          <code>35000</code>
+
+          <country>France</country>
+        </postal>
+
+        <email>mohamed.boucadair@orange.com</email>
+      </address>
+    </author>
+
+    <date day="25" month="June" year="2023" />
 
     <area>OPS</area>
 
@@ -124,24 +142,24 @@
       <name>Discussion Venues</name>
 
       <t>Source for this draft and an issue tracker can be found at <eref
-      target="https://github.com/OlgaHuawei"/>.</t>
+      target="https://github.com/OlgaHuawei" />.</t>
     </note>
   </front>
 
   <middle>
     <section anchor="intro" title="Introduction">
-      <t><xref target="RFC8345"/> specifies a topology YANG model with many
+      <t><xref target="RFC8345" /> specifies a topology YANG model with many
       YANG augmentations for different technologies and service types. The
-      modelling approach based upon <xref target="RFC8345"/> provides a
+      modelling approach based upon <xref target="RFC8345" /> provides a
       standard IETF based API.</t>
 
       <t>At the time of writing (2023), there are at least 60 YANG modules
-      that are augmenting <xref target="RFC8345"/>; 59 IETF-authored modules
+      that are augmenting <xref target="RFC8345" />; 59 IETF-authored modules
       and 1 BBF-authored module. 8 of these modules have maturity level of
       'ratified', 15 of them have maturity level of 'adopted', 21 modules have
       maturity level of 'latest-approved', and 16 of these modules have
       maturity level of 'initial'. The up-to-date information can be found in
-      the YANG Catalog available at <xref target="Catalog"/>.</t>
+      the YANG Catalog available at <xref target="Catalog" />.</t>
 
       <t>From this set of IETF RFCs and IETF I-Ds (at different level of
       maturity), we designed a Digital Map Proof of concept (PoC), with the
@@ -173,18 +191,18 @@
       demoing it iteratively.</t>
 
       <t>Practically, we developed a PoC with a real lab, based on
-      multi-vendor devices, with <xref target="RFC8345"/> as the base YANG
+      multi-vendor devices, with <xref target="RFC8345" /> as the base YANG
       module. The PoC successfully modelled the following technologies:</t>
 
-      <t>- Layer 2 Network Topology (used <xref target="RFC8944"/>)</t>
+      <t>- Layer 2 Network Topology (used <xref target="RFC8944" />)</t>
 
-      <t>- Layer 3 Network Topology (used <xref target="RFC8346"/>)</t>
+      <t>- Layer 3 Network Topology (used <xref target="RFC8346" />)</t>
 
       <t>- OSPF routing (to be further aligned with <xref
-      target="I-D.ogondio-opsawg-ospf-topology"/>)</t>
+      target="I-D.ogondio-opsawg-ospf-topology" />)</t>
 
       <t>- IS-IS routing (to be further aligned with <xref
-      target="I-D.ogondio-lsr-isis-topology"/>)</t>
+      target="I-D.ogondio-lsr-isis-topology" />)</t>
 
       <t>- BGP routing</t>
 
@@ -200,7 +218,7 @@
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
         "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
         "OPTIONAL" in this document are to be interpreted as described in BCP
-        14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only
+        14 <xref target="RFC2119" /> <xref target="RFC8174" /> when, and only
         when, they appear in all capitals, as shown here.</t>
 
         <t>
@@ -216,7 +234,7 @@
           updated with the latter's performance, maintenance and health status
           data throughout the physical system's life cycle (as defined in
           Section 2.2 of <xref
-          target="I-D.irtf-nmrg-network-digital-twin-arch"/>)</dd>
+          target="I-D.irtf-nmrg-network-digital-twin-arch" />)</dd>
         </dl>
 
         <dl>
@@ -230,7 +248,7 @@
           <dt>Digital Map Modelling -</dt>
 
           <dd>The set of principles, guidelines, and conventions to model the
-          Digital Map using the IETF <xref target="RFC8345"/> approach. They
+          Digital Map using the IETF <xref target="RFC8345" /> approach. They
           cover the network types (layers and sublayers), entity types, entity
           roles (network, node, termination point or link), entity properties
           and relationship types between entities.</dd>
@@ -290,7 +308,7 @@
         <t>The network digital twin (referred to simply as digital twin)
         concepts and a reference architecture are proposed in the "Digital
         Twin Network: Concepts and Reference Architecture" NMRG I-D <xref
-        target="I-D.irtf-nmrg-network-digital-twin-arch"/>.</t>
+        target="I-D.irtf-nmrg-network-digital-twin-arch"></xref>.</t>
 
         <t>The NMRG I-D defines the core elements of digital twin - Data,
         Models, Interfaces, and Mapping. The digital twin constructed based on
@@ -329,10 +347,11 @@
         access to this data via standard APIs for both read and write
         operations, with query capabilities and links to other YANG modules
         (e.g., SAIN <xref
-        target="I-D.ietf-opsawg-service-assurance-architecture"/>, SAP <xref
-        target="RFC9408"/>, Inventory <xref
-        target="I-D.wzwb-opsawg-network-inventory-management"/>, and Assets
-        <xref target="I-D.palmero-opsawg-dmlmo"/>) and non-YANG models.</t>
+        target="I-D.ietf-opsawg-service-assurance-architecture"></xref>, SAP
+        <xref target="RFC9408"></xref>, Inventory <xref
+        target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
+        Assets <xref target="I-D.palmero-opsawg-dmlmo"></xref>) and non-YANG
+        models.</t>
       </section>
 
       <section anchor="digital-map-as-a-prerequisite-digital-twin"
@@ -396,15 +415,16 @@
     <section anchor="ietf-network-topology-approach"
              title="The IETF Network Topology Approaches">
       <section anchor="ietf-network-topology" title="IETF Network Topology">
-        <t><xref target="RFC8345"/> provides a simple generic topological
-        model. It defines the abstract /generic /base model for network and
-        service topologies. It provides the mechanism to model networks and
-        services as layered topologies with common relationships at the same
-        layer and underlay/overlay relationships between the layers.</t>
+        <t><xref target="RFC8345"></xref> provides a simple generic
+        topological model. It defines the abstract /generic /base model for
+        network and service topologies. It provides the mechanism to model
+        networks and services as layered topologies with common relationships
+        at the same layer and underlay/overlay relationships between the
+        layers.</t>
 
-        <t><xref target="RFC8345"/> consists of two modules: 'ietf-network'
-        and 'ietf-network-topology'. The 'ietf-network' module defines
-        networks and nodes, while 'ietf-network-topology' module adds
+        <t><xref target="RFC8345"></xref> consists of two modules:
+        'ietf-network' and 'ietf-network-topology'. The 'ietf-network' module
+        defines networks and nodes, while 'ietf-network-topology' module adds
         definitions for links and termination points.</t>
 
         <t>The relationships inside the layer are containment/aggregation (a
@@ -426,10 +446,10 @@
 
       <section anchor="ietf-network-topology-te"
                title="IETF Network Topology TE">
-        <t><xref target="RFC8795"/> defines a YANG model for representing,
+        <t><xref target="RFC8795" /> defines a YANG model for representing,
         retrieving and manipulating TE topologies. This is a more complex
-        model which augments <xref target="RFC8345"/> with traffic engineering
-        topology information as follows: <ul>
+        model which augments <xref target="RFC8345" /> with traffic
+        engineering topology information as follows: <ul>
             <li>TE topology, node, link and termination point are defined
             using the core RFC9345 concepts <ul>
                 <li>TE topology augments network with topology identifier
@@ -462,7 +482,7 @@
 
       <t>The following are the core requirements for the Digital Map (note
       that some of them are supported by default by <xref
-      target="RFC8345"/>:</t>
+      target="RFC8345" />:</t>
 
       <ol>
         <li>Basic model with Network, Node, Link, Interface entity types</li>
@@ -585,7 +605,7 @@
              title="Digital Map Modelling Experience">
       <section anchor="what-is-not-in-basic"
                title="What is not in the basic model">
-        <t>The following are the <xref target="RFC8345"/> extensions needed
+        <t>The following are the <xref target="RFC8345" /> extensions needed
         for Digital Map modelling and APIs:</t>
 
         <ul>
@@ -709,7 +729,7 @@
             model. For further study.</li>
 
             <li>Tunnels and Paths. We modelled Tunnels ad Paths via <xref
-            target="RFC8345"/> but we lost some semantics that is in
+            target="RFC8345" /> but we lost some semantics that is in
             RFC8795.</li>
 
             <li>Supporting or underlay. We modelled all underlay relationships
@@ -827,9 +847,9 @@ module: new-module
 
         <ul>
           <li>Abstract IETF Entities and Relationships as in <xref
-          target="RFC8345"/></li>
+          target="RFC8345" /></li>
 
-          <li><xref target="RFC8345"/> Augmentations for a)Layers/sublayers
+          <li><xref target="RFC8345" /> Augmentations for a)Layers/sublayers
           b)Entities (services and subservices), c)Properties</li>
 
           <li>Rules for aggregating entities</li>
@@ -866,10 +886,10 @@ module: new-module
     <section anchor="Related-ietf-activities" title="Related IETF Activities">
       <section anchor="network-topology" title="Network Topology">
         <t>Interestingly, we could not find any Network Topology definition in
-        IETF RFCs (not even in <xref target="RFC8345"/>) or drafts. However,
+        IETF RFCs (not even in <xref target="RFC8345" />) or drafts. However,
         it's mentioned in multiple documents. As an example, in Overview and
         Principles of Internet Traffic Engineering <xref
-        target="I-D.ietf-teas-rfc3272bis"/>, which mentioned:</t>
+        target="I-D.ietf-teas-rfc3272bis" />, which mentioned:</t>
 
         <t>To conduct performance studies and to support planning of existing
         and future networks, a routing analysis may be performed to determine
@@ -910,63 +930,63 @@ module: new-module
 
         <ul>
           <li>IETF Network Model and Network Topology Model <xref
-          target="RFC8345"/></li>
+          target="RFC8345" /></li>
 
           <li>A YANG Grouping for Geographic Location <xref
-          target="RFC9179"/></li>
+          target="RFC9179" /></li>
 
-          <li>IETF Modules that augment <xref target="RFC8345"/> for different
-          technologies:</li>
+          <li>IETF Modules that augment <xref target="RFC8345" /> for
+          different technologies:</li>
 
           <li>- A YANG Data Model for Traffic Engineering (TE) Topologies
-          <xref target="RFC8795"/></li>
+          <xref target="RFC8795" /></li>
 
           <li>- A YANG Data Model for Layer 2 Network Topologies <xref
-          target="RFC8944"/></li>
+          target="RFC8944" /></li>
 
           <li>- A YANG Data Model for OSFP Topology <xref
-          target="I-D.ogondio-opsawg-ospf-topology"/></li>
+          target="I-D.ogondio-opsawg-ospf-topology" /></li>
 
           <li>- A YANG Data Model for IS-IS Topology <xref
-          target="I-D.ogondio-lsr-isis-topology"/></li>
+          target="I-D.ogondio-lsr-isis-topology" /></li>
         </ul>
       </section>
 
       <section anchor="additional-digital-map-components"
                title="Additional Digital Map Components">
         <t>The Digital Map may need to link to the following models, some are
-        already augmenting <xref target="RFC8345"/>, we need further
+        already augmenting <xref target="RFC8345" />, we need further
         investigation for each of these items:</t>
 
         <ul>
-          <li>Service Access Point (SAP) <xref target="RFC9408"/>, augments
-          'ietf-network' data model <xref target="RFC8345"/> by adding the
+          <li>Service Access Point (SAP) <xref target="RFC9408" />, augments
+          'ietf-network' data model <xref target="RFC8345" /> by adding the
           SAP.</li>
 
           <li>SAIN <xref
-          target="I-D.ietf-opsawg-service-assurance-architecture"/> and <xref
-          target="I-D.ietf-opsawg-service-assurance-yang"/></li>
+          target="I-D.ietf-opsawg-service-assurance-architecture" /> and <xref
+          target="I-D.ietf-opsawg-service-assurance-yang" /></li>
 
           <li>An Inventory Management Model for Enterprise Networks <xref
-          target="I-D.wzwb-opsawg-network-inventory-management"/> augments
+          target="I-D.wzwb-opsawg-network-inventory-management" /> augments
           'ietf-network-topology' with inventory information for node, link
           and termination-point. It also has UUIDs.</li>
 
           <li>Data Model for Lifecycle Management and Operations <xref
-          target="I-D.palmero-opsawg-dmlmo"/></li>
+          target="I-D.palmero-opsawg-dmlmo" /></li>
 
           <li>KPIs: delay, jitter, loss</li>
 
           <li>Attachment Circuits (ACs) <xref
-          target="I-D.boro-opsawg-ntw-attachment-circuit"/> and <xref
-          target="I-D.boro-opsawg-teas-attachment-circuit"/></li>
+          target="I-D.boro-opsawg-ntw-attachment-circuit" /> and <xref
+          target="I-D.boro-opsawg-teas-attachment-circuit" /></li>
 
-          <li>Configuration: L2SM <xref target="RFC8466"/>, L3SM <xref
-          target="RFC8049"/>, L2NM <xref target="RFC9291"/>, L3NM <xref
-          target="RFC9182"/></li>
+          <li>Configuration: L2SM <xref target="RFC8466" />, L3SM <xref
+          target="RFC8049" />, L2NM <xref target="RFC9291" />, L3NM <xref
+          target="RFC9182" /></li>
 
           <li>Incident Management for Network Services <xref
-          target="I-D.feng-opsawg-incident-management"/></li>
+          target="I-D.feng-opsawg-incident-management" /></li>
         </ul>
       </section>
 
@@ -1020,8 +1040,8 @@ module: new-module
 
       <t>Digital Map Modelling and Data are basis for the Digital Twin. During
       our PoC we have proven that Digital Map can be modelled using <xref
-      target="RFC8345"/>. Nevertheless, we proposed some
-      extensions/augmentations to <xref target="RFC8345"/> to support Digital
+      target="RFC8345" />. Nevertheless, we proposed some
+      extensions/augmentations to <xref target="RFC8345" /> to support Digital
       Maps. There must be some constraints in regards to how to augment the
       core Digital Map model for different Layers and Technologies in order to
       support the approach in our PoC. All entities must augment IETF node,
@@ -1093,13 +1113,13 @@ module: new-module
       <reference anchor="Catalog"
                  target="https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26">
         <front>
-          <title/>
+          <title></title>
 
           <author>
-            <organization/>
+            <organization></organization>
           </author>
 
-          <date/>
+          <date />
         </front>
       </reference>
     </references>

@@ -10,6 +10,7 @@
 <meta content="Oscar Gonzalez de Dios" name="author">
 <meta content="Ahmed.Elhassany" name="author">
 <meta content="Thomas Graf" name="author">
+<meta content="Mohamed Boucadair" name="author">
 <meta content="
        This document shares experience in modelling digital map based on the
       IETF RFC 8345 topology YANG modules and some of its augmentations.
@@ -38,7 +39,7 @@
     wcwidth 0.2.6
     weasyprint 59.0
 -->
-<link href="/usr/src/app/tmp/b890ba0b-5f9d-477d-bd09-e605063448fe/draft-havel-opsawg-digital-map-00.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/e564d6b9-0f50-4607-907f-a96d11dde03f/draft-havel-opsawg-digital-map-00.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -1216,7 +1217,7 @@ li > p:last-of-type:only-child {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 22 December 2023</td>
+<td class="center">Expires 27 December 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1229,12 +1230,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-opsawg-havel-digital-map-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-06-20" class="published">20 June 2023</time>
+<time datetime="2023-06-25" class="published">25 June 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-12-22">22 December 2023</time></dd>
+<dd class="expires"><time datetime="2023-12-27">27 December 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1256,6 +1257,10 @@ li > p:last-of-type:only-child {
 <div class="author">
       <div class="author-name">T. Graf</div>
 <div class="org">Swisscom</div>
+</div>
+<div class="author">
+      <div class="author-name">M. Boucadair</div>
+<div class="org">Orange</div>
 </div>
 </dd>
 </dl>
@@ -1297,7 +1302,7 @@ li > p:last-of-type:only-child {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 December 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1474,14 +1479,14 @@ li > p:last-of-type:only-child {
       maturity level of 'latest-approved', and 16 of these modules have
       maturity level of 'initial'. The up-to-date information can be found in
       the YANG Catalog available at <span>[<a href="#Catalog" class="cite xref">Catalog</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">From this sef of IETF RFCs and IETF I-Ds (at different level of
+<p id="section-1-3">From this set of IETF RFCs and IETF I-Ds (at different level of
       maturity), we designed a Digital Map Proof of concept (PoC), with the
       following objectives and functionalities:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-4.1">Can the central RFC 8345 YANG module be a good basis to model a
         Digital Map?<a href="#section-1-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-1-4.2">How the different topology-related IETF YANG modules fit (or not)
+        <li class="normal" id="section-1-4.2">How the different topology related IETF YANG modules fit (or not)
         together?<a href="#section-1-4.2" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-1-4.3">Modelling of digital map entities, relationships, and rules how to
@@ -1549,7 +1554,7 @@ li > p:last-of-type:only-child {
           Digital Map using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach. They
           cover the network types (layers and sublayers), entity types, entity
           roles (network, node, termination point or link), entity properties
-          and relationships types between entities.<a href="#section-1.1-4.4" class="pilcrow">¶</a>
+          and relationship types between entities.<a href="#section-1.1-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-4.5">Digital Map Model -</dt>
@@ -1558,7 +1563,7 @@ li > p:last-of-type:only-child {
           and between the layers. It is the basic topological model that is
           linked to other functional parts of the digital twin and connects
           them all: configuration, maintenance, assurance (KPIs, status,
-          health, symptoms), traffic engineering, different behaviours,
+          health, symptoms), traffic engineering, different behaviors,
           simulation, emulation, mathematical abstractions, AI algorithms,
           etc<a href="#section-1.1-4.6" class="pilcrow">¶</a>
 </dd>
@@ -1593,7 +1598,7 @@ li > p:last-of-type:only-child {
           like L1 topology for physical topology, L2 for link topology and L3
           for IPv4 and IPv6 Topologies. Some topology layers represent the
           control aspects of L3, like OSPF, IS-IS and BGP. The top layer
-          represent the service view of the connectivity, that can differ for
+          represents the service view of the connectivity, that can differ for
           different types of services and for different
           providers/solutions.<a href="#section-1.1-4.12" class="pilcrow">¶</a>
 </dd>
@@ -1645,7 +1650,7 @@ li > p:last-of-type:only-child {
 <p id="section-2.2-3">The Digital Map Model is a basic topological model that is linked
         to other functional parts of the digital twin and connects them all:
         configuration, maintenance, assurance (KPIs, status, health,
-        symptoms), Traffic Engineering (TE), different behaviours and actions,
+        symptoms), Traffic Engineering (TE), different behaviors and actions,
         simulation, emulation, mathematical abstractions, AI algorithms,
         etc.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
 <p id="section-2.2-4">The Digital Map Data consists of virtual instances of network and
@@ -1666,55 +1671,47 @@ li > p:last-of-type:only-child {
 <p id="section-2.3-1">One of the important requirements for the digitalization and
         Digital Twin is to ease correlating all models and data to topological
         entities at different layers in the layered twin network. The Digital
-        Map aism to provide a virtual instance of the topological information
+        Map aims to provide a virtual instance of the topological information
         of the network, based on this Digital Map Model. Building a Digital
         Map is prerequisite towards the Digital Twin.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
 <p id="section-2.3-2">The Digital Map Model/Data will provide this missing correlation
         between the topology models/data and all other models/data: KPIs,
         alarms, incidents, inventory (with UUIDs), configuration, traffic
-        engineering, planning ("what if"), simulation, emulations, actions,
-        and behaviours.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+        engineering, planning, simulation ("what if"), emulations, actions,
+        and behaviors.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
 <p id="section-2.3-3">Some of these models/data provides a device view, some provides a
-        network or subnetwork view, while others focuses more on the customer
+        network or subnetwork view, while others focus more on the customer
         service perspective. All these views are needed for both inner and
-        outer closed-loops. It is debatable what is actually part of the
-        Digital Map itself versus what are pointers from the Digital Map to
-        some other sources of information. As an example, the Digital Map is
-        not expected to specifically include all information about the device
-        inventory (product name, vendor, product series, embedded software,
-        and hardware/software versions): a pointer from the Digital Map to
-        another inventory system might be sufficient. Similarly, the Digital
-        Map is not expected to necessarily contain incidents, configuration,
-        data plane monitoring, or even assurance information, simply to name a
+        outer closed-loops. It is debatable what is part of the Digital Map
+        itself versus what are pointers from the Digital Map to some other
+        sources of information. As an example, the Digital Map is not expected
+        to specifically include all information about the device inventory
+        (product name, vendor, product series, embedded software, and
+        hardware/software versions): a pointer from the Digital Map to another
+        inventory system might be sufficient. Similarly, the Digital Map is
+        not expected to necessarily contain incidents, configuration, data
+        plane monitoring, or even assurance information, simply to name a
         few.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
 <p id="section-2.3-4">The following are some use cases that require Digital Map:<a href="#section-2.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2.3-5.1">
-    Generic Inventory Queries<a href="#section-2.3-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-2.3-5.1">Generic Inventory Queries<a href="#section-2.3-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.2">
-    Service placement feasibility checks<a href="#section-2.3-5.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.2">Service placement feasibility checks<a href="#section-2.3-5.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.3">
-   Service-&gt; subservice -&gt; resource<a href="#section-2.3-5.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.3">Service-&gt; subservice -&gt; resource<a href="#section-2.3-5.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.4">
- Resource -&gt; subservice -&gt; service<a href="#section-2.3-5.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.4">Resource -&gt; subservice -&gt; service<a href="#section-2.3-5.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.5">
-   Intent/Service Assurance<a href="#section-2.3-5.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.5">Intent/Service Assurance<a href="#section-2.3-5.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.6"> 
-    Service E2E and Per-Link KPIs on the Digital Map (delay, jitter, and loss)<a href="#section-2.3-5.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.6">Service E2E and Per-Link KPIs on the Digital Map (delay, jitter,
+          and loss)<a href="#section-2.3-5.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.7">
-    Capacity planning<a href="#section-2.3-5.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.7">Capacity planning<a href="#section-2.3-5.7" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.8">
-    Simulation<a href="#section-2.3-5.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.8">Simulation<a href="#section-2.3-5.8" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-2.3-5.9"> 
-    Closed Loop<a href="#section-2.3-5.9" class="pilcrow">¶</a>
+          <li class="normal" id="section-2.3-5.9">Closed Loop<a href="#section-2.3-5.9" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-2.3-6">Overall, the Digital Map is needed to break down data islands and
@@ -1752,7 +1749,7 @@ li > p:last-of-type:only-child {
         relationship<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1-5.1">network A is supported by network B - this may model
-            overlay/underaly relationship<a href="#section-3.1-5.1" class="pilcrow">¶</a>
+            overlay/underlay relationship<a href="#section-3.1-5.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-5.2">nodes, links and termination points of network A are supported
             by nodes, links and termination points of network B. Overlay and
@@ -1792,8 +1789,8 @@ li > p:last-of-type:only-child {
 </li>
           <li class="normal" id="section-3.2-2.2">Tunnel, tunnel termination point, local link connectivity,
             node connectivity matrix, and some supporting and underlay
-            relationships are defined outside of the core RFC 8345 entites and
-            relationships<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+            relationships are defined outside of the core RFC 8345 entities
+            and relationships<a href="#section-3.2-2.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1833,7 +1830,7 @@ li > p:last-of-type:only-child {
         retrieve the links to external data / models.<a href="#section-4-3.4" class="pilcrow">¶</a>
 </li>
         <li id="section-4-3.5">Digital Map Models and APIs must be common over different network
-        domains (campus, core, data centre, etc.)<a href="#section-4-3.5" class="pilcrow">¶</a>
+        domains (campus, core, data center, etc.)<a href="#section-4-3.5" class="pilcrow">¶</a>
 </li>
         <li id="section-4-3.6">Digital Map must provide semantics for layered network topologies
         and for linking external models/data<a href="#section-4-3.6" class="pilcrow">¶</a>
@@ -1930,7 +1927,7 @@ li > p:last-of-type:only-child {
         <li class="normal" id="section-5-4.3">optimized for graph traversal<a href="#section-5-4.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-5-5"> In some cases for [9] for pluggable to other YANG modules, the
+<p id="section-5-5"> In some cases, for [9] for pluggable to other YANG modules, the
       links are already done by augmenting 'ietf-network' and
       'ietf-network-topology'. For others, we need to add some mechanisms to
       link the models and data.<a href="#section-5-5" class="pilcrow">¶</a></p>
@@ -1973,7 +1970,7 @@ li > p:last-of-type:only-child {
 <p id="section-6.1.1-2">Nevertheless, while simplifying the model itself, we are making
           data and APIs more complex for the cases where we have bidirectional
           links. And we are increasing the amount of instances / data
-          transferred via API, stored in the database or
+          transferred via API, stored in the database, or
           managed/monitored.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1.1-3">One of the core characteristics of any network topology is the
           link directionality. While data flows are unidirectional, the
@@ -2233,8 +2230,8 @@ module: new-module
 </li>
           <li class="normal" id="section-6.7-2.3">Rules for aggregating entities<a href="#section-6.7-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-2.4">Rules for instantiating relationships Relationships (inter-layer
-          and intra-layer)<a href="#section-6.7-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.7-2.4">Rules for instantiating relationships (inter-layer and
+          intra-layer)<a href="#section-6.7-2.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.7-2.5">Mapping from devices and controllers<a href="#section-6.7-2.5" class="pilcrow">¶</a>
 </li>
@@ -2345,7 +2342,7 @@ module: new-module
 <ul class="normal">
 <li class="normal" id="section-7.3-2.1">Service Access Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments
           'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the
-          SAP .<a href="#section-7.3-2.1" class="pilcrow">¶</a>
+          SAP.<a href="#section-7.3-2.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-7.3-2.2">SAIN <span>[<a href="#I-D.ietf-opsawg-service-assurance-architecture" class="cite xref">I-D.ietf-opsawg-service-assurance-architecture</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-service-assurance-yang" class="cite xref">I-D.ietf-opsawg-service-assurance-yang</a>]</span><a href="#section-7.3-2.2" class="pilcrow">¶</a>
 </li>
@@ -2357,7 +2354,7 @@ module: new-module
 </li>
           <li class="normal" id="section-7.3-2.5">KPIs: delay, jitter, loss<a href="#section-7.3-2.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.6">Attachement Circuits (ACs) <span>[<a href="#I-D.boro-opsawg-ntw-attachment-circuit" class="cite xref">I-D.boro-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.boro-opsawg-teas-attachment-circuit" class="cite xref">I-D.boro-opsawg-teas-attachment-circuit</a>]</span><a href="#section-7.3-2.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-7.3-2.6">Attachment Circuits (ACs) <span>[<a href="#I-D.boro-opsawg-ntw-attachment-circuit" class="cite xref">I-D.boro-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.boro-opsawg-teas-attachment-circuit" class="cite xref">I-D.boro-opsawg-teas-attachment-circuit</a>]</span><a href="#section-7.3-2.6" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-7.3-2.7">Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8049" class="cite xref">RFC8049</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-7.3-2.7" class="pilcrow">¶</a>
 </li>
@@ -2382,7 +2379,7 @@ module: new-module
         use cases for the Digital Map: probably the first one. Therefore, it's
         important to have a consistent view of what a network node id. While a
         Digital Map must have a pointer to the hardware and software inventory
-        information, we don't consider that all the inventory information are
+        information, we don't consider that all the inventory information is
         actually part of the digital map. Also, it must be noted that the set
         of use cases for the digital map is wider than just the network
         inventory.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
@@ -2630,6 +2627,18 @@ module: new-module
 <div class="email">
 <span>Email:</span>
 <a href="mailto:thomas.graf@swisscom.com" class="email">thomas.graf@swisscom.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mohamed Boucadair</span></div>
+<div dir="auto" class="left"><span class="org">Orange</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">35000</span> <span class="locality">Rennes</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">France</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mohamed.boucadair@orange.com" class="email">mohamed.boucadair@orange.com</a>
 </div>
 </address>
 </section>
