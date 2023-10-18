@@ -618,13 +618,13 @@
 
           <li>Links between domains/networks</li>
 
-          <li>Networks can be part of other networks</li>
+          <li>A network can be decomposed of sub-networks</li>
 
-          <li>Nodes, links and termination points belong to different networks</li>
+          <li>Nodes, links, and termination points belong to different networks</li>
 
           <li>Supporting relationships between different types of entities</li>
 
-          <li>More Network topology related semantic is needed</li>
+          <li>More network topology related semantic is needed</li>
         </ul>
 
         <section anchor="bidirectional-links" title="Bidirectional Links">
@@ -647,15 +647,15 @@
           layer topology, where we want to model link as bidirectional to be
           supported by unidirectional links at the lower layer.</t>
 
-          <t>The draft  <xref target="I-D.davis-opsawg-some-refinements-to-rfc8345"/>
+          <t><xref target="I-D.davis-opsawg-some-refinements-to-rfc8345"/>
             further elaborates on the need for bidirectional links in the network topologies and
-            in the digital map and proposes how the RFC8345 can be augmented to support it.
+            in the digital map. It also proposes how RFC8345 can be augmented to support missing components.
           </t>
 
         </section>
 
         <section anchor="multipoint-connectivity"
-                 title="Multi-point connectivity">
+                 title="Multipoint Connectivity">
           <t>The RFC8345 defines all links as point to point and
           unidirectional, it does not support multi-point links (hub and
           spoke, full mesh, complex). It was done intentionally to keep the
@@ -686,9 +686,9 @@
           multipoint network type is also required in some cases at the OSPF
           layer.</t>
 
-          <t>The draft  <xref target="I-D.davis-opsawg-some-refinements-to-rfc8345"/>
-            further elaborates on the need for multipoint connectivity in the network topologies and
-            in the digital map and proposes how the RFC8345 can be augmented to support it.
+          <t><xref target="I-D.davis-opsawg-some-refinements-to-rfc8345"/>
+            further elaborates on the need for multipoint connectivity in network topologies and
+            in the digital map, in general. It also proposes how RFC8345 can be augmented to support these missing components.
           </t>
         </section>
 
@@ -707,27 +707,26 @@
           external-domain info for the case of links that connect different
           domains.</t>
 
-          <t>The IS-IS topology draft <xref target="I-D.ogondio-opsawg-isis-topology" />
-          currently models Autonomous System (AS) or IS-IS Domain as a network and
-            IS-IS areas as attributes of the IS-IS nodes.
-            With RFC8345 extension we could model IS-IS areas as networks and IS-IS links
-          between L1-2 nodes as links between 2 different areas. This is not problem
-          for OSPF, althogh th OSPF nodes can belong to multiple areas, the links can belong
-          to only 1 area</t>
+          <t>The IS-IS topology  <xref target="I-D.ogondio-opsawg-isis-topology"/>
+          models Autonomous System (AS) or IS-IS domain as a network, and
+            IS-IS areas as attributes of IS-IS nodes.
+            The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links
+          between L1-2 nodes as links between two different areas. This is not problem
+          for OSPF, althogh the OSPF nodes can belong to multiple areas, the links can belong
+          to only one area.</t>
 
-          <t>The following are some benefits of being able to model links between different networks:
+          <t>The following are some benefits of modeling links between different networks:
           <ul>
-            <li>IS-IS processes would be grouped in area via the standard IETF RFC8345
-            network->node relationship</li>
-            <li>applications and algorithms will understand topologies based on the generic
+            <li>IS-IS processes would be grouped in an area via the standard IETF RFC8345
+            network->node relationship.</li>
+            <li>Applications and algorithms will consume topologies based on the generic
               entities and relationships, they will not need to understand the meaning of
-              specific IS-IS attributes</li>
-            <li>the approach would be aligned with the IS-IS topology model and the IS-IS
-            network view in the manuals and documentation</li>
-            <li>provide capability to link different IGP domains and links between them</li>
-            <li>provide flexibility and could model more diverse topologies</li>
-            <li>link between multiple networks/sub-networks is the common concept in
-              network topology </li>
+              specific IS-IS attributes.</li>
+            <li>The approach would be aligned with the IS-IS topology model and the IS-IS
+            network view in manuals and documentation.</li>
+            <li>Provide capability to link different IGP domains and links between them.</li>
+            <li>Link between multiple networks/sub-networks is the common concept in
+              network topology.</li>
           </ul>
           </t>
         </section>
@@ -736,27 +735,27 @@
         <t>
           RFC8345 does not model networks being part of other networks, therefore cannot model
           subnetworks and network partitioning. We encountered this problem with modelling IS-IS
-          and OSPF Domains and Area. Our initial goal was to model AS / Domain with multiple areas
-          so that our digital map model contains information about how the AS is
+          and OSPF Domains and Areas. The initial goal was to model AS/Domain with multiple areas
+          so that the digital map model contains information about how the AS is
           first split into different IGP domains and how each IGP domain is split into different areas.
-          This is the common problem for both IS-IS and OSPF.
+          This is a common problem for both IS-IS and OSPF.
         </t>
 
-          <t>The following are some options how we can address this problem:
+          <t>The following are some options how to address this problem:
             <ul>
-          <li>We don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
-          underlying IP network and IS-IS / OSPF enabled routers. This could be achieved via supporting
+          <li>Don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
+          underlying IP network and IS-IS/OSPF enabled routers. This could be achieved via supporting
             relationship to L3 network and L3 nodes </li>
-          <li>We model AS, IGP domains and Areas as networks. We use supporting relationship to model the
+          <li>Model AS, IGP domains and Areas as networks. We use supporting relationship to model the
             network topology design, with only areas having nodes. This does not describe the correct
             nature of the relationship, semantic is missing.</li>
-          <li>Extend RFC8345 to support additional relationship between networks</li>
+          <li>Extend RFC8345 to support additional relationship between networks.</li>
             </ul>
           </t>
         </section>
 
         <section anchor="nodes-multiple-networks" title="Nodes, tps and links in multiple networks">
-        <t>RFC8345 does not allow nodes and tps to belong to multiple areas without splitting them into
+        <t>RFC8345 does not allow nodes and TPs to belong to multiple areas without splitting them into
           separate entities with separate keys. In OSPF case we have nodes that can belong to different
           areas, but interfaces can only belong to one area. In the case of IS-IS, although all tutorial
           are stating that nodes can belong to one area only, the ietf, openconfig  and vendor
@@ -765,7 +764,7 @@
           <ul>
           <li>Use the current RFC8345 approach, this is not the problem for read but may be an issue for
           write for simulation as we would expect that the interface lists in different nodes and networks
-          be the same without being able to validate</li>
+          be the same without being able to validate.</li>
           <li>Change the approach of RFC8345 to optionally allow nodes to be defined outside of network tree and
             enable reference as an alternative to the containment in the tree. This may be a bigger change to the
             network topology approach as it would have bigger impact on the topology tree.
@@ -776,7 +775,7 @@
 
         <section anchor="supporting-relationships"
                  title="Missing Supporting Relationships">
-          <t>The RFC8345 defines supporting relationships only between the
+          <t>RFC8345 defines supporting relationships only between the
           same type of entities. Networks can only be supported by networks,
           nodes can only be supported by nodes, termination points can only be
           supported by terminations points and links can only be supported by
