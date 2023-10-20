@@ -21,7 +21,7 @@
       perspectives on how to address them. 
     " name="description">
 <meta content="xml2rfc 3.18.1" name="generator">
-<meta content="draft-havel-opsawg-digital-map-00" name="ietf.draft">
+<meta content="draft-havel-opsawg-digital-map-01" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.18.1
     Python 3.10.12
@@ -39,7 +39,7 @@
     wcwidth 0.2.7
     weasyprint 60.1
 -->
-<link href="/usr/src/app/tmp/1f911e5f-2979-4217-8f7b-78f434a685c2/draft-havel-opsawg-digital-map-01.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/e4db3bb7-7962-4b46-afbe-e85f6421fa68/draft-havel-opsawg-digital-map-01.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -1369,104 +1369,109 @@ li > p:last-of-type:only-child {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-digital-map-requirements" class="internal xref">Digital Map Requirements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-why-rfc8345-is-a-good-appro" class="internal xref">Why RFC8345 is a Good Approach for Digital Map Modelling</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-design-requirements" class="internal xref">Design Requirements</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-why-rfc8345-is-a-good-appro" class="internal xref">Why RFC8345 is a Good Approach for Digital Map Modelling</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-digital-map-modelling-exper" class="internal xref">Digital Map Modelling Experience</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-digital-map-modelling-exper" class="internal xref">Digital Map Modelling Experience</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-what-is-not-in-the-basic-mo" class="internal xref">What is not in the basic model</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-what-is-not-in-the-basic-mo" class="internal xref">What is not in the basic model</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.1">
-                    <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="auto internal xref">6.1.1</a>.  <a href="#name-bidirectional-links" class="internal xref">Bidirectional Links</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="auto internal xref">5.1.1</a>.  <a href="#name-bidirectional-links" class="internal xref">Bidirectional Links</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.2">
-                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="auto internal xref">6.1.2</a>.  <a href="#name-multipoint-connectivity" class="internal xref">Multipoint Connectivity</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="auto internal xref">5.1.2</a>.  <a href="#name-multipoint-connectivity" class="internal xref">Multipoint Connectivity</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.3">
-                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="auto internal xref">6.1.3</a>.  <a href="#name-links-between-networks" class="internal xref">Links Between Networks</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="auto internal xref">5.1.3</a>.  <a href="#name-links-between-networks" class="internal xref">Links Between Networks</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.4">
-                    <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="auto internal xref">6.1.4</a>.  <a href="#name-networks-part-of-other-netw" class="internal xref">Networks part of other networks</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.4">
+                    <p id="section-toc.1-1.5.2.1.2.4.1"><a href="#section-5.1.4" class="auto internal xref">5.1.4</a>.  <a href="#name-networks-part-of-other-netw" class="internal xref">Networks part of other networks</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.5">
-                    <p id="section-toc.1-1.6.2.1.2.5.1"><a href="#section-6.1.5" class="auto internal xref">6.1.5</a>.  <a href="#name-nodes-tps-and-links-in-mult" class="internal xref">Nodes, tps and links in multiple networks</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.5">
+                    <p id="section-toc.1-1.5.2.1.2.5.1"><a href="#section-5.1.5" class="auto internal xref">5.1.5</a>.  <a href="#name-nodes-tps-and-links-in-mult" class="internal xref">Nodes, tps and links in multiple networks</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.6">
-                    <p id="section-toc.1-1.6.2.1.2.6.1"><a href="#section-6.1.6" class="auto internal xref">6.1.6</a>.  <a href="#name-missing-supporting-relation" class="internal xref">Missing Supporting Relationships</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.6">
+                    <p id="section-toc.1-1.5.2.1.2.6.1"><a href="#section-5.1.6" class="auto internal xref">5.1.6</a>.  <a href="#name-missing-supporting-relation" class="internal xref">Missing Supporting Relationships</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.7">
-                    <p id="section-toc.1-1.6.2.1.2.7.1"><a href="#section-6.1.7" class="auto internal xref">6.1.7</a>.  <a href="#name-missing-topology-semantics" class="internal xref">Missing Topology Semantics</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1.2.7">
+                    <p id="section-toc.1-1.5.2.1.2.7.1"><a href="#section-5.1.7" class="auto internal xref">5.1.7</a>.  <a href="#name-missing-topology-semantics" class="internal xref">Missing Topology Semantics</a></p>
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-open-issues-for-further-ana" class="internal xref">Open Issues for Further Analysis</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-how-to-augment-for-generic-" class="internal xref">How to Augment for Generic Digital Map Extensions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-how-to-augment-for-new-tech" class="internal xref">How to Augment for New Technologies/Layers</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-how-to-connect-to-the-exter" class="internal xref">How to connect to the external world</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6">
+                <p id="section-toc.1-1.5.2.6.1"><a href="#section-5.6" class="auto internal xref">5.6</a>.  <a href="#name-digital-map-apis" class="internal xref">Digital Map APIs</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7">
+                <p id="section-toc.1-1.5.2.7.1"><a href="#section-5.7" class="auto internal xref">5.7</a>.  <a href="#name-digital-map-knowledge" class="internal xref">Digital Map Knowledge</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-related-ietf-activities" class="internal xref">Related IETF Activities</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-network-topology" class="internal xref">Network Topology</a></p>
+</li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-open-issues-for-further-ana" class="internal xref">Open Issues for Further Analysis</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-core-digital-map-components" class="internal xref">Core Digital Map Components</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-how-to-augment-for-generic-" class="internal xref">How to Augment for Generic Digital Map Extensions</a></p>
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-additional-digital-map-comp" class="internal xref">Additional Digital Map Components</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-how-to-augment-for-new-tech" class="internal xref">How to Augment for New Technologies/Layers</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
-                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-how-to-connect-to-the-exter" class="internal xref">How to connect to the external world</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
-                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-digital-map-apis" class="internal xref">Digital Map APIs</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7">
-                <p id="section-toc.1-1.6.2.7.1"><a href="#section-6.7" class="auto internal xref">6.7</a>.  <a href="#name-digital-map-knowledge" class="internal xref">Digital Map Knowledge</a></p>
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-network-inventory-ivy-propo" class="internal xref">Network Inventory (IVY) Proposed Working</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-related-ietf-activities" class="internal xref">Related IETF Activities</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-network-topology" class="internal xref">Network Topology</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-core-digital-map-components" class="internal xref">Core Digital Map Components</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-additional-digital-map-comp" class="internal xref">Additional Digital Map Components</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
-                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="auto internal xref">7.4</a>.  <a href="#name-network-inventory-ivy-propo" class="internal xref">Network Inventory (IVY) Proposed Working</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-conclusions" class="internal xref">Conclusions</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-conclusions" class="internal xref">Conclusions</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1551,61 +1556,24 @@ li > p:last-of-type:only-child {
         <dd class="break"></dd>
 </dl>
 <span class="break"></span><dl class="dlParallel" id="section-1.1-4">
-          <dt id="section-1.1-4.1">Digital Map -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.2">Basis for the Digital Twin that provides a virtual instance of
-          the topological information of the network. It provides the core
-          multi-layer topology model and data for the digital twin and
-          connects them to the other digital twin models and data.<a href="#section-1.1-4.2" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.1-4.3">Digital Map Modelling -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.4">The set of principles, guidelines, and conventions to model the
-          Digital Map using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach. They
-          cover the network types (layers and sublayers), entity types, entity
-          roles (network, node, termination point or link), entity properties
-          and relationship types between entities.<a href="#section-1.1-4.4" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.1-4.5">Digital Map Model -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.6">Defines the core topological entities, their role in the
-          network, core properties and relationships both inside each layer
-          and between the layers. It is the basic topological model that is
-          linked to other functional parts of the digital twin and connects
-          them all: configuration, maintenance, assurance (KPIs, status,
-          health, symptoms), traffic engineering, different behaviors,
-          simulation, emulation, mathematical abstractions, AI algorithms,
-          etc<a href="#section-1.1-4.6" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.1-4.7">Digital Map Data -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.8">Consists of instances of network and service topologies at
-          different layers. This includes instances of networks, nodes, links
-          and termination points, topological relationships between nodes,
-          links and termination points inside a network, relationships between
-          instances belonging to different networks, links to functional data
-          for the instances, including configuration, health, symptoms. The
-          data can be historical, real-time or future data for what-if
-          scenarios.<a href="#section-1.1-4.8" class="pilcrow">¶</a>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.1-4.9">Topology -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.10">Network topology defines how physical or logical nodes, links
+          <dt id="section-1.1-4.1">Topology -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.2">Network topology defines how physical or logical nodes, links
           and interfaces are related and arranges. Service topology defines
           how service components (e.g., VPN instances, customer interfaces,
           and customer links) between customer sites are interrelated and
-          arranged. There are 8 types of topologies: point to point, bus,
+          arranged. There are at least 8 types of topologies: point to point, bus,
           ring, star, tree, mesh, hybrid and daisy chain. Topologies may be
-          unidirectional or bidirectional (bus, some rings).<a href="#section-1.1-4.10" class="pilcrow">¶</a>
+          unidirectional or bidirectional (bus, some rings).<a href="#section-1.1-4.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-1.1-4.11">Topology Layer -</dt>
-          <dd style="margin-left: 1.5em" id="section-1.1-4.12">Defines a layer in the multilayer topology. A multilayer
+<dt id="section-1.1-4.3">Topology Layer -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.4">Defines a layer in the multilayer topology. A multilayer
           topology models relationships between different layers of
           connectivity, where each layer represents a connectivity aspect of
           the network and service that needs to be configured, controlled and
           monitored. The layer can also represent what needs to be managed
           by a specific user, for example IGP layer can be of interest
-          to the user troubleshooting the routing, while the Optical Layer
+          to the user troubleshooting the routing, while the optical layer
           may be of interest to the user managing the Optical Network.
           Some topology layers may relate closely to OSI layers,
           like L1 topology for physical topology, L2 for link topology and L3
@@ -1613,7 +1581,44 @@ li > p:last-of-type:only-child {
           control aspects of L3, like OSPF, IS-IS and BGP. The top layer
           represents the service view of the connectivity, that can differ for
           different types of services and for different
-          providers/solutions.<a href="#section-1.1-4.12" class="pilcrow">¶</a>
+          providers/solutions.<a href="#section-1.1-4.4" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-4.5">Digital Map -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.6">Basis for the Digital Twin that provides a virtual instance of
+          the topological information of the network. It provides the core
+          multi-layer topology model and data for the digital twin and
+          connects them to the other digital twin models and data.<a href="#section-1.1-4.6" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-4.7">Digital Map Modelling -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.8">The set of principles, guidelines, and conventions to model the
+          Digital Map using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach. They
+          cover the network types (layers and sublayers), entity types, entity
+          roles (network, node, termination point or link), entity properties
+          and relationship types between entities.<a href="#section-1.1-4.8" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-4.9">Digital Map Model -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.10">Defines the core topological entities, their role in the
+          network, core properties and relationships both inside each layer
+          and between the layers. It is the basic topological model that is
+          linked to other functional parts of the digital twin and connects
+          them all: configuration, maintenance, assurance (KPIs, status,
+          health, symptoms), traffic engineering, different behaviors,
+          simulation, emulation, mathematical abstractions, AI algorithms,
+          etc<a href="#section-1.1-4.10" class="pilcrow">¶</a>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-1.1-4.11">Digital Map Data -</dt>
+          <dd style="margin-left: 1.5em" id="section-1.1-4.12">Consists of instances of network and service topologies at
+          different layers. This includes instances of networks, nodes, links
+          and termination points, topological relationships between nodes,
+          links and termination points inside a network, relationships between
+          instances belonging to different networks, links to functional data
+          for the instances, including configuration, health, symptoms. The
+          data can be historical, real-time or future data for what-if
+          scenarios.<a href="#section-1.1-4.12" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1635,13 +1640,13 @@ li > p:last-of-type:only-child {
         concepts and a reference architecture are proposed in the "Digital
         Twin Network: Concepts and Reference Architecture" NMRG I-D
         <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">The NMRG I-D defines the core elements of digital twin - Data,
+<p id="section-2.1-2">This document defines the core elements of digital twin - Data,
         Models, Interfaces, and Mapping. The digital twin constructed based on
         the four core technology elements is intended to analyze, diagnose,
         emulate, and control the physical network in its whole lifecycle with
         the help of optimization algorithms, management methods, and expert
         knowledge.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
-<p id="section-2.1-3">Also, The NMRG I-D states that a digital twin can be seen as an
+<p id="section-2.1-3">Also, this document states that a digital twin can be seen as an
         indispensable part of the overall network system and provides a
         general architecture involving the whole lifecycle of physical
         networks in the future, serving the application of innovative network
@@ -1658,9 +1663,10 @@ li > p:last-of-type:only-child {
 <p id="section-2.2-1">Digital Map provides the core multi-layer topology model and data
         for the digital twin and connects them to the other digital twin
         models and data.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2-2">The Digital Map Modelling defines the core topological entities,
-        their role in the network, core properties, and relationships both
-        inside each layer and between the layers.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.2-2">The Digital Map Modelling defines the core topological entities 
+        (network, node, link and interface), their role in the network, 
+        core properties, and relationships both inside each layer and between 
+        the layers.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 <p id="section-2.2-3">The Digital Map Model is a basic topological model that is linked
         to other functional parts of the digital twin and connects them all:
         configuration, maintenance, assurance (KPIs, status, health,
@@ -1670,10 +1676,11 @@ li > p:last-of-type:only-child {
 <p id="section-2.2-4">The Digital Map Data consists of virtual instances of network and
         service topologies at different layers. The Digital Map provides the
         access to this data via standard APIs for both read and write
-        operations, with query capabilities and links to other YANG modules
-        (e.g., SAIN <span>[<a href="#I-D.ietf-opsawg-service-assurance-architecture" class="cite xref">I-D.ietf-opsawg-service-assurance-architecture</a>]</span>,
-        SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
-        Inventory <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span>, and
+        operations (write operations for offline simulations), with query 
+        capabilities and links to other YANG modules (e.g., SAIN 
+        <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>,
+        SAP <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, Inventory 
+        <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span>, and
         Assets <span>[<a href="#I-D.palmero-opsawg-dmlmo" class="cite xref">I-D.palmero-opsawg-dmlmo</a>]</span>) and non-YANG
         models.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 </section>
@@ -1702,10 +1709,12 @@ li > p:last-of-type:only-child {
         sources of information. As an example, the Digital Map should not specifically
         include all information about the device inventory (product name,
         vendor, product series, embedded software, and hardware/software
-        versions): a pointer from the Digital Map to another inventory system
-        might be sufficient. Similarly, the Digital Map should not specifically
-        contain incidents, configuration, data plane monitoring, or even 
-        assurance information, simply to name a few.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+        versions, as specified in Network Inventory (IVY) WG, 
+        https://datatracker.ietf.org/doc/charter-ietf-ivy/ ): a pointer from 
+        the Digital Map to another inventory system might be sufficient. 
+        Similarly, the Digital Map should not specifically contain incidents, 
+        configuration, data plane monitoring, or even assurance information, 
+        simply to name a few.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
 <p id="section-2.3-4">The following are some Digital Twin use cases that require Digital Map:<a href="#section-2.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.3-5.1">Generic Inventory Queries<a href="#section-2.3-5.1" class="pilcrow">¶</a>
@@ -1867,320 +1876,327 @@ li > p:last-of-type:only-child {
         direct relationship between the termination points or nodes<a href="#section-4-3.10" class="pilcrow">¶</a>
 </li>
       </ol>
-<p id="section-4-4">The following are requirements for determining the scope of the
-      Digital Map:<a href="#section-4-4" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-4-5">
-        <li id="section-4-5.1">Digital Map should contain only topological information<a href="#section-4-5.1" class="pilcrow">¶</a>
+<div id="why-ietf-network-topology">
+<section id="section-4.1">
+        <h3 id="name-why-rfc8345-is-a-good-appro">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-why-rfc8345-is-a-good-appro" class="section-name selfRef">Why RFC8345 is a Good Approach for Digital Map Modelling</a>
+        </h3>
+<p id="section-4.1-1">The main reason for selecting RFC8345 for modelling is its simplicity
+         and that is supports majority of the core requirements. The requirements
+         [1-7] are automatically fulfilled with RFC8345 and extensions:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">basic model with network, node, link and interface entity
+             types<a href="#section-4.1-2.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.2">Digital Map entities should contain only properties used to
-        identify topological entities at different layers, identify their
-        roles and topological relationships between them<a href="#section-4-5.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.2">layered topology<a href="#section-4.1-2.2" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.3">Digital Map should contain only topological relationships inside
-        each layer or between the layers (underlay/overlay)<a href="#section-4-5.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.3">open and programmable<a href="#section-4.1-2.3" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.4">Digital Map should only have links to other functional Digital
-        Twin data and models.<a href="#section-4-5.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.4">standard, multi-vendor<a href="#section-4.1-2.4" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.5">ACLs and Route Policies will be outside of the digital map, they
-        would be linked to digital map<a href="#section-4-5.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.5">multi-domain<a href="#section-4.1-2.5" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.6">Dynamic paths may either be outside of the digital map, part of
-        traffic engineering data/models<a href="#section-4-5.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.6">semantics for layered topology<a href="#section-4.1-2.6" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.7">Provide capability for conditional retrieval of parts of digital
-        map<a href="#section-4-5.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-2.7">inter-layer and between-layer relationships<a href="#section-4.1-2.7" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-5.8">Must support geo-spatial, temporal, and historical data. The
-        temporal and historical can be supported external to the digital
-        map.<a href="#section-4-5.8" class="pilcrow">¶</a>
+        </ul>
+<p id="section-4.1-3"> The requirements [6-7] for semantics for layered topology and
+         relationships are partially fulfilled, there may be need for some
+         additional semantics. Other core requirements [8-10] are not supported
+         by RFC8345:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-4.1">extensible with meta data<a href="#section-4.1-4.1" class="pilcrow">¶</a>
 </li>
-      </ol>
-<p id="section-4-6">The following are the architectural requirements for the Digital
-      Map:<a href="#section-4-6" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-4-7">
-        <li id="section-4-7.1">Scale, performance, integration<a href="#section-4-7.1" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-4.2">pluggable to other YANG modules and non-YANG data<a href="#section-4.1-4.2" class="pilcrow">¶</a>
 </li>
-        <li id="section-4-7.2">Initial discovery and dynamic (change only) synch<a href="#section-4-7.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-4.3">optimized for graph traversal<a href="#section-4.1-4.3" class="pilcrow">¶</a>
 </li>
-      </ol>
+        </ul>
+<p id="section-4.1-5"> In some cases, for [9] for pluggable to other YANG modules, the
+         links are already done by augmenting 'ietf-network' and
+        'ietf-network-topology'. For others, we need to add some mechanisms to
+         link the models and data.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="why-ietf-network-topology">
-<section id="section-5">
-      <h2 id="name-why-rfc8345-is-a-good-appro">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-why-rfc8345-is-a-good-appro" class="section-name selfRef">Why RFC8345 is a Good Approach for Digital Map Modelling</a>
-      </h2>
-<p id="section-5-1">The main reason for selecting RFC8345 for modelling is its simplicity
-      and that is supports majority of the core requirements. The requirements
-      [1-7] are automatically fulfilled with RFC8345 and extensions:<a href="#section-5-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5-2.1">basic model with network, node, link and interface entity
-          types<a href="#section-5-2.1" class="pilcrow">¶</a>
+<div id="design-requirements">
+<section id="section-4.2">
+        <h3 id="name-design-requirements">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-design-requirements" class="section-name selfRef">Design Requirements</a>
+        </h3>
+<p id="section-4.2-1">The following are design requirements for modelling the
+      Digital Map:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-4.2-2">
+        <li id="section-4.2-2.1">Digital Map should contain only topological information. 
+        Digital Map should not contain all data required for all the management 
+        and use cases, but should have pointers to other functional Digital
+        Twin data and models.<a href="#section-4.2-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.2">layered topology<a href="#section-5-2.2" class="pilcrow">¶</a>
+          <li id="section-4.2-2.2">Digital Map entities should contain only properties used to
+        identify topological entities at different layers, identify their
+        roles and topological relationships between them<a href="#section-4.2-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.3">open and programmable<a href="#section-5-2.3" class="pilcrow">¶</a>
+          <li id="section-4.2-2.3">Digital Map should contain only topological relationships inside
+        each layer or between the layers (underlay/overlay)<a href="#section-4.2-2.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.4">standard, multi-vendor<a href="#section-5-2.4" class="pilcrow">¶</a>
+          <li id="section-4.2-2.4">ACLs and Route Policies will be outside of the digital map, they
+        would be linked to digital map<a href="#section-4.2-2.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.5">multi-domain<a href="#section-5-2.5" class="pilcrow">¶</a>
+          <li id="section-4.2-2.5">Dynamic paths may either be outside of the digital map, part of
+        traffic engineering data/models<a href="#section-4.2-2.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.6">semantics for layered topology<a href="#section-5-2.6" class="pilcrow">¶</a>
+          <li id="section-4.2-2.6">Provide capability for conditional retrieval of parts of digital
+        map<a href="#section-4.2-2.6" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-2.7">inter-layer and between-layer relationships<a href="#section-5-2.7" class="pilcrow">¶</a>
+          <li id="section-4.2-2.7">Must support geo-spatial, temporal, and historical data. The
+        temporal and historical can be supported external to the digital
+        map.<a href="#section-4.2-2.7" class="pilcrow">¶</a>
 </li>
-      </ul>
-<p id="section-5-3"> The requirements [6-7] for semantics for layered topology and
-      relationships are partially fulfilled, there may be need for some
-      additional semantics. Other core requirements [8-10] are not supported
-      by RFC8345:<a href="#section-5-3" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-5-4.1">extensible with meta data<a href="#section-5-4.1" class="pilcrow">¶</a>
+        </ol>
+<p id="section-4.2-3">The following are the architectural requirements for the Digital
+      Map:<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-4.2-4">
+        <li id="section-4.2-4.1">Scale, performance, integration<a href="#section-4.2-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-4.2">pluggable to other YANG modules and non-YANG data<a href="#section-5-4.2" class="pilcrow">¶</a>
+          <li id="section-4.2-4.2">Initial discovery and dynamic (change only) synch<a href="#section-4.2-4.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-5-4.3">optimized for graph traversal<a href="#section-5-4.3" class="pilcrow">¶</a>
-</li>
-      </ul>
-<p id="section-5-5"> In some cases, for [9] for pluggable to other YANG modules, the
-      links are already done by augmenting 'ietf-network' and
-      'ietf-network-topology'. For others, we need to add some mechanisms to
-      link the models and data.<a href="#section-5-5" class="pilcrow">¶</a></p>
+        </ol>
+</section>
+</div>
 </section>
 </div>
 <div id="digital-map-modelling-experience">
-<section id="section-6">
+<section id="section-5">
       <h2 id="name-digital-map-modelling-exper">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-digital-map-modelling-exper" class="section-name selfRef">Digital Map Modelling Experience</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-digital-map-modelling-exper" class="section-name selfRef">Digital Map Modelling Experience</a>
       </h2>
 <div id="what-is-not-in-basic">
-<section id="section-6.1">
+<section id="section-5.1">
         <h3 id="name-what-is-not-in-the-basic-mo">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-what-is-not-in-the-basic-mo" class="section-name selfRef">What is not in the basic model</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-what-is-not-in-the-basic-mo" class="section-name selfRef">What is not in the basic model</a>
         </h3>
-<p id="section-6.1-1">The following are the <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> extensions needed
-        for Digital Map modelling and APIs:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">The following are the <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> extensions needed
+        for Digital Map modelling and APIs:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1-2.1">Bidirectional links<a href="#section-6.1-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1-2.1">Bidirectional links<a href="#section-5.1-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.2">Multi-point connectivity<a href="#section-6.1-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.2">Multi-point connectivity<a href="#section-5.1-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.3">Links between domains/networks<a href="#section-6.1-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.3">Links between domains/networks<a href="#section-5.1-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.4">A network can be decomposed of sub-networks<a href="#section-6.1-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.4">A network can be decomposed of sub-networks<a href="#section-5.1-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.5">Nodes, links, and termination points belong to different networks<a href="#section-6.1-2.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.5">Nodes, links, and termination points belong to different networks<a href="#section-5.1-2.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.6">Supporting relationships between different types of entities<a href="#section-6.1-2.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.6">Supporting relationships between different types of entities<a href="#section-5.1-2.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.7">More network topology related semantic is needed<a href="#section-6.1-2.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.7">More network topology related semantic is needed<a href="#section-5.1-2.7" class="pilcrow">¶</a>
 </li>
         </ul>
 <div id="bidirectional-links">
-<section id="section-6.1.1">
+<section id="section-5.1.1">
           <h4 id="name-bidirectional-links">
-<a href="#section-6.1.1" class="section-number selfRef">6.1.1. </a><a href="#name-bidirectional-links" class="section-name selfRef">Bidirectional Links</a>
+<a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-bidirectional-links" class="section-name selfRef">Bidirectional Links</a>
           </h4>
-<p id="section-6.1.1-1">The RFC8345 defines all links as unidirectional, it does not
+<p id="section-5.1.1-1">The RFC8345 defines all links as unidirectional, it does not
           support bidirectional links. It was done intentionally to keep the
           model as simple as possible. The RFC suggests to model the
-          bidirectional connections as pairs of unidirectional links.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-2">Nevertheless, while simplifying the model itself, we are making
+          bidirectional connections as pairs of unidirectional links.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-2">Nevertheless, while simplifying the model itself, we are making
           data and APIs more complex for the cases where we have bidirectional
           links. And we are increasing the amount of instances / data
           transferred via API, stored in the database, or
-          managed/monitored.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-3">One of the core characteristics of any network topology is the
+          managed/monitored.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-3">One of the core characteristics of any network topology is the
           link directionality. While data flows are unidirectional, the
           bidirectional links are also common in networking. Examples are
           Ethernet cables, bidirectional SONET rings, socket connection to the
           server, etc. We also encounter requirements for simplified service
           layer topology, where we want to model link as bidirectional to be
-          supported by unidirectional links at the lower layer.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-4"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
+          supported by unidirectional links at the lower layer.<a href="#section-5.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-4"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
             further elaborates on the need for bidirectional links in the network topologies and
-            in the digital map. It also proposes how RFC8345 can be augmented to support missing components.<a href="#section-6.1.1-4" class="pilcrow">¶</a></p>
+            in the digital map. It also proposes how RFC8345 can be augmented to support missing components.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multipoint-connectivity">
-<section id="section-6.1.2">
+<section id="section-5.1.2">
           <h4 id="name-multipoint-connectivity">
-<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-multipoint-connectivity" class="section-name selfRef">Multipoint Connectivity</a>
+<a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-multipoint-connectivity" class="section-name selfRef">Multipoint Connectivity</a>
           </h4>
-<p id="section-6.1.2-1">The RFC8345 defines all links as point to point and
+<p id="section-5.1.2-1">The RFC8345 defines all links as point to point and
           unidirectional, it does not support multi-point links (hub and
           spoke, full mesh, complex). It was done intentionally to keep the
           model as simple as possible. The RFC suggests to model the
-          multi-point networks via pseudo nodes.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-2">Same as with unidirectionality, while simplifying the model
+          multi-point networks via pseudo nodes.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-2">Same as with unidirectionality, while simplifying the model
           itself, we are making data and APIs more complex for multi point
           topologies and we are increasing the amount of data transferred via
-          API, stored in the database or managed/monitored.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-3">One of the core characteristics of any network topology is its
+          API, stored in the database or managed/monitored.<a href="#section-5.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-3">One of the core characteristics of any network topology is its
           type and link cardinality. Any topology model should be able to
           model any topology type in a simple and explicit way, including
           point to multipoint, bus, ring, star, tree, mesh, hybrid and daisy
           chain. Any topology model should also be able to model any link
           cardinality in a simple and explicit way, including point to point,
-          point to multipoint, multipoint to multipoint or hybrid.<a href="#section-6.1.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-4">By forcing the implementation of all topology types and all
+          point to multipoint, multipoint to multipoint or hybrid.<a href="#section-5.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-4">By forcing the implementation of all topology types and all
           options for cardinality via unidirectional links and pseudo nodes,
           we are significantly increasing the complexity of APIs and data, but
           also lacking full topology semantics in the model. The model cannot
           be fully used to validate if topology instances are valid or
-          not.<a href="#section-6.1.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-5">Note that, next to layer 2 mentioned above, the point to
+          not.<a href="#section-5.1.2-4" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-5">Note that, next to layer 2 mentioned above, the point to
           multipoint network type is also required in some cases at the OSPF
-          layer.<a href="#section-6.1.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-6"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
+          layer.<a href="#section-5.1.2-5" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-6"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
             further elaborates on the need for multipoint connectivity in network topologies and
-            in the digital map, in general. It also proposes how RFC8345 can be augmented to support these missing components.<a href="#section-6.1.2-6" class="pilcrow">¶</a></p>
+            in the digital map, in general. It also proposes how RFC8345 can be augmented to support these missing components.<a href="#section-5.1.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-network-links">
-<section id="section-6.1.3">
+<section id="section-5.1.3">
           <h4 id="name-links-between-networks">
-<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-links-between-networks" class="section-name selfRef">Links Between Networks</a>
+<a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-links-between-networks" class="section-name selfRef">Links Between Networks</a>
           </h4>
-<p id="section-6.1.3-1">The RFC8345 defines all links as belonging to one network
+<p id="section-5.1.3-1">The RFC8345 defines all links as belonging to one network
           instance and having the source and destination as node and
           termination point only, not allowing to link to termination point of
           another network. This does not allow for links between networks in
           the case of multi-domains or partitioning. The only way would be to
-          model each domain as node and have links between them.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-2">We modelled IS-IS Areas as networks during the PoC and
+          model each domain as node and have links between them.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-2">We modelled IS-IS Areas as networks during the PoC and
           we needed to extend the capability to have links between different
           areas. We added network reference as well to the source /
           destination of the link. The RFC8795 also augments links with
           external-domain info for the case of links that connect different
-          domains.<a href="#section-6.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-3">The IS-IS topology  <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>
+          domains.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-3">The IS-IS topology  <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>
           models Autonomous System (AS) or IS-IS domain as a network, and
             IS-IS areas as attributes of IS-IS nodes.
             The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links
           between L1-2 nodes as links between two different areas. This is not problem
           for OSPF, althogh the OSPF nodes can belong to multiple areas, the links can belong
-          to only one area.<a href="#section-6.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-4">The following are some benefits of modeling links between different networks:<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
+          to only one area.<a href="#section-5.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-4">The following are some benefits of modeling links between different networks:<a href="#section-5.1.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.3-5.1">IS-IS processes would be grouped in an area via the standard IETF RFC8345
-            network-&gt;node relationship.<a href="#section-6.1.3-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.1.3-5.1">IS-IS processes would be grouped in an area via the standard IETF RFC8345
+            network-&gt;node relationship.<a href="#section-5.1.3-5.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.2">Applications and algorithms will consume topologies based on the generic
+            <li class="normal" id="section-5.1.3-5.2">Applications and algorithms will consume topologies based on the generic
               entities and relationships, they will not need to understand the meaning of
-              specific IS-IS attributes.<a href="#section-6.1.3-5.2" class="pilcrow">¶</a>
+              specific IS-IS attributes.<a href="#section-5.1.3-5.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.3">The approach would be aligned with the IS-IS topology model and the IS-IS
-            network view in manuals and documentation.<a href="#section-6.1.3-5.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.3-5.3">The approach would be aligned with the IS-IS topology model and the IS-IS
+            network view in manuals and documentation.<a href="#section-5.1.3-5.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.4">Provide capability to link different IGP domains and links between them.<a href="#section-6.1.3-5.4" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.3-5.4">Provide capability to link different IGP domains and links between them.<a href="#section-5.1.3-5.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.5">Link between multiple networks/sub-networks is the common concept in
-              network topology.<a href="#section-6.1.3-5.5" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.3-5.5">Link between multiple networks/sub-networks is the common concept in
+              network topology.<a href="#section-5.1.3-5.5" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
 </div>
 <div id="sub-networks">
-<section id="section-6.1.4">
+<section id="section-5.1.4">
           <h4 id="name-networks-part-of-other-netw">
-<a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-networks-part-of-other-netw" class="section-name selfRef">Networks part of other networks</a>
+<a href="#section-5.1.4" class="section-number selfRef">5.1.4. </a><a href="#name-networks-part-of-other-netw" class="section-name selfRef">Networks part of other networks</a>
           </h4>
-<p id="section-6.1.4-1">
+<p id="section-5.1.4-1">
           RFC8345 does not model networks being part of other networks, therefore cannot model
           subnetworks and network partitioning. We encountered this problem with modelling IS-IS
           and OSPF Domains and Areas. The initial goal was to model AS/Domain with multiple areas
           so that the digital map model contains information about how the AS is
           first split into different IGP domains and how each IGP domain is split into different areas.
-          This is a common problem for both IS-IS and OSPF.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.4-2">The following are some options how to address this problem:<a href="#section-6.1.4-2" class="pilcrow">¶</a></p>
+          This is a common problem for both IS-IS and OSPF.<a href="#section-5.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.4-2">The following are some options how to address this problem:<a href="#section-5.1.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.4-3.1">Don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
+<li class="normal" id="section-5.1.4-3.1">Don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
           underlying IP network and IS-IS/OSPF enabled routers. This could be achieved via supporting
-            relationship to L3 network and L3 nodes<a href="#section-6.1.4-3.1" class="pilcrow">¶</a>
+            relationship to L3 network and L3 nodes<a href="#section-5.1.4-3.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.4-3.2">Model AS, IGP domains and Areas as networks. We use supporting relationship to model the
+            <li class="normal" id="section-5.1.4-3.2">Model AS, IGP domains and Areas as networks. We use supporting relationship to model the
             network topology design, with only areas having nodes. This does not describe the correct
-            nature of the relationship, semantic is missing.<a href="#section-6.1.4-3.2" class="pilcrow">¶</a>
+            nature of the relationship, semantic is missing.<a href="#section-5.1.4-3.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.4-3.3">Extend RFC8345 to support additional relationship between networks.<a href="#section-6.1.4-3.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.4-3.3">Extend RFC8345 to support additional relationship between networks.<a href="#section-5.1.4-3.3" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
 </div>
 <div id="nodes-multiple-networks">
-<section id="section-6.1.5">
+<section id="section-5.1.5">
           <h4 id="name-nodes-tps-and-links-in-mult">
-<a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-nodes-tps-and-links-in-mult" class="section-name selfRef">Nodes, tps and links in multiple networks</a>
+<a href="#section-5.1.5" class="section-number selfRef">5.1.5. </a><a href="#name-nodes-tps-and-links-in-mult" class="section-name selfRef">Nodes, tps and links in multiple networks</a>
           </h4>
-<p id="section-6.1.5-1">RFC8345 does not allow nodes and TPs to belong to multiple areas without splitting them into
+<p id="section-5.1.5-1">RFC8345 does not allow nodes and TPs to belong to multiple areas without splitting them into
           separate entities with separate keys. In OSPF case we have nodes that can belong to different
           areas, but interfaces can only belong to one area. In the case of IS-IS, although all tutorial
           are stating that nodes can belong to one area only, the ietf, openconfig  and vendor
           yang models and cli allow IS-IS processes with all its interfaces to belong to multiple areas.
-          We can see the two options here:<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
+          We can see the two options here:<a href="#section-5.1.5-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.5-2.1">Use the current RFC8345 approach, this is not the problem for read but may be an issue for
+<li class="normal" id="section-5.1.5-2.1">Use the current RFC8345 approach, this is not the problem for read but may be an issue for
           write for simulation as we would expect that the interface lists in different nodes and networks
-          be the same without being able to validate.<a href="#section-6.1.5-2.1" class="pilcrow">¶</a>
+          be the same without being able to validate.<a href="#section-5.1.5-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.5-2.2">Change the approach of RFC8345 to optionally allow nodes to be defined outside of network tree and
+            <li class="normal" id="section-5.1.5-2.2">Change the approach of RFC8345 to optionally allow nodes to be defined outside of network tree and
             enable reference as an alternative to the containment in the tree. This may be a bigger change to the
-            network topology approach as it would have bigger impact on the topology tree.<a href="#section-6.1.5-2.2" class="pilcrow">¶</a>
+            network topology approach as it would have bigger impact on the topology tree.<a href="#section-5.1.5-2.2" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
 </div>
 <div id="supporting-relationships">
-<section id="section-6.1.6">
+<section id="section-5.1.6">
           <h4 id="name-missing-supporting-relation">
-<a href="#section-6.1.6" class="section-number selfRef">6.1.6. </a><a href="#name-missing-supporting-relation" class="section-name selfRef">Missing Supporting Relationships</a>
+<a href="#section-5.1.6" class="section-number selfRef">5.1.6. </a><a href="#name-missing-supporting-relation" class="section-name selfRef">Missing Supporting Relationships</a>
           </h4>
-<p id="section-6.1.6-1">RFC8345 defines supporting relationships only between the
+<p id="section-5.1.6-1">RFC8345 defines supporting relationships only between the
           same type of entities. Networks can only be supported by networks,
           nodes can only be supported by nodes, termination points can only be
           supported by terminations points and links can only be supported by
-          links.<a href="#section-6.1.6-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.6-2">During the PoC, we encountered the need to have TP supported by
+          links.<a href="#section-5.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.6-2">During the PoC, we encountered the need to have TP supported by
           node and node supported by Network. The RFC8795 also adds additional
           underlay relationship between node and topology and link and
           topology, but via a new underlay topology and not via the core
-          supporting relationship.<a href="#section-6.1.6-2" class="pilcrow">¶</a></p>
+          supporting relationship.<a href="#section-5.1.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="missing-semantics">
-<section id="section-6.1.7">
+<section id="section-5.1.7">
           <h4 id="name-missing-topology-semantics">
-<a href="#section-6.1.7" class="section-number selfRef">6.1.7. </a><a href="#name-missing-topology-semantics" class="section-name selfRef">Missing Topology Semantics</a>
+<a href="#section-5.1.7" class="section-number selfRef">5.1.7. </a><a href="#name-missing-topology-semantics" class="section-name selfRef">Missing Topology Semantics</a>
           </h4>
-<p id="section-6.1.7-1">We already mentioned that some semantic is missing from the
+<p id="section-5.1.7-1">We already mentioned that some semantic is missing from the
           RFC8345 topology model, like bidirectional and multi-point. The
-          following is also missing from the model:<a href="#section-6.1.7-1" class="pilcrow">¶</a></p>
+          following is also missing from the model:<a href="#section-5.1.7-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.7-2.1">Relationship Properties. The supporting relationship could
+<li class="normal" id="section-5.1.7-2.1">Relationship Properties. The supporting relationship could
             have additional attributes that give more information about the
             supporting relationship. That way we could use it for aggregation,
             underlay with primary/backup, load balancing, hop, sequence,
-            etc.<a href="#section-6.1.7-2.1" class="pilcrow">¶</a>
+            etc.<a href="#section-5.1.7-2.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.7-2.2">Termination point roles. We are missing semantics for the
-            common topology roles: primary, backup, hub, spoke<a href="#section-6.1.7-2.2" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.7-2.2">Termination point roles. We are missing semantics for the
+            common topology roles: primary, backup, hub, spoke<a href="#section-5.1.7-2.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.7-2.3">Layers / Sublayers. We need further analysis to determine in
+            <li class="normal" id="section-5.1.7-2.3">Layers / Sublayers. We need further analysis to determine in
             network types are sufficient to support all scenarios for
             layers/sublayers. The network types are more related to
             technologies so in the case that the same technology is used at
             different layers, we may need some additional information in the
-            model. For further study.<a href="#section-6.1.7-2.3" class="pilcrow">¶</a>
+            model. For further study.<a href="#section-5.1.7-2.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.7-2.4">Tunnels and Paths. We modelled Tunnels ad Paths via <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> but we lost some semantics that is in
-            RFC8795.<a href="#section-6.1.7-2.4" class="pilcrow">¶</a>
+            <li class="normal" id="section-5.1.7-2.4">Tunnels and Paths. We modelled Tunnels ad Paths via <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> but we lost some semantics that is in
+            RFC8795.<a href="#section-5.1.7-2.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.7-2.5">Supporting or underlay. We modelled all underlay relationships
+            <li class="normal" id="section-5.1.7-2.5">Supporting or underlay. We modelled all underlay relationships
             via supporting, further analysis is needed to determine pros and
             cons of this approach versus RFC8795 approach of using underlay
-            topology.<a href="#section-6.1.7-2.5" class="pilcrow">¶</a>
+            topology.<a href="#section-5.1.7-2.5" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -2188,54 +2204,54 @@ li > p:last-of-type:only-child {
 </section>
 </div>
 <div id="layering-open-issues">
-<section id="section-6.2">
+<section id="section-5.2">
         <h3 id="name-open-issues-for-further-ana">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-open-issues-for-further-ana" class="section-name selfRef">Open Issues for Further Analysis</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-open-issues-for-further-ana" class="section-name selfRef">Open Issues for Further Analysis</a>
         </h3>
-<p id="section-6.2-1">The following are the open issues that need further analysis:<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The following are the open issues that need further analysis:<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.2-2.1">
-            <p id="section-6.2-2.1.1">Do we need separation of L2 and L3 topologies?<a href="#section-6.2-2.1.1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2.1.2"> During the
+<li class="normal" id="section-5.2-2.1">
+            <p id="section-5.2-2.1.1">Do we need separation of L2 and L3 topologies?<a href="#section-5.2-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2.1.2"> During the
           PoC we encountered different solutions with separate set of
           requirements. In one solution, the L2 and L3 topology were the same
           with separate set of attributes, while in another solution we had
           difference in L2 and L3 topology (e.g. Links Aggregation, Switches
-          and Routers).<a href="#section-6.2-2.1.2" class="pilcrow">¶</a></p>
-<p id="section-6.2-2.1.3">The RFC8944 defines L2 topology and RFC8346
+          and Routers).<a href="#section-5.2-2.1.2" class="pilcrow">¶</a></p>
+<p id="section-5.2-2.1.3">The RFC8944 defines L2 topology and RFC8346
           defines the L3 topology. They allow to have either one or two
-          instances of this topology.<a href="#section-6.2-2.1.3" class="pilcrow">¶</a></p>
-<p id="section-6.2-2.1.4">The decision if we need separate
+          instances of this topology.<a href="#section-5.2-2.1.3" class="pilcrow">¶</a></p>
+<p id="section-5.2-2.1.4">The decision if we need separate
           network instances for L2 and L3 topologies may be based on specific
-          network topology and provider's preferences.<a href="#section-6.2-2.1.4" class="pilcrow">¶</a></p>
+          network topology and provider's preferences.<a href="#section-5.2-2.1.4" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-6.2-2.2">Do we need sublayers as well? Layers versus sublayers versus
-          layered instances? Further analysis is needed.<a href="#section-6.2-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.2-2.2">Do we need sublayers as well? Layers versus sublayers versus
+          layered instances? Further analysis is needed.<a href="#section-5.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.2-2.3">Same technology at service versus underlay? BGP per VPN vs
+          <li class="normal" id="section-5.2-2.3">Same technology at service versus underlay? BGP per VPN vs
           common BGP shared between multiple VPNs. Different layers, same
-          model, relationship define the layer.<a href="#section-6.2-2.3" class="pilcrow">¶</a>
+          model, relationship define the layer.<a href="#section-5.2-2.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="how-to-augment-generic">
-<section id="section-6.3">
+<section id="section-5.3">
         <h3 id="name-how-to-augment-for-generic-">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-how-to-augment-for-generic-" class="section-name selfRef">How to Augment for Generic Digital Map Extensions</a>
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-how-to-augment-for-generic-" class="section-name selfRef">How to Augment for Generic Digital Map Extensions</a>
         </h3>
-<p id="section-6.3-1">Generic Digital Map extensions are the RFC8345 extensions required
+<p id="section-5.3-1">Generic Digital Map extensions are the RFC8345 extensions required
         for all technologies and layers in the Digital Map. We have the
-        following options:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-6.3-2">
-            <li id="section-6.3-2.1">make backward compatible updates to RFC8345, either via
+        following options:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-2">
+            <li id="section-5.3-2.1">make backward compatible updates to RFC8345, either via
             changing or augmenting the network, node, link and termination
-            point in the RFC8345<a href="#section-6.3-2.1" class="pilcrow">¶</a>
+            point in the RFC8345<a href="#section-5.3-2.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.3-2.2">
-            <p id="section-6.3-2.2.1">augment RFC8345 network, node, link and termination point for
-            any changes needed from a new digital map module<a href="#section-6.3-2.2.1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.3-2.2.2">
+          <li id="section-5.3-2.2">
+            <p id="section-5.3-2.2.1">augment RFC8345 network, node, link and termination point for
+            any changes needed from a new digital map module<a href="#section-5.3-2.2.1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.3-2.2.2">
 <pre>
 module: dm-network-topology
         augment /nw:networks/nw:network:
@@ -2246,25 +2262,25 @@ module: dm-network-topology
                 .... additions
         augment /nw:networks/nw:network/nw:node/nt:termination-point:
                 .... additions
-</pre><a href="#section-6.3-2.2.2" class="pilcrow">¶</a>
+</pre><a href="#section-5.3-2.2.2" class="pilcrow">¶</a>
 </div>
 </li>
         </ol>
-<p id="section-6.3-3"> <span class="cref"> This will be a separate draft with describing pros and
+<p id="section-5.3-3"> <span class="cref"> This will be a separate draft with describing pros and
         cons of different approaches and yang model proposal. Add reference to
-        this draft when submitted </span><a href="#section-6.3-3" class="pilcrow">¶</a></p>
+        this draft when submitted </span><a href="#section-5.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="how-to-augment-specific">
-<section id="section-6.4">
+<section id="section-5.4">
         <h3 id="name-how-to-augment-for-new-tech">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-how-to-augment-for-new-tech" class="section-name selfRef">How to Augment for New Technologies/Layers</a>
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-how-to-augment-for-new-tech" class="section-name selfRef">How to Augment for New Technologies/Layers</a>
         </h3>
-<p id="section-6.4-1">There are already drafts that support augmentation for specific
+<p id="section-5.4-1">There are already drafts that support augmentation for specific
         technologies. These drafts augment network, node, termination point
         and link, but also add different topological entities inside
-        augmentations. For example, we have examples like this:<a href="#section-6.4-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.4-2">
+        augmentations. For example, we have examples like this:<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.4-2">
 <pre>
 module: new-module
         augment /nw:networks/nw:network/nw:network-types:
@@ -2282,81 +2298,81 @@ module: new-module
                 augment /nw:networks/nw:network/nw:node/
                                               nt:termination-point:
                                 ....
-</pre><a href="#section-6.4-2" class="pilcrow">¶</a>
+</pre><a href="#section-5.4-2" class="pilcrow">¶</a>
 </div>
-<p id="section-6.4-3">There is need to agree some guidelines for augmenting IETF network
+<p id="section-5.4-3">There is need to agree some guidelines for augmenting IETF network
         topology, so that additional topological information is not added in
-        the custom way. This may either involve<a href="#section-6.4-3" class="pilcrow">¶</a></p>
+        the custom way. This may either involve<a href="#section-5.4-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.4-4.1">adding concepts from TE and SAP topological augmentations to
+<li class="normal" id="section-5.4-4.1">adding concepts from TE and SAP topological augmentations to
             the core digital map topology in the similar way they were added
-            in the corresponding drafts or<a href="#section-6.4-4.1" class="pilcrow">¶</a>
+            in the corresponding drafts or<a href="#section-5.4-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.4-4.2">using the TP to model SAP and 'link' to model tunnel in the
-            core Digital Map<a href="#section-6.4-4.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.4-4.2">using the TP to model SAP and 'link' to model tunnel in the
+            core Digital Map<a href="#section-5.4-4.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-6.4-5"> <span class="cref"> This can be a separate draft. Guidelines with examples?
-        Add reference to this draft when submitted </span><a href="#section-6.4-5" class="pilcrow">¶</a></p>
+<p id="section-5.4-5"> <span class="cref"> This can be a separate draft. Guidelines with examples?
+        Add reference to this draft when submitted </span><a href="#section-5.4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="how-external-world">
-<section id="section-6.5">
+<section id="section-5.5">
         <h3 id="name-how-to-connect-to-the-exter">
-<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-how-to-connect-to-the-exter" class="section-name selfRef">How to connect to the external world</a>
+<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-how-to-connect-to-the-exter" class="section-name selfRef">How to connect to the external world</a>
         </h3>
-<p id="section-6.5-1">How to connect to other YANG modules<a href="#section-6.5-1" class="pilcrow">¶</a></p>
-<p id="section-6.5-2">How to connect YANG models with other modelling mechanisms<a href="#section-6.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.5-1">How to connect to other YANG modules<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+<p id="section-5.5-2">How to connect YANG models with other modelling mechanisms<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digital-map-apis">
-<section id="section-6.6">
+<section id="section-5.6">
         <h3 id="name-digital-map-apis">
-<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-digital-map-apis" class="section-name selfRef">Digital Map APIs</a>
+<a href="#section-5.6" class="section-number selfRef">5.6. </a><a href="#name-digital-map-apis" class="section-name selfRef">Digital Map APIs</a>
         </h3>
-<p id="section-6.6-1">This will include hierarchical APIs for cross-domain figure, IETF
+<p id="section-5.6-1">This will include hierarchical APIs for cross-domain figure, IETF
         YANG Based API (read and write, change subscription and notify) and
-        Query API<a href="#section-6.6-1" class="pilcrow">¶</a></p>
+        Query API<a href="#section-5.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digital-map-knowledge">
-<section id="section-6.7">
+<section id="section-5.7">
         <h3 id="name-digital-map-knowledge">
-<a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-digital-map-knowledge" class="section-name selfRef">Digital Map Knowledge</a>
+<a href="#section-5.7" class="section-number selfRef">5.7. </a><a href="#name-digital-map-knowledge" class="section-name selfRef">Digital Map Knowledge</a>
         </h3>
-<p id="section-6.7-1">The following knowledge was needed to build digital map:<a href="#section-6.7-1" class="pilcrow">¶</a></p>
+<p id="section-5.7-1">The following knowledge was needed to build digital map:<a href="#section-5.7-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.7-2.1">Abstract IETF Entities and Relationships as in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-6.7-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.7-2.1">Abstract IETF Entities and Relationships as in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-5.7-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-2.2">
+          <li class="normal" id="section-5.7-2.2">
             <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> Augmentations for a)Layers/sublayers
-          b)Entities (services and subservices), c)Properties<a href="#section-6.7-2.2" class="pilcrow">¶</a>
+          b)Entities (services and subservices), c)Properties<a href="#section-5.7-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-2.3">Rules for aggregating entities<a href="#section-6.7-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.7-2.3">Rules for aggregating entities<a href="#section-5.7-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-2.4">Rules for instantiating relationships (inter-layer and
-          intra-layer)<a href="#section-6.7-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.7-2.4">Rules for instantiating relationships (inter-layer and
+          intra-layer)<a href="#section-5.7-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-2.5">Mapping from devices and controllers<a href="#section-6.7-2.5" class="pilcrow">¶</a>
-</li>
-        </ul>
-<p id="section-6.7-3">What can be achieved with existing RFC8345 YANG:<a href="#section-6.7-3" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-6.7-4.1">Entities (base class IETF Network, IETF Node, IETF Link, IETF
-          TP)<a href="#section-6.7-4.1" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-6.7-4.2">Properties<a href="#section-6.7-4.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-6.7-4.3">Relationships<a href="#section-6.7-4.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.7-2.5">Mapping from devices and controllers<a href="#section-5.7-2.5" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-6.7-5">Next steps<a href="#section-6.7-5" class="pilcrow">¶</a></p>
+<p id="section-5.7-3">What can be achieved with existing RFC8345 YANG:<a href="#section-5.7-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.7-6.1">How to support temporal<a href="#section-6.7-6.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.7-4.1">Entities (base class IETF Network, IETF Node, IETF Link, IETF
+          TP)<a href="#section-5.7-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-6.2">How to support spacial<a href="#section-6.7-6.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.7-4.2">Properties<a href="#section-5.7-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.7-6.3">How to support historical<a href="#section-6.7-6.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.7-4.3">Relationships<a href="#section-5.7-4.3" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-5.7-5">Next steps<a href="#section-5.7-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.7-6.1">How to support temporal<a href="#section-5.7-6.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.7-6.2">How to support spacial<a href="#section-5.7-6.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-5.7-6.3">How to support historical<a href="#section-5.7-6.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -2364,20 +2380,20 @@ module: new-module
 </section>
 </div>
 <div id="Related-ietf-activities">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-related-ietf-activities">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-related-ietf-activities" class="section-name selfRef">Related IETF Activities</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-related-ietf-activities" class="section-name selfRef">Related IETF Activities</a>
       </h2>
 <div id="network-topology">
-<section id="section-7.1">
+<section id="section-6.1">
         <h3 id="name-network-topology">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-network-topology" class="section-name selfRef">Network Topology</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-network-topology" class="section-name selfRef">Network Topology</a>
         </h3>
-<p id="section-7.1-1">Interestingly, we could not find any Network Topology definition in
+<p id="section-6.1-1">Interestingly, we could not find any Network Topology definition in
         IETF RFCs (not even in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>) or drafts. However,
         it's mentioned in multiple documents. As an example, in Overview and
-        Principles of Internet Traffic Engineering <span>[<a href="#I-D.ietf-teas-rfc3272bis" class="cite xref">I-D.ietf-teas-rfc3272bis</a>]</span>, which mentioned:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<p id="section-7.1-2">To conduct performance studies and to support planning of existing
+        Principles of Internet Traffic Engineering <span>[<a href="#I-D.ietf-teas-rfc3272bis" class="cite xref">I-D.ietf-teas-rfc3272bis</a>]</span>, which mentioned:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">To conduct performance studies and to support planning of existing
         and future networks, a routing analysis may be performed to determine
         the paths the routing protocols will choose for various traffic
         demands, and to ascertain the utilization of network resources as
@@ -2387,101 +2403,102 @@ module: new-module
         over traffic trunks (if such constructs exist) and over the underlying
         network infrastructure. A model of network topology is necessary to
         perform routing analysis. A network topology model may be extracted
-        from:<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+        from:<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7.1-3.1">* network architecture documents<a href="#section-7.1-3.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-3.1">* network architecture documents<a href="#section-6.1-3.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-3.2">* network designs<a href="#section-7.1-3.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-3.2">* network designs<a href="#section-6.1-3.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-3.3">* information contained in router configuration files<a href="#section-7.1-3.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-3.3">* information contained in router configuration files<a href="#section-6.1-3.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-3.4">* routing databases such as the link state database of an
-          interior gateway protocol (IGP)<a href="#section-7.1-3.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-3.4">* routing databases such as the link state database of an
+          interior gateway protocol (IGP)<a href="#section-6.1-3.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-3.5">* routing tables<a href="#section-7.1-3.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-3.5">* routing tables<a href="#section-6.1-3.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.1-3.6">* automated tools that discover and collate network topology
-          information.<a href="#section-7.1-3.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-3.6">* automated tools that discover and collate network topology
+          information.<a href="#section-6.1-3.6" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-7.1-4">Topology information may also be derived from servers that monitor
+<p id="section-6.1-4">Topology information may also be derived from servers that monitor
         network state, and from servers that perform provisioning
-        functions.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+        functions.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="core-digital-map-components">
-<section id="section-7.2">
+<section id="section-6.2">
         <h3 id="name-core-digital-map-components">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-core-digital-map-components" class="section-name selfRef">Core Digital Map Components</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-core-digital-map-components" class="section-name selfRef">Core Digital Map Components</a>
         </h3>
-<p id="section-7.2-1">The following standards are core for the Digital Map.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-1">The following standards are core for the Digital Map.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7.2-2.1">IETF Network Model and Network Topology Model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-7.2-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.2-2.1">IETF Network Model and Network Topology Model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#section-6.2-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.2">A YANG Grouping for Geographic Location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#section-7.2-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.2">A YANG Grouping for Geographic Location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#section-6.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.3">IETF Modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for
-          different technologies:<a href="#section-7.2-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.3">IETF Modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for
+          different technologies:<a href="#section-6.2-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.4">- A YANG Data Model for Traffic Engineering (TE) Topologies
-          <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#section-7.2-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.4">- A YANG Data Model for Traffic Engineering (TE) Topologies
+          <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#section-6.2-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.5">- A YANG Data Model for Layer 2 Network Topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#section-7.2-2.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.5">- A YANG Data Model for Layer 2 Network Topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#section-6.2-2.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.6">- A YANG Data Model for OSFP Topology <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#section-7.2-2.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.6">- A YANG Data Model for OSFP Topology <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#section-6.2-2.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.2-2.7">- A YANG Data Model for IS-IS Topology <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span><a href="#section-7.2-2.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.2-2.7">- A YANG Data Model for IS-IS Topology <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span><a href="#section-6.2-2.7" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="additional-digital-map-components">
-<section id="section-7.3">
+<section id="section-6.3">
         <h3 id="name-additional-digital-map-comp">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-additional-digital-map-comp" class="section-name selfRef">Additional Digital Map Components</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-additional-digital-map-comp" class="section-name selfRef">Additional Digital Map Components</a>
         </h3>
-<p id="section-7.3-1">The Digital Map may need to link to the following models, some are
+<p id="section-6.3-1">The Digital Map may need to link to the following models, some are
         already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, we need further
-        investigation for each of these items:<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+        investigation for each of these items:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7.3-2.1">Service Access Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments
+<li class="normal" id="section-6.3-2.1">Service Access Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments
           'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the
-          SAP.<a href="#section-7.3-2.1" class="pilcrow">¶</a>
+          SAP.<a href="#section-6.3-2.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.2">SAIN <span>[<a href="#I-D.ietf-opsawg-service-assurance-architecture" class="cite xref">I-D.ietf-opsawg-service-assurance-architecture</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-service-assurance-yang" class="cite xref">I-D.ietf-opsawg-service-assurance-yang</a>]</span><a href="#section-7.3-2.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.2">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> and 
+          <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#section-6.3-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.3">An Inventory Management Model for Enterprise Networks <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span> augments
+          <li class="normal" id="section-6.3-2.3">An Inventory Management Model for Enterprise Networks <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span> augments
           'ietf-network-topology' with inventory information for node, link
-          and termination-point. It also has UUIDs.<a href="#section-7.3-2.3" class="pilcrow">¶</a>
+          and termination-point. It also has UUIDs.<a href="#section-6.3-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.4">A YANG Data Model for Network Hardware Inventory <span>[<a href="#I-D.ietf-ccamp-network-inventory-yang" class="cite xref">I-D.ietf-ccamp-network-inventory-yang</a>]</span> augments 
+          <li class="normal" id="section-6.3-2.4">A YANG Data Model for Network Hardware Inventory <span>[<a href="#I-D.ietf-ccamp-network-inventory-yang" class="cite xref">I-D.ietf-ccamp-network-inventory-yang</a>]</span> augments 
           network-topology' to provide a generic YANG data model
           for network hardware inventory data information which
           can be augmented with technology-specific (e.g., optical)
-          inventory data.<a href="#section-7.3-2.4" class="pilcrow">¶</a>
+          inventory data.<a href="#section-6.3-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.5">Data Model for Lifecycle Management and Operations <span>[<a href="#I-D.palmero-opsawg-dmlmo" class="cite xref">I-D.palmero-opsawg-dmlmo</a>]</span><a href="#section-7.3-2.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.5">Data Model for Lifecycle Management and Operations <span>[<a href="#I-D.palmero-opsawg-dmlmo" class="cite xref">I-D.palmero-opsawg-dmlmo</a>]</span><a href="#section-6.3-2.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.6">KPIs: delay, jitter, loss<a href="#section-7.3-2.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.6">KPIs: delay, jitter, loss<a href="#section-6.3-2.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.7">Attachment Circuits (ACs) <span>[<a href="#I-D.boro-opsawg-ntw-attachment-circuit" class="cite xref">I-D.boro-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.boro-opsawg-teas-attachment-circuit" class="cite xref">I-D.boro-opsawg-teas-attachment-circuit</a>]</span><a href="#section-7.3-2.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.7">Attachment Circuits (ACs) <span>[<a href="#I-D.boro-opsawg-ntw-attachment-circuit" class="cite xref">I-D.boro-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.boro-opsawg-teas-attachment-circuit" class="cite xref">I-D.boro-opsawg-teas-attachment-circuit</a>]</span><a href="#section-6.3-2.7" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.8">Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8049" class="cite xref">RFC8049</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-7.3-2.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.8">Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-6.3-2.8" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-7.3-2.9">Incident Management for Network Services <span>[<a href="#I-D.feng-opsawg-incident-management" class="cite xref">I-D.feng-opsawg-incident-management</a>]</span><a href="#section-7.3-2.9" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.3-2.9">Incident Management for Network Services <span>[<a href="#I-D.feng-opsawg-incident-management" class="cite xref">I-D.feng-opsawg-incident-management</a>]</span><a href="#section-6.3-2.9" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="ivy">
-<section id="section-7.4">
+<section id="section-6.4">
         <h3 id="name-network-inventory-ivy-propo">
-<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-network-inventory-ivy-propo" class="section-name selfRef">Network Inventory (IVY) Proposed Working</a>
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-network-inventory-ivy-propo" class="section-name selfRef">Network Inventory (IVY) Proposed Working</a>
         </h3>
-<p id="section-7.4-1">The charter of the Network Inventory (IVY) IETF Working Group (WG) 
+<p id="section-6.4-1">The charter of the Network Inventory (IVY) IETF Working Group (WG) 
           can be found at https://datatracker.ietf.org/doc/charter-ietf-ivy/. 
-          Understanding how the two efforts complement each other is important.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
-<p id="section-7.4-2">The IVY effort focuses on the network inventory (as the charter says,
+          Understanding how the two efforts complement each other is important.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4-2">The IVY effort focuses on the network inventory (as the charter says,
           "including a variety of information such as product name, vendor, product
           series, embedded software, and hardware/software versions").  The network
           inventory is probably the first use cases for the Digital Map.  Therefore,
@@ -2489,69 +2506,69 @@ module: new-module
           a Digital Map must include a pointer to the hardware and software inventory
           information, we don't consider that all the inventory information is
           actually part of the Digital Map.  It must also be noted that the set of use
-          cases for the Digital Map is wider than just the network inventory.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
-<p id="section-7.4-3">The IVY charter also says that, "The Working Group will consider existing
+          cases for the Digital Map is wider than just the network inventory.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
+<p id="section-6.4-3">The IVY charter also says that, "The Working Group will consider existing
           IETF work, including RFC 8348 and RFC 8345.".  In this document, RFC 8345 is
           considered as the base YANG module, therefore, there is clearly common
           ground with the work of the ivy working group.  This document goes beyond
           RFC 8345 to evaluate whether that RFC, along with all the augmented YANG
-          modules, would be a good fit for all the Digital Map requirements.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
-<p id="section-7.4-4">Additionally, the IVY charter says, "The WG will also identify a set of
+          modules, would be a good fit for all the Digital Map requirements.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
+<p id="section-6.4-4">Additionally, the IVY charter says, "The WG will also identify a set of
           requirements and guidelines to ensure consistency across models related to
           inventory."  While the IVY requirements and guidelines focus on inventory,
           this document looks at the full set of requirements, guidelines, and
           building blocks for all the Digital Map use cases.  The inventory use case
           does not cover that full set, and other building blocks will be required:
-          for example, to support point-to-multipoint connectivity<a href="#section-7.4-4" class="pilcrow">¶</a></p>
-<p id="section-7.4-5">Thus, this Digital Map modelling effort is complementary to the inventory
+          for example, to support point-to-multipoint connectivity<a href="#section-6.4-4" class="pilcrow">¶</a></p>
+<p id="section-6.4-5">Thus, this Digital Map modelling effort is complementary to the inventory
            work in IVY. It has a broader outlook covering all Digital Map use case
            requirements, and will correlate with the existing IETF models, e.g.,
-           topology, service attachment points (SAP), etc.<a href="#section-7.4-5" class="pilcrow">¶</a></p>
+           topology, service attachment points (SAP), etc.<a href="#section-6.4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="Conclusions">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-conclusions">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-conclusions" class="section-name selfRef">Conclusions</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-conclusions" class="section-name selfRef">Conclusions</a>
       </h2>
-<p id="section-8-1">Digital Map Modelling and Data are basis for the Digital Twin. During
+<p id="section-7-1">Digital Map Modelling and Data are basis for the Digital Twin. During
       our PoC we have proven that Digital Map can be modelled using <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>. Nevertheless, we proposed some
       extensions/augmentations to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> to support Digital
       Maps. There must be some constraints in regards to how to augment the
       core Digital Map model for different Layers and Technologies in order to
       support the approach in our PoC. All entities must augment IETF node,
       IETF network, IETF link or IETF Termination Point and augmentation can
-      only include new properties.<a href="#section-8-1" class="pilcrow">¶</a></p>
+      only include new properties.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-security-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-9-1">The digital map exposes a lot of key details about the network
-        that may be confidential and might be valuable to an attacker.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">Future revisions will add more details of what information
-        needs to be protected and how it may be protected<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-8-1">The digital map exposes a lot of key details about the network
+        that may be confidential and might be valuable to an attacker.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Future revisions will add more details of what information
+        needs to be protected and how it may be protected<a href="#section-8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-10">
+<section id="section-9">
       <h2 id="name-iana-considerations">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-10-1">This document has no actions for IANA.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">This document has no actions for IANA.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-11">
+<section id="section-10">
       <h2 id="name-references">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
-<section id="section-11.1">
+<section id="section-10.1">
         <h3 id="name-normative-references">
-<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -2576,9 +2593,9 @@ module: new-module
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-11.2">
+<section id="section-10.2">
         <h3 id="name-informative-references">
-<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="Catalog">[Catalog]</dt>
@@ -2605,14 +2622,6 @@ module: new-module
         <dd>
 <span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A YANG Data Model for Network Hardware Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-network-inventory-yang-02</span>, <time datetime="2023-07-09" class="refDate">9 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ietf-opsawg-service-assurance-architecture">[I-D.ietf-opsawg-service-assurance-architecture]</dt>
-        <dd>
-<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Voyer, D.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"Service Assurance for Intent-based Networking Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-service-assurance-architecture-13</span>, <time datetime="2023-01-03" class="refDate">3 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-architecture-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-architecture-13</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-opsawg-service-assurance-yang">[I-D.ietf-opsawg-service-assurance-yang]</dt>
-        <dd>
-<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"YANG Modules for Service Assurance"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-service-assurance-yang-11</span>, <time datetime="2023-01-03" class="refDate">3 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-yang-11">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-service-assurance-yang-11</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-teas-rfc3272bis">[I-D.ietf-teas-rfc3272bis]</dt>
         <dd>
 <span class="refAuthor">Farrel, A.</span>, <span class="refTitle">"Overview and Principles of Internet Traffic Engineering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-rfc3272bis-27</span>, <time datetime="2023-08-12" class="refDate">12 August 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc3272bis-27">https://datatracker.ietf.org/doc/html/draft-ietf-teas-rfc3272bis-27</a>&gt;</span>. </dd>
@@ -2637,9 +2646,9 @@ module: new-module
         <dd>
 <span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A Network Inventory Management Model"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wzwb-opsawg-network-inventory-management-03</span>, <time datetime="2023-07-24" class="refDate">24 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-03">https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8049">[RFC8049]</dt>
+<dt id="RFC8299">[RFC8299]</dt>
         <dd>
-<span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8049</span>, <span class="seriesInfo">DOI 10.17487/RFC8049</span>, <time datetime="2017-02" class="refDate">February 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8049">https://www.rfc-editor.org/info/rfc8049</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8299">https://www.rfc-editor.org/info/rfc8299</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8466">[RFC8466]</dt>
         <dd>
@@ -2662,8 +2671,16 @@ module: new-module
 <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">L. Munoz</span>, <span class="refTitle">"A YANG Network Data Model for Layer 2 VPNs"</span>, <span class="seriesInfo">RFC 9291</span>, <span class="seriesInfo">DOI 10.17487/RFC9291</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9291">https://www.rfc-editor.org/info/rfc9291</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9408">[RFC9408]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Data Model for Service Attachment Points (SAPs)"</span>, <span class="seriesInfo">RFC 9408</span>, <span class="seriesInfo">DOI 10.17487/RFC9408</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9408">https://www.rfc-editor.org/info/rfc9408</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9417">[RFC9417]</dt>
+        <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Voyer, D.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"Service Assurance for Intent-Based Networking Architecture"</span>, <span class="seriesInfo">RFC 9417</span>, <span class="seriesInfo">DOI 10.17487/RFC9417</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9417">https://www.rfc-editor.org/info/rfc9417</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9418">[RFC9418]</dt>
+      <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"A YANG Data Model for Service Assurance"</span>, <span class="seriesInfo">RFC 9418</span>, <span class="seriesInfo">DOI 10.17487/RFC9418</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9418">https://www.rfc-editor.org/info/rfc9418</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
