@@ -39,7 +39,7 @@
     wcwidth 0.2.7
     weasyprint 60.1
 -->
-<link href="/usr/src/app/tmp/7a9bd3bb-cf1e-46c9-8755-600e54ff268b/draft-havel-opsawg-digital-map-01.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/1f911e5f-2979-4217-8f7b-78f434a685c2/draft-havel-opsawg-digital-map-01.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -1383,7 +1383,7 @@ li > p:last-of-type:only-child {
                     <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="auto internal xref">6.1.1</a>.  <a href="#name-bidirectional-links" class="internal xref">Bidirectional Links</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.2">
-                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="auto internal xref">6.1.2</a>.  <a href="#name-multi-point-connectivity" class="internal xref">Multi-point connectivity</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="auto internal xref">6.1.2</a>.  <a href="#name-multipoint-connectivity" class="internal xref">Multipoint Connectivity</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.3">
                     <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="auto internal xref">6.1.3</a>.  <a href="#name-links-between-networks" class="internal xref">Links Between Networks</a></p>
@@ -1968,13 +1968,13 @@ li > p:last-of-type:only-child {
 </li>
           <li class="normal" id="section-6.1-2.3">Links between domains/networks<a href="#section-6.1-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.4">Networks can be part of other networks<a href="#section-6.1-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-2.4">A network can be decomposed of sub-networks<a href="#section-6.1-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.5">Nodes, links and termination points belong to different networks<a href="#section-6.1-2.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-2.5">Nodes, links, and termination points belong to different networks<a href="#section-6.1-2.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-6.1-2.6">Supporting relationships between different types of entities<a href="#section-6.1-2.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-6.1-2.7">More Network topology related semantic is needed<a href="#section-6.1-2.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-6.1-2.7">More network topology related semantic is needed<a href="#section-6.1-2.7" class="pilcrow">¶</a>
 </li>
         </ul>
 <div id="bidirectional-links">
@@ -1998,15 +1998,15 @@ li > p:last-of-type:only-child {
           server, etc. We also encounter requirements for simplified service
           layer topology, where we want to model link as bidirectional to be
           supported by unidirectional links at the lower layer.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-4">The draft  <span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
+<p id="section-6.1.1-4"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
             further elaborates on the need for bidirectional links in the network topologies and
-            in the digital map and proposes how the RFC8345 can be augmented to support it.<a href="#section-6.1.1-4" class="pilcrow">¶</a></p>
+            in the digital map. It also proposes how RFC8345 can be augmented to support missing components.<a href="#section-6.1.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multipoint-connectivity">
 <section id="section-6.1.2">
-          <h4 id="name-multi-point-connectivity">
-<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-multi-point-connectivity" class="section-name selfRef">Multi-point connectivity</a>
+          <h4 id="name-multipoint-connectivity">
+<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-multipoint-connectivity" class="section-name selfRef">Multipoint Connectivity</a>
           </h4>
 <p id="section-6.1.2-1">The RFC8345 defines all links as point to point and
           unidirectional, it does not support multi-point links (hub and
@@ -2033,9 +2033,9 @@ li > p:last-of-type:only-child {
 <p id="section-6.1.2-5">Note that, next to layer 2 mentioned above, the point to
           multipoint network type is also required in some cases at the OSPF
           layer.<a href="#section-6.1.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-6">The draft  <span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
-            further elaborates on the need for multipoint connectivity in the network topologies and
-            in the digital map and proposes how the RFC8345 can be augmented to support it.<a href="#section-6.1.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.1.2-6"><span>[<a href="#I-D.davis-opsawg-some-refinements-to-rfc8345" class="cite xref">I-D.davis-opsawg-some-refinements-to-rfc8345</a>]</span>
+            further elaborates on the need for multipoint connectivity in network topologies and
+            in the digital map, in general. It also proposes how RFC8345 can be augmented to support these missing components.<a href="#section-6.1.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="multi-network-links">
@@ -2055,31 +2055,29 @@ li > p:last-of-type:only-child {
           destination of the link. The RFC8795 also augments links with
           external-domain info for the case of links that connect different
           domains.<a href="#section-6.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-3">The IS-IS topology draft <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>
-          currently models Autonomous System (AS) or IS-IS Domain as a network and
-            IS-IS areas as attributes of the IS-IS nodes.
-            With RFC8345 extension we could model IS-IS areas as networks and IS-IS links
-          between L1-2 nodes as links between 2 different areas. This is not problem
-          for OSPF, althogh th OSPF nodes can belong to multiple areas, the links can belong
-          to only 1 area<a href="#section-6.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-4">The following are some benefits of being able to model links between different networks:<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-3">The IS-IS topology  <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>
+          models Autonomous System (AS) or IS-IS domain as a network, and
+            IS-IS areas as attributes of IS-IS nodes.
+            The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links
+          between L1-2 nodes as links between two different areas. This is not problem
+          for OSPF, althogh the OSPF nodes can belong to multiple areas, the links can belong
+          to only one area.<a href="#section-6.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-4">The following are some benefits of modeling links between different networks:<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.3-5.1">IS-IS processes would be grouped in area via the standard IETF RFC8345
-            network-&gt;node relationship<a href="#section-6.1.3-5.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1.3-5.1">IS-IS processes would be grouped in an area via the standard IETF RFC8345
+            network-&gt;node relationship.<a href="#section-6.1.3-5.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.2">applications and algorithms will understand topologies based on the generic
+            <li class="normal" id="section-6.1.3-5.2">Applications and algorithms will consume topologies based on the generic
               entities and relationships, they will not need to understand the meaning of
-              specific IS-IS attributes<a href="#section-6.1.3-5.2" class="pilcrow">¶</a>
+              specific IS-IS attributes.<a href="#section-6.1.3-5.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.3">the approach would be aligned with the IS-IS topology model and the IS-IS
-            network view in the manuals and documentation<a href="#section-6.1.3-5.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.1.3-5.3">The approach would be aligned with the IS-IS topology model and the IS-IS
+            network view in manuals and documentation.<a href="#section-6.1.3-5.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.4">provide capability to link different IGP domains and links between them<a href="#section-6.1.3-5.4" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.1.3-5.4">Provide capability to link different IGP domains and links between them.<a href="#section-6.1.3-5.4" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.3-5.5">provide flexibility and could model more diverse topologies<a href="#section-6.1.3-5.5" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-6.1.3-5.6">link between multiple networks/sub-networks is the common concept in
-              network topology<a href="#section-6.1.3-5.6" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.1.3-5.5">Link between multiple networks/sub-networks is the common concept in
+              network topology.<a href="#section-6.1.3-5.5" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -2092,21 +2090,21 @@ li > p:last-of-type:only-child {
 <p id="section-6.1.4-1">
           RFC8345 does not model networks being part of other networks, therefore cannot model
           subnetworks and network partitioning. We encountered this problem with modelling IS-IS
-          and OSPF Domains and Area. Our initial goal was to model AS / Domain with multiple areas
-          so that our digital map model contains information about how the AS is
+          and OSPF Domains and Areas. The initial goal was to model AS/Domain with multiple areas
+          so that the digital map model contains information about how the AS is
           first split into different IGP domains and how each IGP domain is split into different areas.
-          This is the common problem for both IS-IS and OSPF.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.4-2">The following are some options how we can address this problem:<a href="#section-6.1.4-2" class="pilcrow">¶</a></p>
+          This is a common problem for both IS-IS and OSPF.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.4-2">The following are some options how to address this problem:<a href="#section-6.1.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.4-3.1">We don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
-          underlying IP network and IS-IS / OSPF enabled routers. This could be achieved via supporting
+<li class="normal" id="section-6.1.4-3.1">Don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
+          underlying IP network and IS-IS/OSPF enabled routers. This could be achieved via supporting
             relationship to L3 network and L3 nodes<a href="#section-6.1.4-3.1" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.4-3.2">We model AS, IGP domains and Areas as networks. We use supporting relationship to model the
+            <li class="normal" id="section-6.1.4-3.2">Model AS, IGP domains and Areas as networks. We use supporting relationship to model the
             network topology design, with only areas having nodes. This does not describe the correct
             nature of the relationship, semantic is missing.<a href="#section-6.1.4-3.2" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="section-6.1.4-3.3">Extend RFC8345 to support additional relationship between networks<a href="#section-6.1.4-3.3" class="pilcrow">¶</a>
+            <li class="normal" id="section-6.1.4-3.3">Extend RFC8345 to support additional relationship between networks.<a href="#section-6.1.4-3.3" class="pilcrow">¶</a>
 </li>
           </ul>
 </section>
@@ -2116,7 +2114,7 @@ li > p:last-of-type:only-child {
           <h4 id="name-nodes-tps-and-links-in-mult">
 <a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-nodes-tps-and-links-in-mult" class="section-name selfRef">Nodes, tps and links in multiple networks</a>
           </h4>
-<p id="section-6.1.5-1">RFC8345 does not allow nodes and tps to belong to multiple areas without splitting them into
+<p id="section-6.1.5-1">RFC8345 does not allow nodes and TPs to belong to multiple areas without splitting them into
           separate entities with separate keys. In OSPF case we have nodes that can belong to different
           areas, but interfaces can only belong to one area. In the case of IS-IS, although all tutorial
           are stating that nodes can belong to one area only, the ietf, openconfig  and vendor
@@ -2125,7 +2123,7 @@ li > p:last-of-type:only-child {
 <ul class="normal">
 <li class="normal" id="section-6.1.5-2.1">Use the current RFC8345 approach, this is not the problem for read but may be an issue for
           write for simulation as we would expect that the interface lists in different nodes and networks
-          be the same without being able to validate<a href="#section-6.1.5-2.1" class="pilcrow">¶</a>
+          be the same without being able to validate.<a href="#section-6.1.5-2.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-6.1.5-2.2">Change the approach of RFC8345 to optionally allow nodes to be defined outside of network tree and
             enable reference as an alternative to the containment in the tree. This may be a bigger change to the
@@ -2139,7 +2137,7 @@ li > p:last-of-type:only-child {
           <h4 id="name-missing-supporting-relation">
 <a href="#section-6.1.6" class="section-number selfRef">6.1.6. </a><a href="#name-missing-supporting-relation" class="section-name selfRef">Missing Supporting Relationships</a>
           </h4>
-<p id="section-6.1.6-1">The RFC8345 defines supporting relationships only between the
+<p id="section-6.1.6-1">RFC8345 defines supporting relationships only between the
           same type of entities. Networks can only be supported by networks,
           nodes can only be supported by nodes, termination points can only be
           supported by terminations points and links can only be supported by

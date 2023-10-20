@@ -90,7 +90,7 @@ Table of Contents
    6.  Digital Map Modelling Experience  . . . . . . . . . . . . . .  12
      6.1.  What is not in the basic model  . . . . . . . . . . . . .  12
        6.1.1.  Bidirectional Links . . . . . . . . . . . . . . . . .  12
-       6.1.2.  Multi-point connectivity  . . . . . . . . . . . . . .  13
+       6.1.2.  Multipoint Connectivity . . . . . . . . . . . . . . .  13
        6.1.3.  Links Between Networks  . . . . . . . . . . . . . . .  14
        6.1.4.  Networks part of other networks . . . . . . . . . . .  15
        6.1.5.  Nodes, tps and links in multiple networks . . . . . .  15
@@ -647,13 +647,13 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    *  Links between domains/networks
 
-   *  Networks can be part of other networks
+   *  A network can be decomposed of sub-networks
 
-   *  Nodes, links and termination points belong to different networks
+   *  Nodes, links, and termination points belong to different networks
 
    *  Supporting relationships between different types of entities
 
-   *  More Network topology related semantic is needed
+   *  More network topology related semantic is needed
 
 6.1.1.  Bidirectional Links
 
@@ -682,12 +682,12 @@ Internet-Draft            Digital Map Modelling             October 2023
    layer topology, where we want to model link as bidirectional to be
    supported by unidirectional links at the lower layer.
 
-   The draft [I-D.davis-opsawg-some-refinements-to-rfc8345] further
-   elaborates on the need for bidirectional links in the network
-   topologies and in the digital map and proposes how the RFC8345 can be
-   augmented to support it.
+   [I-D.davis-opsawg-some-refinements-to-rfc8345] further elaborates on
+   the need for bidirectional links in the network topologies and in the
+   digital map.  It also proposes how RFC8345 can be augmented to
+   support missing components.
 
-6.1.2.  Multi-point connectivity
+6.1.2.  Multipoint Connectivity
 
    The RFC8345 defines all links as point to point and unidirectional,
    it does not support multi-point links (hub and spoke, full mesh,
@@ -717,10 +717,10 @@ Internet-Draft            Digital Map Modelling             October 2023
    Note that, next to layer 2 mentioned above, the point to multipoint
    network type is also required in some cases at the OSPF layer.
 
-   The draft [I-D.davis-opsawg-some-refinements-to-rfc8345] further
-   elaborates on the need for multipoint connectivity in the network
-   topologies and in the digital map and proposes how the RFC8345 can be
-   augmented to support it.
+   [I-D.davis-opsawg-some-refinements-to-rfc8345] further elaborates on
+   the need for multipoint connectivity in network topologies and in the
+   digital map, in general.  It also proposes how RFC8345 can be
+   augmented to support these missing components.
 
 
 
@@ -745,34 +745,34 @@ Internet-Draft            Digital Map Modelling             October 2023
    link.  The RFC8795 also augments links with external-domain info for
    the case of links that connect different domains.
 
-   The IS-IS topology draft [I-D.ogondio-opsawg-isis-topology] currently
-   models Autonomous System (AS) or IS-IS Domain as a network and IS-IS
-   areas as attributes of the IS-IS nodes.  With RFC8345 extension we
-   could model IS-IS areas as networks and IS-IS links between L1-2
-   nodes as links between 2 different areas.  This is not problem for
-   OSPF, althogh th OSPF nodes can belong to multiple areas, the links
-   can belong to only 1 area
+   The IS-IS topology [I-D.ogondio-opsawg-isis-topology] models
+   Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas
+   as attributes of IS-IS nodes.  The RFC8345 extension can be used to
+   model IS-IS areas as networks and IS-IS links between L1-2 nodes as
+   links between two different areas.  This is not problem for OSPF,
+   althogh the OSPF nodes can belong to multiple areas, the links can
+   belong to only one area.
 
-   The following are some benefits of being able to model links between
-   different networks:
+   The following are some benefits of modeling links between different
+   networks:
 
-   *  IS-IS processes would be grouped in area via the standard IETF
-      RFC8345 network->node relationship
+   *  IS-IS processes would be grouped in an area via the standard IETF
+      RFC8345 network->node relationship.
 
-   *  applications and algorithms will understand topologies based on
-      the generic entities and relationships, they will not need to
-      understand the meaning of specific IS-IS attributes
+   *  Applications and algorithms will consume topologies based on the
+      generic entities and relationships, they will not need to
+      understand the meaning of specific IS-IS attributes.
 
-   *  the approach would be aligned with the IS-IS topology model and
-      the IS-IS network view in the manuals and documentation
+   *  The approach would be aligned with the IS-IS topology model and
+      the IS-IS network view in manuals and documentation.
 
-   *  provide capability to link different IGP domains and links between
-      them
+   *  Provide capability to link different IGP domains and links between
+      them.
 
-   *  provide flexibility and could model more diverse topologies
+   *  Link between multiple networks/sub-networks is the common concept
+      in network topology.
 
-   *  link between multiple networks/sub-networks is the common concept
-      in network topology
+
 
 
 
@@ -791,29 +791,30 @@ Internet-Draft            Digital Map Modelling             October 2023
    RFC8345 does not model networks being part of other networks,
    therefore cannot model subnetworks and network partitioning.  We
    encountered this problem with modelling IS-IS and OSPF Domains and
-   Area.  Our initial goal was to model AS / Domain with multiple areas
-   so that our digital map model contains information about how the AS
+   Areas.  The initial goal was to model AS/Domain with multiple areas
+   so that the digital map model contains information about how the AS
    is first split into different IGP domains and how each IGP domain is
-   split into different areas.  This is the common problem for both IS-
-   IS and OSPF.
+   split into different areas.  This is a common problem for both IS-IS
+   and OSPF.
 
-   The following are some options how we can address this problem:
+   The following are some options how to address this problem:
 
-   *  We don't model AS and IS-IS/OSPF Domain directly, they would be
-      modelled via the underlying IP network and IS-IS / OSPF enabled
+   *  Don't model AS and IS-IS/OSPF Domain directly, they would be
+      modelled via the underlying IP network and IS-IS/OSPF enabled
       routers.  This could be achieved via supporting relationship to L3
       network and L3 nodes
 
-   *  We model AS, IGP domains and Areas as networks.  We use supporting
+   *  Model AS, IGP domains and Areas as networks.  We use supporting
       relationship to model the network topology design, with only areas
       having nodes.  This does not describe the correct nature of the
       relationship, semantic is missing.
 
-   *  Extend RFC8345 to support additional relationship between networks
+   *  Extend RFC8345 to support additional relationship between
+      networks.
 
 6.1.5.  Nodes, tps and links in multiple networks
 
-   RFC8345 does not allow nodes and tps to belong to multiple areas
+   RFC8345 does not allow nodes and TPs to belong to multiple areas
    without splitting them into separate entities with separate keys.  In
    OSPF case we have nodes that can belong to different areas, but
    interfaces can only belong to one area.  In the case of IS-IS,
@@ -825,14 +826,13 @@ Internet-Draft            Digital Map Modelling             October 2023
    *  Use the current RFC8345 approach, this is not the problem for read
       but may be an issue for write for simulation as we would expect
       that the interface lists in different nodes and networks be the
-      same without being able to validate
+      same without being able to validate.
 
    *  Change the approach of RFC8345 to optionally allow nodes to be
       defined outside of network tree and enable reference as an
       alternative to the containment in the tree.  This may be a bigger
       change to the network topology approach as it would have bigger
       impact on the topology tree.
-
 
 
 
@@ -844,11 +844,10 @@ Internet-Draft            Digital Map Modelling             October 2023
 
 6.1.6.  Missing Supporting Relationships
 
-   The RFC8345 defines supporting relationships only between the same
-   type of entities.  Networks can only be supported by networks, nodes
-   can only be supported by nodes, termination points can only be
-   supported by terminations points and links can only be supported by
-   links.
+   RFC8345 defines supporting relationships only between the same type
+   of entities.  Networks can only be supported by networks, nodes can
+   only be supported by nodes, termination points can only be supported
+   by terminations points and links can only be supported by links.
 
    During the PoC, we encountered the need to have TP supported by node
    and node supported by Network.  The RFC8795 also adds additional
@@ -890,6 +889,7 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    The following are the open issues that need further analysis:
 
+   *  Do we need separation of L2 and L3 topologies?
 
 
 
@@ -897,8 +897,6 @@ Havel, et al.             Expires 22 April 2024                [Page 16]
 
 Internet-Draft            Digital Map Modelling             October 2023
 
-
-   *  Do we need separation of L2 and L3 topologies?
 
       During the PoC we encountered different solutions with separate
       set of requirements.  In one solution, the L2 and L3 topology were
@@ -945,7 +943,9 @@ Internet-Draft            Digital Map Modelling             October 2023
                    .... additions
 
 
-
+   // This will be a separate draft with describing pros and cons of
+   // different approaches and yang model proposal.  Add reference to
+   // this draft when submitted
 
 
 
@@ -953,10 +953,6 @@ Havel, et al.             Expires 22 April 2024                [Page 17]
 
 Internet-Draft            Digital Map Modelling             October 2023
 
-
-   // This will be a separate draft with describing pros and cons of
-   // different approaches and yang model proposal.  Add reference to
-   // this draft when submitted
 
 6.4.  How to Augment for New Technologies/Layers
 
@@ -1002,6 +998,10 @@ Internet-Draft            Digital Map Modelling             October 2023
    How to connect to other YANG modules
 
    How to connect YANG models with other modelling mechanisms
+
+
+
+
 
 
 
