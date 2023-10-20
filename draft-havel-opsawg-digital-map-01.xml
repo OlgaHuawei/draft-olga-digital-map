@@ -237,6 +237,35 @@
         </dl>
 
         <dl>
+          <dt>Topology -</dt>
+
+          <dd>Network topology defines how physical or logical nodes, links
+          and interfaces are related and arranges. Service topology defines
+          how service components (e.g., VPN instances, customer interfaces,
+          and customer links) between customer sites are interrelated and
+          arranged. There are at least 8 types of topologies: point to point, bus,
+          ring, star, tree, mesh, hybrid and daisy chain. Topologies may be
+          unidirectional or bidirectional (bus, some rings).</dd>
+
+          <dt>Topology Layer -</dt>
+
+          <dd>Defines a layer in the multilayer topology. A multilayer
+          topology models relationships between different layers of
+          connectivity, where each layer represents a connectivity aspect of
+          the network and service that needs to be configured, controlled and
+          monitored. The layer can also represent what needs to be managed
+          by a specific user, for example IGP layer can be of interest
+          to the user troubleshooting the routing, while the optical layer
+          may be of interest to the user managing the Optical Network.
+          Some topology layers may relate closely to OSI layers,
+          like L1 topology for physical topology, L2 for link topology and L3
+          for IPv4 and IPv6 Topologies. Some topology layers represent the
+          control aspects of L3, like OSPF, IS-IS and BGP. The top layer
+          represents the service view of the connectivity, that can differ for
+          different types of services and for different
+          providers/solutions.</dd>
+          </dl>
+
           <dt>Digital Map -</dt>
 
           <dd>Basis for the Digital Twin that provides a virtual instance of
@@ -273,35 +302,6 @@
           for the instances, including configuration, health, symptoms. The
           data can be historical, real-time or future data for what-if
           scenarios.</dd>
-
-          <dt>Topology -</dt>
-
-          <dd>Network topology defines how physical or logical nodes, links
-          and interfaces are related and arranges. Service topology defines
-          how service components (e.g., VPN instances, customer interfaces,
-          and customer links) between customer sites are interrelated and
-          arranged. There are 8 types of topologies: point to point, bus,
-          ring, star, tree, mesh, hybrid and daisy chain. Topologies may be
-          unidirectional or bidirectional (bus, some rings).</dd>
-
-          <dt>Topology Layer -</dt>
-
-          <dd>Defines a layer in the multilayer topology. A multilayer
-          topology models relationships between different layers of
-          connectivity, where each layer represents a connectivity aspect of
-          the network and service that needs to be configured, controlled and
-          monitored. The layer can also represent what needs to be managed
-          by a specific user, for example IGP layer can be of interest
-          to the user troubleshooting the routing, while the Optical Layer
-          may be of interest to the user managing the Optical Network.
-          Some topology layers may relate closely to OSI layers,
-          like L1 topology for physical topology, L2 for link topology and L3
-          for IPv4 and IPv6 Topologies. Some topology layers represent the
-          control aspects of L3, like OSPF, IS-IS and BGP. The top layer
-          represents the service view of the connectivity, that can differ for
-          different types of services and for different
-          providers/solutions.</dd>
-        </dl>
       </section>
     </section>
 
@@ -313,14 +313,14 @@
         Twin Network: Concepts and Reference Architecture" NMRG I-D
         <xref target="I-D.irtf-nmrg-network-digital-twin-arch"></xref>.</t>
 
-        <t>The NMRG I-D defines the core elements of digital twin - Data,
+        <t>This document defines the core elements of digital twin - Data,
         Models, Interfaces, and Mapping. The digital twin constructed based on
         the four core technology elements is intended to analyze, diagnose,
         emulate, and control the physical network in its whole lifecycle with
         the help of optimization algorithms, management methods, and expert
         knowledge.</t>
 
-        <t>Also, The NMRG I-D states that a digital twin can be seen as an
+        <t>Also, this document states that a digital twin can be seen as an
         indispensable part of the overall network system and provides a
         general architecture involving the whole lifecycle of physical
         networks in the future, serving the application of innovative network
@@ -379,10 +379,12 @@
         sources of information. As an example, the Digital Map should not specifically
         include all information about the device inventory (product name,
         vendor, product series, embedded software, and hardware/software
-        versions): a pointer from the Digital Map to another inventory system
-        might be sufficient. Similarly, the Digital Map should not specifically
-        contain incidents, configuration, data plane monitoring, or even 
-        assurance information, simply to name a few.</t>
+        versions, as specified in Network Inventory (IVY) WG, 
+        https://datatracker.ietf.org/doc/charter-ietf-ivy/ ): a pointer from 
+        the Digital Map to another inventory system might be sufficient. 
+        Similarly, the Digital Map should not specifically contain incidents, 
+        configuration, data plane monitoring, or even assurance information, 
+        simply to name a few.</t>
 
         <t>The following are some Digital Twin use cases that require Digital Map:</t>
 
