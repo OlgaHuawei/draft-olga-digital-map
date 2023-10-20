@@ -192,9 +192,9 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    - MPLS LDP
 
-   - MPLS TE Tunnels
+   - MPLS TE tunnels
 
-   - SRv6 Tunnels
+   - SRv6 tunnels
 
    - L3VPN service
 
@@ -244,7 +244,7 @@ Internet-Draft            Digital Map Modelling             October 2023
       The layer can also represent what needs to be managed by a
       specific user, for example IGP layer can be of interest to the
       user troubleshooting the routing, while the optical layer may be
-      of interest to the user managing the Optical Network.  Some
+      of interest to the user managing the optical network.  Some
       topology layers may relate closely to OSI layers, like L1 topology
       for physical topology, L2 for link topology and L3 for IPv4 and
       IPv6 Topologies.  Some topology layers represent the control
@@ -348,8 +348,9 @@ Internet-Draft            Digital Map Modelling             October 2023
    service topologies at different layers.  The Digital Map provides the
    access to this data via standard APIs for both read and write
    operations (write operations for offline simulations), with query
-   capabilities and links to other YANG modules (e.g., SAIN [RFC9417],
-   SAP [RFC9408], Inventory
+   capabilities and links to other YANG modules (e.g., Service Assurance
+   for Intent-based Networking (SAIN) [RFC9417], Service Attachement
+   Point (SAP) [RFC9408], Inventory
    [I-D.wzwb-opsawg-network-inventory-management], and Assets
    [I-D.palmero-opsawg-dmlmo]) and non-YANG models.
 
@@ -385,7 +386,6 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    The following are some Digital Twin use cases that require Digital
    Map:
-
 
 
 
@@ -638,8 +638,8 @@ Internet-Draft            Digital Map Modelling             October 2023
 
 5.1.  What is not in the basic model
 
-   The following are the [RFC8345] extensions needed for Digital Map
-   modelling and APIs:
+   Based on our PoC and experienc, the following are the [RFC8345]
+   extensions needed for Digital Map modelling and APIs:
 
    *  Bidirectional links
 
@@ -647,9 +647,10 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    *  Links between domains/networks
 
-   *  A network can be decomposed of sub-networks
+   *  A network decomposition into sub-networks
 
-   *  Nodes, links, and termination points belong to different networks
+   *  Nodes, links, and termination points belonging to different
+      networks
 
    *  Supporting relationships between different types of entities
 
@@ -662,10 +663,9 @@ Internet-Draft            Digital Map Modelling             October 2023
    simple as possible.  The RFC suggests to model the bidirectional
    connections as pairs of unidirectional links.
 
-   Nevertheless, while simplifying the model itself, we are making data
-   and APIs more complex for the cases where we have bidirectional
-   links.  And we are increasing the amount of instances / data
-   transferred via API, stored in the database, or managed/monitored.
+
+
+
 
 
 
@@ -673,6 +673,11 @@ Havel, et al.             Expires 22 April 2024                [Page 12]
 
 Internet-Draft            Digital Map Modelling             October 2023
 
+
+   Nevertheless, while simplifying the model itself, we are making data
+   and APIs more complex for the cases where we have bidirectional
+   links.  And we are increasing the amount of instances / data
+   transferred via API, stored in the database, or managed/monitored.
 
    One of the core characteristics of any network topology is the link
    directionality.  While data flows are unidirectional, the
@@ -714,13 +719,8 @@ Internet-Draft            Digital Map Modelling             October 2023
    lacking full topology semantics in the model.  The model cannot be
    fully used to validate if topology instances are valid or not.
 
-   Note that, next to layer 2 mentioned above, the point to multipoint
-   network type is also required in some cases at the OSPF layer.
-
-   [I-D.davis-opsawg-some-refinements-to-rfc8345] further elaborates on
-   the need for multipoint connectivity in network topologies and in the
-   digital map, in general.  It also proposes how RFC8345 can be
-   augmented to support these missing components.
+   Note that the point to multipoint network type is also required in
+   some cases at the OSPF layer.
 
 
 
@@ -729,6 +729,11 @@ Havel, et al.             Expires 22 April 2024                [Page 13]
 
 Internet-Draft            Digital Map Modelling             October 2023
 
+
+   [I-D.davis-opsawg-some-refinements-to-rfc8345] further elaborates on
+   the need for multipoint connectivity in network topologies and in the
+   digital map, in general.  It also proposes how RFC8345 can be
+   augmented to support these missing components.
 
 5.1.3.  Links Between Networks
 
@@ -739,22 +744,23 @@ Internet-Draft            Digital Map Modelling             October 2023
    domains or partitioning.  The only way would be to model each domain
    as node and have links between them.
 
-   We modelled IS-IS Areas as networks during the PoC and we needed to
-   extend the capability to have links between different areas.  We
-   added network reference as well to the source / destination of the
-   link.  The RFC8795 also augments links with external-domain info for
-   the case of links that connect different domains.
+   In our IS-IS PoC (following [I-D.ogondio-opsawg-isis-topology]), We
+   modelled IS-IS areas as networks and we needed to extend the
+   capability to have links between different areas.  We added network
+   reference as well to the source / destination of the link.  The
+   RFC8795 also augments links with external-domain info for the case of
+   links that connect different domains.
 
    The IS-IS topology [I-D.ogondio-opsawg-isis-topology] models
    Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas
    as attributes of IS-IS nodes.  The RFC8345 extension can be used to
    model IS-IS areas as networks and IS-IS links between L1-2 nodes as
    links between two different areas.  This is not problem for OSPF,
-   althogh the OSPF nodes can belong to multiple areas, the links can
+   although the OSPF nodes can belong to multiple areas, the links can
    belong to only one area.
 
-   The following are some benefits of modeling links between different
-   networks:
+   The following are some benefits of lifting the RFC 8345 limitations
+   that all links must belong to only one network instance:
 
    *  IS-IS processes would be grouped in an area via the standard IETF
       RFC8345 network->node relationship.
@@ -775,12 +781,6 @@ Internet-Draft            Digital Map Modelling             October 2023
 
 
 
-
-
-
-
-
-
 Havel, et al.             Expires 22 April 2024                [Page 14]
 
 Internet-Draft            Digital Map Modelling             October 2023
@@ -790,8 +790,8 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    RFC8345 does not model networks being part of other networks,
    therefore cannot model subnetworks and network partitioning.  We
-   encountered this problem with modelling IS-IS and OSPF Domains and
-   Areas.  The initial goal was to model AS/Domain with multiple areas
+   encountered this problem with modelling IS-IS and OSPF domains and
+   areas.  The initial goal was to model AS/domain with multiple areas
    so that the digital map model contains information about how the AS
    is first split into different IGP domains and how each IGP domain is
    split into different areas.  This is a common problem for both IS-IS
@@ -799,12 +799,12 @@ Internet-Draft            Digital Map Modelling             October 2023
 
    The following are some options how to address this problem:
 
-   *  Don't model AS and IS-IS/OSPF Domain directly, they would be
+   *  Don't model AS and IS-IS/OSPF domain directly, they would be
       modelled via the underlying IP network and IS-IS/OSPF enabled
       routers.  This could be achieved via supporting relationship to L3
       network and L3 nodes
 
-   *  Model AS, IGP domains and Areas as networks.  We use supporting
+   *  Model AS, IGP domains and areas as networks.  We use supporting
       relationship to model the network topology design, with only areas
       having nodes.  This does not describe the correct nature of the
       relationship, semantic is missing.
@@ -819,7 +819,7 @@ Internet-Draft            Digital Map Modelling             October 2023
    OSPF case we have nodes that can belong to different areas, but
    interfaces can only belong to one area.  In the case of IS-IS,
    although all tutorial are stating that nodes can belong to one area
-   only, the ietf, openconfig and vendor yang models and cli allow IS-IS
+   only, the ietf, openconfig and vendor yang models and CLI allow IS-IS
    processes with all its interfaces to belong to multiple areas.  We
    can see the two options here:
 
@@ -877,7 +877,7 @@ Internet-Draft            Digital Map Modelling             October 2023
       we may need some additional information in the model.  For further
       study.
 
-   *  Tunnels and Paths.  We modelled Tunnels ad Paths via [RFC8345] but
+   *  Tunnels and paths.  We modelled tunnels ad paths via [RFC8345] but
       we lost some semantics that is in RFC8795.
 
    *  Supporting or underlay.  We modelled all underlay relationships
@@ -1078,18 +1078,18 @@ Internet-Draft            Digital Map Modelling             October 2023
    necessary to perform routing analysis.  A network topology model may
    be extracted from:
 
-   *  * network architecture documents
+   *  Network architecture documents
 
-   *  * network designs
+   *  Network designs
 
-   *  * information contained in router configuration files
+   *  Information contained in router configuration files
 
-   *  * routing databases such as the link state database of an interior
+   *  Routing databases such as the link state database of an interior
       gateway protocol (IGP)
 
-   *  * routing tables
+   *  Routing tables
 
-   *  * automated tools that discover and collate network topology
+   *  Automated tools that discover and collate network topology
       information.
 
    Topology information may also be derived from servers that monitor

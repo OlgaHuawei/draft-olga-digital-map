@@ -207,9 +207,9 @@
 
       <t>- MPLS LDP</t>
 
-      <t>- MPLS TE Tunnels</t>
+      <t>- MPLS TE tunnels</t>
 
-      <t>- SRv6 Tunnels</t>
+      <t>- SRv6 tunnels</t>
 
       <t>- L3VPN service</t>
 
@@ -256,7 +256,7 @@
           monitored. The layer can also represent what needs to be managed
           by a specific user, for example IGP layer can be of interest
           to the user troubleshooting the routing, while the optical layer
-          may be of interest to the user managing the Optical Network.
+          may be of interest to the user managing the optical network.
           Some topology layers may relate closely to OSI layers,
           like L1 topology for physical topology, L2 for link topology and L3
           for IPv4 and IPv6 Topologies. Some topology layers represent the
@@ -350,9 +350,10 @@
         service topologies at different layers. The Digital Map provides the
         access to this data via standard APIs for both read and write
         operations (write operations for offline simulations), with query 
-        capabilities and links to other YANG modules (e.g., SAIN 
+        capabilities and links to other YANG modules (e.g., Service Assurance 
+        for Intent-based Networking (SAIN) 
         <xref target="RFC9417"></xref>,
-        SAP <xref target="RFC9408"></xref>, Inventory 
+        Service Attachement Point (SAP) <xref target="RFC9408"></xref>, Inventory 
         <xref target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
         Assets <xref target="I-D.palmero-opsawg-dmlmo"></xref>) and non-YANG
         models.</t>
@@ -618,8 +619,9 @@
              title="Digital Map Modelling Experience">
       <section anchor="what-is-not-in-basic"
                title="What is not in the basic model">
-        <t>The following are the <xref target="RFC8345" /> extensions needed
-        for Digital Map modelling and APIs:</t>
+        <t>Based on our PoC and experienc, the following are the 
+          <xref target="RFC8345" /> extensions needed for Digital Map 
+          modelling and APIs:</t>
 
         <ul>
           <li>Bidirectional links</li>
@@ -628,9 +630,9 @@
 
           <li>Links between domains/networks</li>
 
-          <li>A network can be decomposed of sub-networks</li>
+          <li>A network decomposition into sub-networks</li>
 
-          <li>Nodes, links, and termination points belong to different networks</li>
+          <li>Nodes, links, and termination points belonging to different networks</li>
 
           <li>Supporting relationships between different types of entities</li>
 
@@ -692,9 +694,8 @@
           be fully used to validate if topology instances are valid or
           not.</t>
 
-          <t>Note that, next to layer 2 mentioned above, the point to
-          multipoint network type is also required in some cases at the OSPF
-          layer.</t>
+          <t>Note that the point to multipoint network type is also required 
+          in some cases at the OSPF layer.</t>
 
           <t><xref target="I-D.davis-opsawg-some-refinements-to-rfc8345"/>
             further elaborates on the need for multipoint connectivity in network topologies and
@@ -710,9 +711,9 @@
           the case of multi-domains or partitioning. The only way would be to
           model each domain as node and have links between them.</t>
 
-          <t>We modelled IS-IS Areas as networks during the PoC and
-          we needed to extend the capability to have links between different
-          areas. We added network reference as well to the source /
+          <t>In our IS-IS PoC (following  <xref target="I-D.ogondio-opsawg-isis-topology"/>),
+          We modelled IS-IS areas as networks and we needed to extend the capability to 
+          have links between different areas. We added network reference as well to the source /
           destination of the link. The RFC8795 also augments links with
           external-domain info for the case of links that connect different
           domains.</t>
@@ -722,10 +723,11 @@
             IS-IS areas as attributes of IS-IS nodes.
             The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links
           between L1-2 nodes as links between two different areas. This is not problem
-          for OSPF, althogh the OSPF nodes can belong to multiple areas, the links can belong
+          for OSPF, although the OSPF nodes can belong to multiple areas, the links can belong
           to only one area.</t>
 
-          <t>The following are some benefits of modeling links between different networks:
+          <t>The following are some benefits of lifting the RFC 8345 limitations that all links 
+          must belong to only one network instance:
           <ul>
             <li>IS-IS processes would be grouped in an area via the standard IETF RFC8345
             network->node relationship.</li>
@@ -745,7 +747,7 @@
         <t>
           RFC8345 does not model networks being part of other networks, therefore cannot model
           subnetworks and network partitioning. We encountered this problem with modelling IS-IS
-          and OSPF Domains and Areas. The initial goal was to model AS/Domain with multiple areas
+          and OSPF domains and areas. The initial goal was to model AS/domain with multiple areas
           so that the digital map model contains information about how the AS is
           first split into different IGP domains and how each IGP domain is split into different areas.
           This is a common problem for both IS-IS and OSPF.
@@ -753,10 +755,10 @@
 
           <t>The following are some options how to address this problem:
             <ul>
-          <li>Don't model AS and IS-IS/OSPF Domain directly, they would be modelled via the
+          <li>Don't model AS and IS-IS/OSPF domain directly, they would be modelled via the
           underlying IP network and IS-IS/OSPF enabled routers. This could be achieved via supporting
             relationship to L3 network and L3 nodes </li>
-          <li>Model AS, IGP domains and Areas as networks. We use supporting relationship to model the
+          <li>Model AS, IGP domains and areas as networks. We use supporting relationship to model the
             network topology design, with only areas having nodes. This does not describe the correct
             nature of the relationship, semantic is missing.</li>
           <li>Extend RFC8345 to support additional relationship between networks.</li>
@@ -769,7 +771,7 @@
           separate entities with separate keys. In OSPF case we have nodes that can belong to different
           areas, but interfaces can only belong to one area. In the case of IS-IS, although all tutorial
           are stating that nodes can belong to one area only, the ietf, openconfig  and vendor
-          yang models and cli allow IS-IS processes with all its interfaces to belong to multiple areas.
+          yang models and CLI allow IS-IS processes with all its interfaces to belong to multiple areas.
           We can see the two options here:
           <ul>
           <li>Use the current RFC8345 approach, this is not the problem for read but may be an issue for
@@ -820,7 +822,7 @@
             different layers, we may need some additional information in the
             model. For further study.</li>
 
-            <li>Tunnels and Paths. We modelled Tunnels ad Paths via <xref
+            <li>Tunnels and paths. We modelled tunnels ad paths via <xref
             target="RFC8345" /> but we lost some semantics that is in
             RFC8795.</li>
 
@@ -999,18 +1001,18 @@ module: new-module
         from:</t>
 
         <ul>
-          <li>* network architecture documents</li>
+          <li>Network architecture documents</li>
 
-          <li>* network designs</li>
+          <li>Network designs</li>
 
-          <li>* information contained in router configuration files</li>
+          <li>Information contained in router configuration files</li>
 
-          <li>* routing databases such as the link state database of an
+          <li>Routing databases such as the link state database of an
           interior gateway protocol (IGP)</li>
 
-          <li>* routing tables</li>
+          <li>Routing tables</li>
 
-          <li>* automated tools that discover and collate network topology
+          <li>Automated tools that discover and collate network topology
           information.</li>
         </ul>
 
