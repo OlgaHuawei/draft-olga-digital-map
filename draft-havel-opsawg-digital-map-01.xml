@@ -9,7 +9,7 @@
 <?rfc inline="yes"?>
 <?rfc compact="yes"?>
 <?rfc subcompact="no"?>
-<rfc category="std" docName="draft-havel-opsawg-digital-map-00"
+<rfc category="std" docName="draft-havel-opsawg-digital-map-01"
      ipr="trust200902">
   <front>
     <title abbrev="Digital Map Modelling">Modeling the Digital Map based on
@@ -264,7 +264,6 @@
           represents the service view of the connectivity, that can differ for
           different types of services and for different
           providers/solutions.</dd>
-          </dl>
 
           <dt>Digital Map -</dt>
 
@@ -302,6 +301,7 @@
           for the instances, including configuration, health, symptoms. The
           data can be historical, real-time or future data for what-if
           scenarios.</dd>
+        </dl>          
       </section>
     </section>
 
@@ -334,9 +334,10 @@
         for the digital twin and connects them to the other digital twin
         models and data.</t>
 
-        <t>The Digital Map Modelling defines the core topological entities,
-        their role in the network, core properties, and relationships both
-        inside each layer and between the layers.</t>
+        <t>The Digital Map Modelling defines the core topological entities 
+        (network, node, link and interface), their role in the network, 
+        core properties, and relationships both inside each layer and between 
+        the layers.</t>
 
         <t>The Digital Map Model is a basic topological model that is linked
         to other functional parts of the digital twin and connects them all:
@@ -348,10 +349,11 @@
         <t>The Digital Map Data consists of virtual instances of network and
         service topologies at different layers. The Digital Map provides the
         access to this data via standard APIs for both read and write
-        operations, with query capabilities and links to other YANG modules
-        (e.g., SAIN <xref target="I-D.ietf-opsawg-service-assurance-architecture"></xref>,
-        SAP <xref target="RFC9408"></xref>,
-        Inventory <xref target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
+        operations (write operations for offline simulations), with query 
+        capabilities and links to other YANG modules (e.g., SAIN 
+        <xref target="RFC9417"></xref>,
+        SAP <xref target="RFC9408"></xref>, Inventory 
+        <xref target="I-D.wzwb-opsawg-network-inventory-management"></xref>, and
         Assets <xref target="I-D.palmero-opsawg-dmlmo"></xref>) and non-YANG
         models.</t>
       </section>
@@ -532,11 +534,51 @@
         direct relationship between the termination points or nodes</li>
       </ol>
 
-      <t>The following are requirements for determining the scope of the
+      <section anchor="why-ietf-network-topology"
+                title="Why RFC8345 is a Good Approach for Digital Map Modelling">
+         <t>The main reason for selecting RFC8345 for modelling is its simplicity
+         and that is supports majority of the core requirements. The requirements
+         [1-7] are automatically fulfilled with RFC8345 and extensions: <ul>
+             <li>basic model with network, node, link and interface entity
+             types</li>
+
+             <li>layered topology</li>
+   
+             <li>open and programmable</li>
+
+             <li>standard, multi-vendor</li>
+
+             <li>multi-domain</li>
+
+            <li>semantics for layered topology</li>
+
+            <li>inter-layer and between-layer relationships</li>
+           </ul> The requirements [6-7] for semantics for layered topology and
+         relationships are partially fulfilled, there may be need for some
+         additional semantics. Other core requirements [8-10] are not supported
+         by RFC8345: <ul>
+             <li>extensible with meta data</li>
+
+             <li>pluggable to other YANG modules and non-YANG data</li>
+
+             <li>optimized for graph traversal</li>
+           </ul> In some cases, for [9] for pluggable to other YANG modules, the
+         links are already done by augmenting 'ietf-network' and
+        'ietf-network-topology'. For others, we need to add some mechanisms to
+         link the models and data.</t>
+       </section>
+
+      <section anchor="design-requirements"
+                title="Design Requirements">
+
+      <t>The following are design requirements for modelling the
       Digital Map:</t>
 
       <ol>
-        <li>Digital Map should contain only topological information</li>
+        <li>Digital Map should contain only topological information. 
+        Digital Map should not contain all data required for all the management 
+        and use cases, but should have pointers to other functional Digital
+        Twin data and models.</li>
 
         <li>Digital Map entities should contain only properties used to
         identify topological entities at different layers, identify their
@@ -544,9 +586,6 @@
 
         <li>Digital Map should contain only topological relationships inside
         each layer or between the layers (underlay/overlay)</li>
-
-        <li>Digital Map should only have links to other functional Digital
-        Twin data and models.</li>
 
         <li>ACLs and Route Policies will be outside of the digital map, they
         would be linked to digital map</li>
@@ -570,41 +609,10 @@
 
         <li>Initial discovery and dynamic (change only) synch</li>
       </ol>
+       </section>    
     </section>
 
-    <section anchor="why-ietf-network-topology"
-             title="Why RFC8345 is a Good Approach for Digital Map Modelling">
-      <t>The main reason for selecting RFC8345 for modelling is its simplicity
-      and that is supports majority of the core requirements. The requirements
-      [1-7] are automatically fulfilled with RFC8345 and extensions: <ul>
-          <li>basic model with network, node, link and interface entity
-          types</li>
-
-          <li>layered topology</li>
-
-          <li>open and programmable</li>
-
-          <li>standard, multi-vendor</li>
-
-          <li>multi-domain</li>
-
-          <li>semantics for layered topology</li>
-
-          <li>inter-layer and between-layer relationships</li>
-        </ul> The requirements [6-7] for semantics for layered topology and
-      relationships are partially fulfilled, there may be need for some
-      additional semantics. Other core requirements [8-10] are not supported
-      by RFC8345: <ul>
-          <li>extensible with meta data</li>
-
-          <li>pluggable to other YANG modules and non-YANG data</li>
-
-          <li>optimized for graph traversal</li>
-        </ul> In some cases, for [9] for pluggable to other YANG modules, the
-      links are already done by augmenting 'ietf-network' and
-      'ietf-network-topology'. For others, we need to add some mechanisms to
-      link the models and data.</t>
-    </section>
+ 
 
     <section anchor="digital-map-modelling-experience"
              title="Digital Map Modelling Experience">
@@ -1050,9 +1058,9 @@ module: new-module
           'ietf-network' data model <xref target="RFC8345" /> by adding the
           SAP.</li>
 
-          <li>SAIN <xref
-          target="I-D.ietf-opsawg-service-assurance-architecture" /> and <xref
-          target="I-D.ietf-opsawg-service-assurance-yang" /></li>
+          <li>SAIN <xref target="RFC9417"></xref> and 
+          <xref target="RFC9418"></xref>
+          </li>
 
           <li>An Inventory Management Model for Enterprise Networks <xref
           target="I-D.wzwb-opsawg-network-inventory-management" /> augments
@@ -1076,7 +1084,7 @@ module: new-module
           target="I-D.boro-opsawg-teas-attachment-circuit" /></li>
 
           <li>Configuration: L2SM <xref target="RFC8466" />, L3SM <xref
-          target="RFC8049" />, L2NM <xref target="RFC9291" />, L3NM <xref
+          target="RFC8299" />, L2NM <xref target="RFC9291" />, L3NM <xref
           target="RFC9182" /></li>
 
           <li>Incident Management for Network Services <xref
@@ -1166,7 +1174,7 @@ module: new-module
     </references>
 
     <references title="Informative References">
-      <?rfc include='reference.RFC.8049'?>
+      <?rfc include='reference.RFC.8299'?>
 
       <?rfc include='reference.RFC.8466'?>
 
@@ -1179,6 +1187,10 @@ module: new-module
       <?rfc include='reference.RFC.9291'?>
 
       <?rfc include='reference.RFC.9408'?>
+
+      <?rfc include='reference.RFC.9417'?>
+
+      <?rfc include='reference.RFC.9418'?>
 
       <?rfc include='reference.I-D.ietf-teas-rfc3272bis'?>
 
@@ -1195,10 +1207,6 @@ module: new-module
       <?rfc include='reference.I-D.boro-opsawg-ntw-attachment-circuit'?>
 
       <?rfc include='reference.I-D.boro-opsawg-teas-attachment-circuit'?>
-
-      <?rfc include='reference.I-D.ietf-opsawg-service-assurance-yang'?>
-
-      <?rfc include='reference.I-D.ietf-opsawg-service-assurance-architecture'?>
 
       <?rfc include='reference.I-D.wzwb-opsawg-network-inventory-management'?>
 
