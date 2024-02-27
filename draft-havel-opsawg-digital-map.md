@@ -47,7 +47,13 @@ contributor:
 normative:
 
 informative:
-[1]: https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26 "Catalog"
+
+   Catalog:
+              title: YANG Impact Analysis
+              author:
+                org: YANG Catalog
+                date: false
+              target: https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26
 
 --- abstract
 
@@ -74,7 +80,7 @@ At the time of writing (2024), there are at least 59 YANG modules that are augme
 58 IETF-authored modules and 1 BBF-authored module. 14 of these modules have maturity level of 'ratified', 
 17 of them have maturity level of 'adopted', 31 modules have maturity level of 'latest-approved', 
 and 27 of these modules have maturity level of 'initial'.  
-The up-to-date information can be found in the YANG Catalog available at [Catalog][1].
+The up-to-date information can be found in the YANG Catalog {{Catalog}}.
 
 From this set of IETF RFCs and IETF I-Ds (at different level of maturity), we designed a Digital Map 
 Proof of concept (PoC), with the following objectives and functionalities:
