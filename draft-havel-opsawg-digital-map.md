@@ -1025,10 +1025,24 @@ topological features:
 
 # Security Considerations
 
-The Digital Map exposes a lot of key details about the network that may be confidential and might be valuable to an 
-attacker.
+This section uses the template described in Section 3.7 of {{?I-D.ietf-netmod-rfc8407bis}}.
 
-Future revisions will add more details of what information needs to be protected and how it may be protected
+The YANG modules cited in this document define a schema for data
+that is designed to be accessed via network management protocols such
+as NETCONF {{!RFC6241}} or RESTCONF {{!RFC8040}}.  The lowest NETCONF layer
+is the secure transport layer, and the mandatory-to-implement secure
+transport is Secure Shell (SSH)  {{!RFC6242}}.  The lowest RESTCONF layer
+is HTTPS, and the mandatory-to-implement secure transport is TLS
+ {{!RFC8446}}.
+
+The Network Configuration Access Control Model (NACM)  {{!RFC8341]
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
+
+The specifications that define these modules call out both
+sensitive and vulnerable writable and readable data nodes. These
+considerations are not reiterated here.
 
 # IANA Considerations
 
