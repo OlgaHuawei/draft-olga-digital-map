@@ -82,7 +82,7 @@ At the time of writing (2024), there are at least 59 YANG modules that are augme
 and 27 of these modules have maturity level of 'initial'.  
 The up-to-date information can be found in the YANG Catalog {{Catalog}}.
 
-From this set of IETF RFCs and IETF I-Ds (at different level of maturity), we designed a Digital Map 
+From the set of IETF RFCs and I-Ds (at different level of maturity), we designed a Digital Map 
 Proof of concept (PoC), with the following objectives and functionalities:
 
 * Can the central RFC 8345 YANG module be a good basis to model a Digital Map?
@@ -93,18 +93,18 @@ the base model support key requirements that emerge for a specific layer?
 easy to augment the base model to support new technologies?
 - Can the base model be augmented for any new layer and technologies?
 
-This I-D documents an experience in the modeling aspects of the Digital Map, based on a PoC implementation, 
+This memo documents an experience in the modeling aspects of the Digital Map, based on a PoC implementation, 
 basically documenting the effort and the open issues encountered so far.  During the PoC, we also identified a set of 
 requirements and verified the PoC approach by demoing it iteratively.
 
 Practically, we developed a PoC with a real lab, based on multi-vendor devices, with {{!RFC8345}} as the base YANG module.  
-The PoC successfully modelled the following technologies:
+The PoC successfully modelled the following:
 
 -  Layer 2 network topology (used {{!RFC8944}})
 -  Layer 3 network topology (used {{!RFC8346}})
--  OSPF routing (aligned with [I-D.ogondio-opsawg-ospf-topology])
--  IS-IS routing (aligned with [I-D.ogondio-opsawg-isis-topology])
--  BGP routing
+-  OSPF routing topology (aligned with [I-D.ogondio-opsawg-ospf-topology])
+-  IS-IS routing topology (aligned with [I-D.ogondio-opsawg-isis-topology])
+-  BGP routing topology
 -  MPLS LDP
 -  MPLS TE tunnels
 -  SRv6 tunnels
@@ -112,132 +112,137 @@ The PoC successfully modelled the following technologies:
  
 ## Terminology
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", 
-"NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in 
-BCP 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all capitals, as shown here.
+{::boilerplate bcp14-tagged}
 
-* Digital Twin -
-      Virtual instance of a physical system (twin) that is continually
-      updated with the latter's performance, maintenance and health
-      status data throughout the physical system's life cycle (as
-      defined in Section 2.2 of
-      {{?I-D.irtf-nmrg-network-digital-twin-arch}}
+The document uses the following terms
 
-* Topology -
-      Network topology defines how physical or logical nodes, links and
-      interfaces are related and arranges.  Service topology defines how
-      service components (e.g., VPN instances, customer interfaces, and
-      customer links) between customer sites are interrelated and
-      arranged.  There are at least 8 types of topologies: point to
-      point, bus, ring, star, tree, mesh, hybrid and daisy chain.
-      Topologies may be unidirectional or bidirectional (bus, some
-      rings).
+Digital Twin:
+: Virtual instance of a physical system (twin) that is continually
+  updated with the latter's performance, maintenance and health
+ status data throughout the physical system's life cycle (as
+ defined in  {{Section 2.2 of ?I-D.irtf-nmrg-network-digital-twin-arch}}
 
-* Topology layer -
-      Defines a layer in the multilayer topology.  A multilayer topology
-      models relationships between different layers of connectivity,
-      where each layer represents a connectivity aspect of the network
-      and service that needs to be configured, controlled and monitored.
-      The layer can also represent what needs to be managed by a
-      specific user, for example IGP layer can be of interest to the
-      user troubleshooting the routing, while the optical layer may be
-      of interest to the user managing the optical network.  Some
-      topology layers may relate closely to OSI layers, like L1 topology
-      for physical topology, L2 for link topology and L3 for IPv4 and
-      IPv6 topologies.  Some topology layers represent the control
-      aspects of L3, like OSPF, IS-IS and BGP.  The top layer represents
-      the service view of the connectivity, that can differ for
-      different types of services and for different providers/solutions.
+Topology:
+: Network topology defines how physical or logical nodes, links and
+  interfaces are related and arranges.  Service topology defines how
+  service components (e.g., VPN instances, customer interfaces, and
+  customer links) between customer sites are interrelated and
+  arranged.  There are at least 8 types of topologies: point to
+  point, bus, ring, star, tree, mesh, hybrid and daisy chain.
+  Topologies may be unidirectional or bidirectional (bus, some
+  rings).
 
-* Digital Map -
-      Basis for the Digital Twin that provides a virtual instance of the
-      topological information of the network.  It provides the core
-      multi-layer topology model and data for the Digital Twin and
-      connects them to the other Digital Twin models and data.
+Topology layer:
+: Defines a layer in the multilayer topology.  A multilayer topology
+  models relationships between different layers of connectivity,
+  where each layer represents a connectivity aspect of the network
+  and service that needs to be configured, controlled and monitored.
+: The layer can also represent what needs to be managed by a
+  specific user, for example IGP layer can be of interest to the
+  user troubleshooting the routing, while the optical layer may be
+  of interest to the user managing the optical network.
+:  Some topology layers may relate closely to OSI layers, like L1 topology
+   for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
+   IPv6 topologies.
+: Some topology layers represent the control
+   aspects of Layer 3, like OSPF, IS-IS, or BGP.
+:  The top layer represents
+   the service view of the connectivity, that can differ for
+   different types of services and for different providers/solutions.
 
-* Digital Map modelling -
-      The set of principles, guidelines, and conventions to model the
+Digital Map:
+: Basis for the Digital Twin that provides a virtual instance of the
+    topological information of the network.  It provides the core
+    multi-layer topology model and data for the Digital Twin and
+    connects them to the other Digital Twin models and data.
+
+Digital Map modelling:
+: The set of principles, guidelines, and conventions to model the
       Digital Map using the IETF [RFC8345] approach.  They cover the
       network types (layers and sublayers), entity types, entity roles
       (network, node, termination point or link), entity properties and
       relationship types between entities.
 
-* Digital Map model -
-      Defines the core topological entities, their role in the network,
-      core properties and relationships both inside each layer and
-      between the layers.  It is the basic topological model that is
-      linked to other functional parts of the Digital Twin and connects
-      them all: configuration, maintenance, assurance (KPIs, status,
-      health, symptoms), traffic engineering, different behaviors,
-      simulation, emulation, mathematical abstractions, AI algorithms,
-      etc
+Digital Map model:
+: Defines the core topological entities, their role in the network,
+  core properties and relationships both inside each layer and
+  between the layers.
+:  It is the basic topological model that is
+   linked to other functional parts of the Digital Twin and connects
+   them all: configuration, maintenance, assurance (KPIs, status,
+   health, symptoms, etc.), traffic engineering, different behaviors,
+   simulation, emulation, mathematical abstractions, AI algorithms,
+   etc.
 
-* Digital Map data -
-      Consists of instances of network and service topologies at
-      different layers.  This includes instances of networks, nodes,
-      links and termination points, topological relationships between
-      nodes, links and termination points inside a network,
-      relationships between instances belonging to different networks,
-      links to functional data for the instances, including
-      configuration, health, symptoms.  The data can be historical,
-      real-time or future data for what-if scenarios.
+Digital Map data:
+: Consists of instances of network and service topologies at
+   different layers.  This includes instances of networks, nodes,
+   links and termination points, topological relationships between
+   nodes, links and termination points inside a network,
+   relationships between instances belonging to different networks,
+   links to functional data for the instances, including
+   configuration, health, symptoms.  
+ :The data can be historical, real-time, or future data for 'what-if' scenarios.
 
 # Digital Map and Digital Twin Relationship
 
 ## Digital Twin
-The network Digital Twin (referred to simply as Digital Twin) concepts and a reference architecture are proposed in 
-the "Digital Twin Network: Concepts and Reference Architecture" NMRG I-D {{?I-D.irtf-nmrg-network-digital-twin-arch}}.
 
-This document defines the core elements of Digital Twin - Data, Models, Interfaces, and Mapping.  
+The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are proposed in 
+the "Digital Twin Network: Concepts and Reference Architecture" {{?I-D.irtf-nmrg-network-digital-twin-arch}}.
+That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.  
+
 The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate, 
 and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods, 
 and expert knowledge.
 
-Also, this document states that a Digital Twin can be seen as an indispensable part of the overall network system 
+Also, that document states that a Digital Twin can be seen as an indispensable part of the overall network system 
 and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the 
 application of innovative network technologies (e.g., network planning, construction, maintenance and optimization, 
 improving the automation and intelligence level of the network).
 
 ## Digital Map
+
 Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the 
 other Digital Twin models and data.
 
-The Digital Map modelling defines the core topological entities (network, node, link and interface), their role in 
+The Digital Map modelling defines the core topological entities (network, node, link, and interface), their role in 
 the network, core properties, and relationships both inside each layer and between the layers.
 
-The Digital Map model is a basic topological model that is linked to other functional parts of the Digital Twin and 
+The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and 
 connects them all: configuration, maintenance, assurance (KPIs, status, health, symptoms), Traffic Engineering (TE), 
 different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
 The Digital Map data consists of virtual instances of network and service topologies at different layers.  
 The Digital Map provides the access to this data via standard APIs for both read and write operations 
 (write operations for offline simulations), with query capabilities and links to other YANG modules 
-(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Point (SAP) {{?RFC9408}}, 
-Inventory {{?I-D.draft-ietf-ivy-network-inventory-yang}}, and Assets {{?I-D.palmero-opsawg-dmlmo}}) and non-YANG models.
+(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}}, 
+Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and Assets {{?I-D.palmero-opsawg-dmlmo}}) and non-YANG models.
 
 ## Digital Map as a Prerequisite for Digital Twin
-One of the important requirements for the digitalization and Digital Twin is to ease correlating all models and 
+
+One of the important requirements for Digital Twin is to ease correlating all models and 
 data to topological entities at different layers in the layered twin network.  The Digital Map aims to provide a 
 virtual instance of the topological information of the network, based on this Digital Map Model. 
-Building a Digital Map is prerequisite towards the Digital Twin.
+**Building a Digital Map is prerequisite towards the Digital Twin.**
 
-The Digital Map model/data will provide this missing correlation between the topology models/data and all other 
+The Digital Map model/data provide this missing correlation between the topology models/data and all other 
 models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning, 
 simulation ("what if"), emulations, actions, and behaviors.
 
 Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus 
-more on the customer service perspective.  All these views are needed for both inner and outer closed-loops. It is 
-debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some 
-other sources of information.  As an example, the Digital Map should not specifically include all information 
-about the device inventory (product name, vendor, product series, embedded software, and
-hardware/software versions, as specified in Network Inventory (IVY) WG, 
-https://datatracker.ietf.org/doc/charter-ietf-ivy/ ): a pointer from the Digital Map to another inventory system 
-might be sufficient. 
+more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.
 
-Similarly, the Digital Map should not specifically contain incidents, configuration, 
+It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some 
+other sources of information.  As an example, a Digital Map should not specifically include all information 
+about the device inventory (product name, vendor, product series, embedded software, and
+hardware/software versions, as specified in Network Inventory (IVY) WG, for example. A pointer to another inventory system 
+might be sufficient or support of means that ease the mapping between inventory and topology.
+
+Similarly, Digital Map should not specifically contain incidents, configuration, 
 data plane monitoring, or even assurance information, simply to name a few.
 
-The following are some Digital Twin use cases that require Digital Map:
+The following are sample Digital Twin use cases that require Digital Map:
 
 * Generic inventory queries
 + Service placement feasibility checks
@@ -255,7 +260,8 @@ which is a catalyst for autonomous networking.
 
 # The IETF Network Topology Approaches
 
-## IETF Network Topology 
+## IETF Network Topology
+
 {{!RFC8345}} provides a simple generic topological model.  It defines the abstract /generic /base model for network 
 and service topologies. It provides the mechanism to model networks and services as layered topologies with common 
 relationships at the same layer and underlay/overlay relationships between the layers.
@@ -274,7 +280,8 @@ The relationships between the layers are modelled via supporting relationship
 * nodes, links and termination points of network A are supported by nodes, links and termination points of network B.  
 Overlay and underlay nodes, links and termination points must match underlay and overlay networks supporting it
 
-## IETF Network Topology TE 
+## IETF Network Topology TE
+
 {{?RFC8795}} defines a YANG model for representing, retrieving and manipulating TE topologies.  This is a more complex 
 model which augments {{!RFC8345}} with traffic engineering topology information as follows:
 
@@ -294,10 +301,11 @@ relationships are defined outside of the core RFC 8345 entities and relationship
 
 # Digital Map Requirements
 
-// We discussed if requirements should be in a separate document. We would leave them in this document for now, 
+<-- We discussed if requirements should be in a separate document. We would leave them in this document for now, 
 later we can create a separate draft
+-->
 
-The following are the core requirements for the Digital Map (note that some of them are supported by default by {{!RFC8345}}:
+The following are the core requirements for the Digital Map (note that some of them are supported by default by {{!RFC8345}}):
 
 1.   Basic model with network, node, link, interface entity types
 
@@ -388,14 +396,13 @@ The following are the architectural requirements for the Digital Map:
 
 # Digital Map Modelling Experience
 
-## What is not in the basic model
+## What Is Not in The Base Model?
 
+Based on some shared experience, the following are listed as set of candidate extensions to {{!RFC8345}} for Digital Map modelling and APIs:
 
-Based on our PoC and experience, the following are the {{!RFC8345}} extensions needed for Digital Map modelling and APIs:
+*  An alternate approach to model Bidirectional links
 
-*  Bidirectional links
-
-*  Multi-point connectivity
+*  An alternate approach to Multi-point connectivity
 
 *  Links between domains/networks
 
@@ -409,8 +416,7 @@ Based on our PoC and experience, the following are the {{!RFC8345}} extensions n
 
 ### Bidirectional Links
 
-The RFC8345 defines all links as unidirectional, it does not support bidirectional links.  It was done intentionally 
-to keep the model as simple as possible.  The RFC suggests to model the bidirectional connections as pairs of 
+{{!RFC8345}} defines all links as unidirectional and does not directly support bidirectional links. {{Section 4.4.5 of !RFC8345}} states that it was done intentionally to keep the model as simple as possible, and then suggests to model the bidirectional connections as pairs of 
 unidirectional links.
 
 Nevertheless, while simplifying the model itself, we are making data and APIs more complex for the cases where we 
@@ -438,7 +444,7 @@ fully backward compatible, appears simple and sufficient
 * Augment RFC8345 via more sophisticated approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, 
 more complex but improves the integrity of the model, same instance structures produced
 
-* Start working on RFC8345 bis 
+* Consider RFC8345bis 
 
 We suggest to start the work on RFC8345 bis to provide the backward compatible way to support bidirectional 
 links in the core topology model defined in ietf-network-topology. The starting point can be the basic approach from
@@ -488,7 +494,7 @@ fully backward compatible, appears simple and sufficient
 * Augment RFC8345 via more sophisticated approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, 
 more complex but improves the integrity of the model, same instance structures produced 
 
-* Start working on RFC8345 bis that provides backward compatible enhancement 
+* Consider a RFC8345bis that provides backward compatible enhancement 
 (similar to {{?I-D.davis-opsawg-some-refinements-to-rfc8345}} approach without augmentations)
 
 We suggest to start to work on RFC8345 bis to provide the backward compatible way to support multipoint connectivity 
@@ -508,14 +514,14 @@ links via the existing source and destination
    domains or partitioning.  The only way would be to model each domain
    as node and have links between them.
 
-   In our IS-IS PoC (following [I-D.ogondio-opsawg-isis-topology]), We
+   In our IS-IS PoC (following {{?I-D.ogondio-opsawg-isis-topology}}), We
    modelled IS-IS areas as networks and we needed to extend the
    capability to have links between different areas.  We added network
    reference as well to the source / destination of the link.  The
    {{?RFC8795}} also augments links with external-domain info for the case of
    links that connect different domains.
 
-   The IS-IS topology [I-D.ogondio-opsawg-isis-topology] models
+   The IS-IS topology {{?I-D.ogondio-opsawg-isis-topology}} models
    Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas
    as attributes of IS-IS nodes.  The RFC8345 extension can be used to
    model IS-IS areas as networks and IS-IS links between L1-2 nodes as
@@ -551,15 +557,14 @@ The following are the candidate approaches of how we can address this limitation
 
 * Augment RFC8345 by adding some simple solution (e.g. move {{?RFC8795}} approach for multi-domain to RFC8345 digital map)
 
-* Start working on RFC8345 bis 
+* Consider a RFC8345bis 
 
 We suggest to start to work on RFC8345 bis to provide the backward compatible way to support links between networks 
 in the core topology model defined in ietf-network-topology. The starting point can be to evaluate the approach 
 from {{?RFC8795}} that adds the external domain reference to the link via the external network, node and tp reference.
 
 
-
-###   Networks part of other networks
+###   Networks Part of Other Networks
 
    RFC8345 does not model networks being part of other networks,
    therefore cannot model subnetworks and network partitioning.  We
@@ -583,7 +588,7 @@ The following are the candidate approaches of how we can address this limitation
       relationship, semantic is missing.
    * Augment RFC8345 by adding some simple solution to support additional partitioning relationship between
       networks.
-   * Start working on RFC8345 bis 
+   * Consider a RFC8345bis 
 
 We suggest to start to work on RFC8345 bis to provide the backward compatible way to support partitioning of networks 
 in the core network model defined in ietf-network. The solution needs to add a part-of relation between different 
@@ -614,7 +619,7 @@ The following are the candidate approaches of how we can address this limitation
       impact on the topology tree. Nevertheless, it can be an optional approach so would be backward compatible for 
       those augmentations that do not want to use it
 
-   * Start working on RFC8345 bis 
+   * Consider RFC8345 bis 
 
 We suggest to work on RFC8345 bis to provide the simple backward compatible way to support both the current RFC8345 approach 
 of creating multiple instances and the approach of sharing the instances. The solution needs further analysis as it has 
@@ -640,7 +645,7 @@ The following are the candidate approaches to address this limitation:
 
 * Augment RFC8345 by adding some simple solution (e.g. move {{?RFC8795}} approach to RFC8345)
 
-* Start working on RFC8345 bis that provides backward compatible enhancement (e.g. via {{?RFC8795}} basic approach)
+* Consider RFC8345 bis that provides backward compatible enhancement (e.g. via {{?RFC8795}} basic approach)
 
 We suggest to work on RFC8345 bis to provide the backward compatible way to add the missing supporting relationships:
 tp->supporting->node, node->supporting->network. 
@@ -682,7 +687,7 @@ The following are the candidate approaches to address this limitation:
 
 * Augment RFC8345 by adding some simple solution (e.g. move {{?RFC8795}} approach to RFC8345)
 
-* RFC8345 bis 
+* Consider RFC8345bis
 
 We suggest to work on RFC8345 bis to provide the backward compatible way to add the minimum semantics that the 
 community agrees is required for the core topology. We need to further investigate the {{?RFC8795}} approach and 
@@ -741,6 +746,7 @@ but tunnel interface can also be in the routing table.
 
     2. Augment RFC8345 network, node, link and termination point for any
     changes needed from a new digital map module
+
 ~~~~
    module: dm-network-topology
            augment /nw:networks/nw:network:
@@ -785,7 +791,7 @@ The alternative of having the core topology augmentations in either te modules o
 generic enough and is not in the spirit of having the core topology model to model topology in the consistent manner 
 between different technologies and te and non-te topologies.
 
-## How to Augment for New Technologies/Layers
+## How to Augment for New Technologies/Layers?
 
    There are already drafts that support augmentation for specific
    technologies.  These drafts augment network, node, termination point
@@ -821,24 +827,24 @@ between different technologies and te and non-te topologies.
 * new topological relations (e.g. ietf-te-topology)
 * type reuse (e.g. ietf-dots-telemetry, ietf-dc-fabric-types, ietf-dc-fabric-topology)
 
-   // This can be a separate draft.  Guidelines with examples?  Add reference to this draft when submitted
+<--
+This can be a separate draft.  Guidelines with examples?  Add reference to this draft when submitted
+-->
 
 
-## How to connect to the external world
+## How To Connect Digital Maps to Other Components?
 
 Digital Map must be pluggable:
 * We must connect to other YANG modules for inventory, configuration, assurance, etc 
 * Not everything can be in YANG, we need to connect digital map YANG model with other modelling mechanisms, 
 both southbound, northbound and internally
 
-### How to connect to other YANG modules
-
-There are already some modules that connect network topology to other YANG modules. 
+Also, there are already some modules that connect network topology to other YANG modules. 
 We will investigate different approaches and propose the best practices. 
 The following are some existing approaches proposed in IETF:
  
 * How to connect network topology to interface {{?I-D.ietf-tp-interface-reference-topology}}
-* How to connect network topology to hardware inventory {{?I-D.draft-ietf-ccamp-network-inventory-yang}}
+* How to connect network topology to hardware inventory {{?I-D.ietf-ccamp-network-inventory-yang}}
 * How to connect network topology to ivy inventory {{?I-D.ietf-network-inventory-topology}}
 * How to connect network topology to performance monitoring {{?RFC9375}}
 
