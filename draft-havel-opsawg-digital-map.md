@@ -359,7 +359,7 @@ requirements. The requirements [1-7] are automatically fulfilled with RFC8345 an
 The requirements [6-7] for semantics for layered topology and relationships are partially fulfilled, there may be 
 need for some additional semantics.  Other core requirements [8-10] are not supported by RFC8345:
 
-*  Extensible with meta data
+*  Extensible with metadata
 
 *  Pluggable to other YANG modules and non-YANG data
 
@@ -372,17 +372,16 @@ and 'ietf-network- topology'. For others, we need to add some mechanisms to link
 
 The following are design requirements for modelling the Digital Map:
 
-1.  Digital Map should contain only topological information.  Digital Map should not contain all data required for 
-all the management and use cases, but should have pointers to other functional Digital Twin data and models.
+1.  Digital Map should contain only topological information.  Digital Map is not required to contain all data required for 
+all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital Twin data and models to ease navigating in the overall system. For example:
 
-2.  Digital Map entities should contain only properties used to identify topological entities at different layers, 
-identify their roles and topological relationships between them
+  * ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
+  * Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
+
+2.  Digital Map entities should mainly contain properties used to identify topological entities at different layers, 
+identify their roles, and topological relationships between them.
 
 3.  Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay)
-
-4.  ACLs and Route Policies will be outside of the Digital Map, they would be linked to Digital Map
-
-5.  Dynamic paths may either be outside of the Digital Map, part of traffic engineering data/models
 
 6.  Provide capability for conditional retrieval of parts of Digital Map
 
@@ -391,9 +390,9 @@ to the Digital Map.
 
 The following are the architectural requirements for the Digital Map:
 
-1.  Scale, performance, integration
+1.  Scale, performance, ease of integration
 
-2.  Initial discovery and dynamic (change only) synch
+2.  Initial discovery and dynamic (change only) synch with the physical network
 
 # Digital Map Modelling Experience
 
@@ -401,9 +400,9 @@ The following are the architectural requirements for the Digital Map:
 
 Based on some shared experience, the following are listed as set of candidate extensions to {{!RFC8345}} for Digital Map modelling and APIs:
 
-*  An alternate approach to model Bidirectional links
+*  An alternate approach to model bidirectional links
 
-*  An alternate approach to Multi-point connectivity
+*  An alternate approach to multi-point connectivity
 
 *  Links between domains/networks
 
@@ -445,9 +444,9 @@ fully backward compatible, appears simple and sufficient
 * Augment RFC8345 via more sophisticated approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, 
 more complex but improves the integrity of the model, same instance structures produced
 
-* Consider RFC8345bis 
+* Consider RFC8345bis
 
-We suggest to start the work on RFC8345 bis to provide the backward compatible way to support bidirectional 
+We suggest to start the work on RFC8345bis to provide the backward compatible way to support bidirectional 
 links in the core topology model defined in ietf-network-topology. The starting point can be the basic approach from
 {{?I-D.davis-opsawg-some-refinements-to-rfc8345}} that adds the following:
 
