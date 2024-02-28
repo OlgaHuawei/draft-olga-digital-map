@@ -228,7 +228,7 @@ virtual instance of the topological information of the network, based on this Di
 
 The Digital Map model/data provide this missing correlation between the topology models/data and all other 
 models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning, 
-simulation ("what if"), emulations, actions, and behaviors.
+simulation ("what-if"), emulations, actions, and behaviors.
 
 Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus 
 more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.
@@ -273,7 +273,7 @@ The relationships inside the layer are containment/aggregation (a network has no
 termination points), source (a link has one source termination point) and destination (a link has one destination 
 termination point).
 
-The relationships between the layers are modelled via supporting relationship
+The relationships between the layers are modelled via supporting relationship:
 
 * network A is supported by network B - this may model overlay/underlay relationship
 
@@ -282,17 +282,17 @@ Overlay and underlay nodes, links and termination points must match underlay and
 
 ## IETF Network Topology TE
 
-{{?RFC8795}} defines a YANG model for representing, retrieving and manipulating TE topologies.  This is a more complex 
-model which augments {{!RFC8345}} with traffic engineering topology information as follows:
+{{?RFC8795}} defines a YANG model for representing, retrieving and manipulating traffic engineering (TE) topologies.  This is a more complex 
+model which augments {{!RFC8345}} with TE topology information as follows:
 
-* TE topology, node, link and termination point are defined using the core RFC8345 concepts
+* TE nodes, links, and termination points are defined using the core RFC8345 concepts
 
-    - TE topology augments network with topology identifier (provider, client and topology id), as well as other 'te' 
+    - TE topology augments 'ietf-network' with topology identifier (provider, client and topology id), as well as other 'te' 
   information
 
-    - TE node augments node with 'te-node-id' and other 'te' information
+    - TE node augments 'node' with 'te-node-id' and other 'te' information
     
-    - TE link augments link with te information
+    - TE link augments 'link' with 'te' information
     
     - TE termination point augments termination point with 'te-tp-id' and te information
 
@@ -307,18 +307,18 @@ later we can create a separate draft
 
 The following are the core requirements for the Digital Map (note that some of them are supported by default by {{!RFC8345}}):
 
-1.   Basic model with network, node, link, interface entity types
+1.   Basic model with network, node, link, and interface entity types
 
-2.   Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent
+2.   Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent views
 
-3.   Open and programmable Digital Map. This includes "Read" to understand the view of the network.  It also includes 
-"Write", not for the ability to directly change the Digital Map Data (ex: changing the network or service parameters), 
-but for offline simulations, also known as what-if scenarios.  Doing what-if analysis requires the ability to take 
-snapshots and to switch easily between them.  Because we have to distinguish between a change on the Digital Map 
+3.   Open and programmable Digital Map: This includes "read" operations to retrieve the view of the network. It also includes 
+"write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters), 
+but for offline simulations, also known as what-if scenarios.  Running a "what-if" analysis requires the ability to take 
+snapshots and to switch easily between them. Note that there is a need to distinguish between a change on the Digital Map 
 for future simulation and a change that reflects the current reality of the network.
 
-4.   Standard based Digital Map Models and APIs, for multi-vendor support.  Digital Map must provide the standard APIs 
-that provide for Read / Write and queries.  This API must also provide the capability to retrieve the links to external data / models.
+4.   Standard based Digital Map Models and APIs, for multi-vendor support:  Digital Map must provide the standard APIs 
+that provide for read/write and queries.  These APIs must also provide the capability to retrieve the links to external data/models.
 
 5.   Digital Map models and APIs must be common over different network domains (campus, core, data center, etc.)
 
@@ -326,15 +326,16 @@ that provide for Read / Write and queries.  This API must also provide the capab
 
 7.   Digital Map must provide inter-layer and between layer relationships
 
-8.   Digital Map must be extensible with meta data
+8.   Digital Map must be extensible with metadata
 
-9.   Digital Map must be pluggable a) We must connect to other YANG modules for inventory, configuration, assurance, etc 
-b) Not everything can be in YANG, we need to connect digital map YANG model with other modelling mechanisms, 
-both southbound, northbound and internally
+9.   Digital Map must be pluggable:
+    
+     * Must connect to other YANG modules for inventory, configuration, assurance, etc. 
+     * Given that no all involved components can be available using YANG, there is a need to connect digital map YANG model with other modelling mechanisms.
 
-10.  Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and 
+11.  Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and 
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct 
-relationship between the termination points or nodes
+relationship between the termination points or nodes.
 
 ## Why RFC8345 is a Good Approach for Digital Map Modelling
 
