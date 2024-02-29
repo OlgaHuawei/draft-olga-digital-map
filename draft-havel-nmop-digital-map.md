@@ -106,7 +106,7 @@ The PoC successfully modelled the following:
 -  IS-IS routing topology (aligned with [I-D.ogondio-opsawg-isis-topology])
 -  BGP routing topology
 -  MPLS LDP
--  MPLS TE tunnels
+-  MPLS Traffic Engineering (TE) tunnels
 -  SRv6 tunnels
 -  L3VPN service
  
@@ -287,14 +287,14 @@ model which augments {{!RFC8345}} with TE topology information as follows:
 
 * TE nodes, links, and termination points are defined using the core RFC8345 concepts
 
-    - TE topology augments 'ietf-network' with topology identifier (provider, client and topology id), as well as other 'te' 
+    - TE topology augments 'ietf-network' with topology identifier (provider, client and topology id), as well as other 'TE' 
   information
 
-    - TE node augments 'node' with 'te-node-id' and other 'te' information
+    - TE node augments 'node' with 'te-node-id' and other 'TE' information
     
-    - TE link augments 'link' with 'te' information
+    - TE link augments 'link' with 'TE' information
     
-    - TE termination point augments termination point with 'te-tp-id' and te information
+    - TE termination point augments termination point with 'te-tp-id' and 'TE' information
 
 * Tunnel, tunnel termination point, local link connectivity, node connectivity matrix, and some supporting and underlay 
 relationships are defined outside of the core RFC 8345 entities and relationships
@@ -307,11 +307,12 @@ later we can create a separate draft
 
 The following are the core requirements for the Digital Map (note that some of them are supported by default by {{!RFC8345}}):
 
-1.   Basic model with network, node, link, and interface entity types
+1.   Basic model with network, node, link, and interface entity types.
 
-2.   Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent views
+2.   Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent views.
 
-3.   Open and programmable Digital Map: This includes "read" operations to retrieve the view of the network. It also includes 
+3.   Open and programmable Digital Map: This includes "read" operations to retrieve the view of the network, typically as NorthBound 
+Interface (NBI) of Software Defined Networking (SDN) controllers or orchestrators. It also includes 
 "write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters), 
 but for offline simulations, also known as what-if scenarios.  Running a "what-if" analysis requires the ability to take 
 snapshots and to switch easily between them. Note that there is a need to distinguish between a change on the Digital Map 
@@ -322,11 +323,11 @@ that provide for read/write and queries.  These APIs must also provide the capab
 
 5.   Digital Map models and APIs must be common over different network domains (campus, core, data center, etc.)
 
-6.   Digital Map must provide semantics for layered network topologies and for linking external models/data
+6.   Digital Map must provide semantics for layered network topologies and for linking external models/data.
 
-7.   Digital Map must provide inter-layer and between layer relationships
+7.   Digital Map must provide inter-layer and between layer relationships.
 
-8.   Digital Map must be extensible with metadata
+8.   Digital Map must be extensible with metadata.
 
 9.   Digital Map must be pluggable:
     
@@ -373,7 +374,8 @@ and 'ietf-network- topology'. For others, we need to add some mechanisms to link
 The following are design requirements for modelling the Digital Map:
 
 1.  Digital Map should contain only topological information.  Digital Map is not required to contain all data required for 
-all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital Twin data and models to ease navigating in the overall system. For example:
+all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital 
+Twin data and models to ease navigating in the overall system. For example:
 
   * ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
   * Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
@@ -381,11 +383,11 @@ all the management and use cases. However, it should be designed to support adeq
 2.  Digital Map entities should mainly contain properties used to identify topological entities at different layers, 
 identify their roles, and topological relationships between them.
 
-3.  Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay)
+3.  Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay).
 
-6.  Provide capability for conditional retrieval of parts of Digital Map
+4.  Provide capability for conditional retrieval of parts of Digital Map.
 
-7.  Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external 
+5.  Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external 
 to the Digital Map.
 
 The following are the architectural requirements for the Digital Map:
@@ -416,18 +418,24 @@ Based on some shared experience, the following are listed as set of candidate ex
 
 ### Bidirectional Links
 
-{{!RFC8345}} defines all links as unidirectional and does not directly support bidirectional links. {{Section 4.4.5 of !RFC8345}} states that it was done intentionally to keep the model as simple as possible, and then suggests to model the bidirectional connections as pairs of 
+One of the core characteristics of any network topology is the link
+directionality. While data flows are unidirectional, the
+bidirectional links are also common in networking.  Examples are
+Ethernet cables, bidirectional SONET rings, socket connection to the
+server, etc.  We also encounter requirements for simplified service
+layer topology, where we want to model link as bidirectional to be
+supported by unidirectional links at the lower layer.
+
+{{!RFC8345}} defines all links as unidirectional, it does not support
+bidirectional links. It was done intentionally to keep the model as
+simple as possible. While simplifying the model itself, the data
+and APIs are more complex for the cases with bidirectional
+links. In such cases, there is no need to increase the amount of instances / data
+transferred via API, stored in the database, or managed/monitored by modeling
 unidirectional links.
 
-Nevertheless, while simplifying the model itself, we are making data and APIs more complex for the cases where we 
-have bidirectional links.  And we are increasing the amount of instances / data transferred via API, stored in the 
-database, or managed/monitored.
-
-One of the core characteristics of any network topology is the link directionality.  While data flows are 
-unidirectional, the bidirectional links are also common in networking.  Examples are Ethernet cables, 
-bidirectional SONET rings, socket connection to the server, etc.  We also encounter requirements for simplified 
-service layer topology, where we want to model link as bidirectional to be supported by unidirectional links at the 
-lower layer.
+This document suggests to model the bidirectional
+connections as pairs of unidirectional links.
 
 {{?I-D.davis-opsawg-some-refinements-to-rfc8345}} further elaborates on the need for bidirectional links in the 
 network topologies and in the Digital Map.  It also proposes how RFC8345 can be augmented to support missing components.
@@ -514,7 +522,7 @@ links via the existing source and destination
    domains or partitioning.  The only way would be to model each domain
    as node and have links between them.
 
-   In our IS-IS PoC (following {{?I-D.ogondio-opsawg-isis-topology}}), We
+   In our IS-IS PoC (following {{?I-D.ogondio-opsawg-isis-topology}}), we
    modelled IS-IS areas as networks and we needed to extend the
    capability to have links between different areas.  We added network
    reference as well to the source / destination of the link.  The
@@ -579,12 +587,12 @@ The following are the candidate approaches of how we can address this limitation
 
    *  Leave it as it is in RFC8345, don't model AS and IS-IS/OSPF domain directly, they would be
       modelled via the underlying IP network and IS-IS/OSPF enabled
-      routers.  This could be achieved via supporting relationship to L3
+      routers. This could be achieved via supporting relationship to L3
       network and L3 nodes
    * Leave it as it is in RFC8345, leave to different augmentations to solve the problem their own way 
    * Leave it as it is in RFC8345, model AS, IGP domains and areas as networks and use supporting
       relationship to model the network topology design, with only areas
-      having nodes.  This does not describe the correct nature of the
+      having nodes. This does not describe the correct nature of the
       relationship, semantic is missing.
    * Augment RFC8345 by adding some simple solution to support additional partitioning relationship between
       networks.
@@ -598,12 +606,12 @@ networks, where one network (e.g. OSPF Domain) can contain multiple networks (e.
 ###   Nodes, tps and links in multiple networks
 
    RFC8345 does not allow nodes and TPs to belong to multiple areas
-   without splitting them into separate entities with separate keys.  In
-   OSPF case we have nodes that can belong to different areas, but
-   interfaces can only belong to one area.  In the case of IS-IS,
+   without splitting them into separate entities with separate keys. In
+   OSPF case, we have nodes that can belong to different areas, but
+   interfaces can only belong to one area. In the case of IS-IS,
    although all tutorial are stating that nodes can belong to one area
-   only, the ietf, openconfig and vendor yang models and CLI allow IS-IS
-   processes with all its interfaces to belong to multiple areas.  
+   only, the IETF, openconfig and vendor yang models and CLI allow IS-IS
+   processes with all its interfaces to belong to multiple areas.
 
 The following are the candidate approaches of how we can address this limitation:
 
@@ -672,8 +680,8 @@ tp->supporting->node, node->supporting->network.
       we may need some additional information in the model.  For further
       study.
 
-   *  Tunnels and paths.  We modelled tunnels ad paths via {{!RFC8345}} but
-      we lost some semantics that is in RFC8795.
+   *  Tunnels and paths.  We modelled tunnels and paths via {{!RFC8345}} but
+      we lost some semantics that is in {{!RFC8795}} .
 
    *  Supporting or underlay.  We modelled all underlay relationships
       via supporting, further analysis is needed to determine pros and
@@ -736,7 +744,9 @@ but tunnel interface can also be in the routing table.
    * 
      Further analysis is needed.
 
-##  How to Augment for Generic Digital Map Extensions
+#  Digital Map Modeling Guidelines
+
+##  Guidelines for Generic Digital Map Extensions
 
    Generic Digital Map extensions are the RFC8345 extensions required
    for all technologies and layers in the Digital Map. We already discussed some options for individual limitations in
@@ -787,11 +797,11 @@ layering and add new properties/attributes and references to other modules
 Therefore, we suggest to work on RFC8345 bis to provide the backward compatible way to address all 
 identified limitations. 
 
-The alternative of having the core topology augmentations in either te modules or technology specific modules is not 
+The alternative of having the core topology augmentations in either TE modules or technology specific modules is not 
 generic enough and is not in the spirit of having the core topology model to model topology in the consistent manner 
-between different technologies and te and non-te topologies.
+between different technologies and TE and non-TE topologies.
 
-## How to Augment for New Technologies/Layers?
+## Guidelines for New Technologies/Layers Extensions
 
    There are already drafts that support augmentation for specific
    technologies.  These drafts augment network, node, termination point
@@ -806,7 +816,7 @@ between different technologies and te and non-te topologies.
                                    ....
                    augment /nw:networks/nw:network/nw:node:
                            .... adding list of tps of other type
-                                    (e.g. tunnel TPs in te draft)
+                                    (e.g. tunnel TPs in TE draft)
                            ... adding new supporting relationship
                                     supporting-tunnel-termination-point
                                     (te draft)
@@ -816,7 +826,7 @@ between different technologies and te and non-te topologies.
                                                  nt:termination-point:
                                    ....
 ~~~~
-   There is need to agree some guidelines for augmenting IETF network
+   There is a need to agree some guidelines for augmenting IETF network
    topology, so that additional topological information is not added in
    the custom way.  There is also need to categorize the current augmentations and the impact of RFC 8345 bis 
    based on what has been added for different technologies:
@@ -832,9 +842,10 @@ This can be a separate draft.  Guidelines with examples?  Add reference to this 
 -->
 
 
-## How To Connect Digital Maps to Other Components?
+## Guidelines for Digital Maps Connectiont to Other Components
 
 Digital Map must be pluggable:
+  
 * We must connect to other YANG modules for inventory, configuration, assurance, etc 
 * Not everything can be in YANG, we need to connect digital map YANG model with other modelling mechanisms, 
 both southbound, northbound and internally
