@@ -1,7 +1,7 @@
 ---
 title: "Modeling the Digital Map based on RFC 8345: Sharing Experience and Perspectives"
 abbrev: Digital Map Modelling
-docname: draft-havel-opsawg-digital-map-02
+docname: draft-havel-nmop-digital-map-00
 category: info
 
 stand_alone: true

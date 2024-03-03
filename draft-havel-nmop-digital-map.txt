@@ -17,7 +17,7 @@ Expires: 4 September 2024                                  O. G. D. Dios
 
    Modeling the Digital Map based on RFC 8345: Sharing Experience and
                               Perspectives
-                   draft-havel-opsawg-digital-map-02
+                   draft-havel-nmop-digital-map-00
 
 Abstract
 
