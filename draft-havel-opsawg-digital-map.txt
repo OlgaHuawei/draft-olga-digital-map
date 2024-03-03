@@ -5,14 +5,14 @@
 OPSAWG                                                          O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 1 September 2024                                  O. G. D. Dios
+Expires: 4 September 2024                                  O. G. D. Dios
                                                               Telefonica
                                                             A. Elhassany
                                                                  T. Graf
                                                                 Swisscom
                                                             M. Boucadair
                                                                   Orange
-                                                        29 February 2024
+                                                            3 March 2024
 
 
    Modeling the Digital Map based on RFC 8345: Sharing Experience and
@@ -53,12 +53,12 @@ Status of This Memo
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 1]
+Havel, et al.           Expires 4 September 2024                [Page 1]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
-   This Internet-Draft will expire on 1 September 2024.
+   This Internet-Draft will expire on 4 September 2024.
 
 Copyright Notice
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 2]
+Havel, et al.           Expires 4 September 2024                [Page 2]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
      6.4.  Digital Map APIs  . . . . . . . . . . . . . . . . . . . .  24
@@ -165,9 +165,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 3]
+Havel, et al.           Expires 4 September 2024                [Page 3]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  Modelling multiple underlay/overlay layers from Layer 2 to Layer 3
@@ -221,9 +221,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 4]
+Havel, et al.           Expires 4 September 2024                [Page 4]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
       continually updated with the latter's performance, maintenance and
@@ -277,9 +277,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 5]
+Havel, et al.           Expires 4 September 2024                [Page 5]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    Digital Map model:  Defines the core topological entities, their role
@@ -333,9 +333,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 6]
+Havel, et al.           Expires 4 September 2024                [Page 6]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
 2.2.  Digital Map
@@ -389,9 +389,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 7]
+Havel, et al.           Expires 4 September 2024                [Page 7]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    It is debatable what is part of the Digital Map itself versus what
@@ -445,9 +445,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 8]
+Havel, et al.           Expires 4 September 2024                [Page 8]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
 3.1.  IETF Network Topology
@@ -501,9 +501,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024                [Page 9]
+Havel, et al.           Expires 4 September 2024                [Page 9]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
       -  TE termination point augments termination point with 'te-tp-id'
@@ -557,9 +557,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 10]
+Havel, et al.           Expires 4 September 2024               [Page 10]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    7.   Digital Map must provide inter-layer and between layer
@@ -613,9 +613,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 11]
+Havel, et al.           Expires 4 September 2024               [Page 11]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  Pluggable to other YANG modules and non-YANG data
@@ -669,9 +669,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 12]
+Havel, et al.           Expires 4 September 2024               [Page 12]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
 5.  Digital Map Modelling Experience
@@ -725,9 +725,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 13]
+Havel, et al.           Expires 4 September 2024               [Page 13]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    The following are the candidate approaches of how we can address this
@@ -781,9 +781,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 14]
+Havel, et al.           Expires 4 September 2024               [Page 14]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    One of the core characteristics of any network topology is its type
@@ -837,9 +837,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 15]
+Havel, et al.           Expires 4 September 2024               [Page 15]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    [I-D.davis-opsawg-some-refinements-to-rfc8345] that adds the
@@ -893,9 +893,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 16]
+Havel, et al.           Expires 4 September 2024               [Page 16]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    The following are the candidate approaches of how we can address this
@@ -949,9 +949,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 17]
+Havel, et al.           Expires 4 September 2024               [Page 17]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  Augment RFC8345 by adding some simple solution to support
@@ -1005,9 +1005,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 18]
+Havel, et al.           Expires 4 September 2024               [Page 18]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
 5.1.6.  Missing Supporting Relationships
@@ -1061,9 +1061,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 19]
+Havel, et al.           Expires 4 September 2024               [Page 19]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
       in the case that the same technology is used at different layers,
@@ -1117,9 +1117,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 20]
+Havel, et al.           Expires 4 September 2024               [Page 20]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
       The decision if we need separate network instances for L2 and L3
@@ -1173,9 +1173,9 @@ changes needed from a new digital map module
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 21]
+Havel, et al.           Expires 4 September 2024               [Page 21]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    module: dm-network-topology
@@ -1229,9 +1229,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 22]
+Havel, et al.           Expires 4 September 2024               [Page 22]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    The alternative of having the core topology augmentations in either
@@ -1285,9 +1285,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 23]
+Havel, et al.           Expires 4 September 2024               [Page 23]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    <-- This can be a separate draft.  Guidelines with examples?  Add
@@ -1310,13 +1310,13 @@ Internet-Draft            Digital Map Modelling            February 2024
    approaches proposed in IETF:
 
    *  How to connect network topology to interface
-      [I-D.ietf-tp-interface-reference-topology]
+      [I-D.draft-ietf-ccamp-if-ref-topo-yang]
 
    *  How to connect network topology to hardware inventory
       [I-D.ietf-ccamp-network-inventory-yang]
 
    *  How to connect network topology to ivy inventory
-      [I-D.ietf-network-inventory-topology]
+      [I-D.draft-wzwb-ivy-network-inventory-topology]
 
    *  How to connect network topology to performance monitoring
       [RFC9375]
@@ -1341,9 +1341,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 24]
+Havel, et al.           Expires 4 September 2024               [Page 24]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  [RFC8345] Augmentations for a)Layers/sublayers b)Entities
@@ -1397,9 +1397,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 25]
+Havel, et al.           Expires 4 September 2024               [Page 25]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  Network architecture documents
@@ -1453,9 +1453,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 26]
+Havel, et al.           Expires 4 September 2024               [Page 26]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  Network Inventory Model
@@ -1509,9 +1509,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 27]
+Havel, et al.           Expires 4 September 2024               [Page 27]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    The IVY charter also says that, "The Working Group will consider
@@ -1565,9 +1565,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 28]
+Havel, et al.           Expires 4 September 2024               [Page 28]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    *  additional semantics required for core topologies
@@ -1621,9 +1621,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 29]
+Havel, et al.           Expires 4 September 2024               [Page 29]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
@@ -1677,9 +1677,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 30]
+Havel, et al.           Expires 4 September 2024               [Page 30]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    [I-D.boro-opsawg-teas-attachment-circuit]
@@ -1696,6 +1696,14 @@ Internet-Draft            Digital Map Modelling            February 2024
               Draft, draft-davis-opsawg-some-refinements-to-rfc8345-01,
               10 January 2024, <https://datatracker.ietf.org/doc/html/
               draft-davis-opsawg-some-refinements-to-rfc8345-01>.
+
+   [I-D.draft-ietf-ccamp-if-ref-topo-yang]
+              Ahlberg, J., Mansfield, S., Ye, M., Busi, I., Li, X., and
+              D. Spreafico, "A YANG Data Model for Interface Reference
+              Topology", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-if-ref-topo-yang-01, 18 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              if-ref-topo-yang-01>.
 
    [I-D.draft-ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1720,6 +1728,16 @@ Internet-Draft            Digital Map Modelling            February 2024
               <https://datatracker.ietf.org/doc/html/draft-feng-opsawg-
               incident-management-04>.
 
+
+
+
+
+
+Havel, et al.           Expires 4 September 2024               [Page 31]
+
+Internet-Draft            Digital Map Modelling               March 2024
+
+
    [I-D.ietf-ccamp-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Hardware
@@ -1727,16 +1745,6 @@ Internet-Draft            Digital Map Modelling            February 2024
               ccamp-network-inventory-yang-02, 9 July 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
               network-inventory-yang-02>.
-
-
-
-
-
-
-Havel, et al.           Expires 1 September 2024               [Page 31]
-
-Internet-Draft            Digital Map Modelling            February 2024
-
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1754,18 +1762,12 @@ Internet-Draft            Digital Map Modelling            February 2024
               <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
               rfc8407bis-09>.
 
-   [I-D.ietf-network-inventory-topology]
-              "*** BROKEN REFERENCE ***".
-
    [I-D.ietf-teas-rfc3272bis]
               Farrel, A., "Overview and Principles of Internet Traffic
               Engineering", Work in Progress, Internet-Draft, draft-
               ietf-teas-rfc3272bis-27, 12 August 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
               rfc3272bis-27>.
-
-   [I-D.ietf-tp-interface-reference-topology]
-              "*** BROKEN REFERENCE ***".
 
    [I-D.irtf-nmrg-network-digital-twin-arch]
               Zhou, C., Yang, H., Duan, X., Lopez, D., Pastor, A., Wu,
@@ -1787,11 +1789,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-
-
-Havel, et al.           Expires 1 September 2024               [Page 32]
+Havel, et al.           Expires 4 September 2024               [Page 32]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    [I-D.ogondio-opsawg-ospf-topology]
@@ -1845,9 +1845,9 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 33]
+Havel, et al.           Expires 4 September 2024               [Page 33]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    [RFC9375]  Wu, B., Ed., Wu, Q., Ed., Boucadair, M., Ed., Gonzalez de
@@ -1901,9 +1901,9 @@ Authors' Addresses
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 34]
+Havel, et al.           Expires 4 September 2024               [Page 34]
 
-Internet-Draft            Digital Map Modelling            February 2024
+Internet-Draft            Digital Map Modelling               March 2024
 
 
    Ahmed Elhassany
@@ -1957,4 +1957,4 @@ Internet-Draft            Digital Map Modelling            February 2024
 
 
 
-Havel, et al.           Expires 1 September 2024               [Page 35]
+Havel, et al.           Expires 4 September 2024               [Page 35]

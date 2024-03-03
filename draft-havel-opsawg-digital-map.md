@@ -854,9 +854,9 @@ Also, there are already some modules that connect network topology to other YANG
 We will investigate different approaches and propose the best practices. 
 The following are some existing approaches proposed in IETF:
  
-* How to connect network topology to interface {{?I-D.ietf-tp-interface-reference-topology}}
+* How to connect network topology to interface {{?I-D.draft-ietf-ccamp-if-ref-topo-yang}}
 * How to connect network topology to hardware inventory {{?I-D.ietf-ccamp-network-inventory-yang}}
-* How to connect network topology to ivy inventory {{?I-D.ietf-network-inventory-topology}}
+* How to connect network topology to ivy inventory {{?I-D.draft-wzwb-ivy-network-inventory-topology}}
 * How to connect network topology to performance monitoring {{?RFC9375}}
 
 ### How to connect YANG models with other modelling mechanisms
