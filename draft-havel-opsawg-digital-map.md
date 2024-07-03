@@ -33,10 +33,7 @@ author:
     fullname: Thomas Graf
     org: Swisscom
     email: thomas.graf@swisscom.com
-  -
-    fullname: Mohamed Boucadair
-    org: Orange
-    email: mohamed.boucadair@orange.com
+
 
 contributor:
   -
@@ -1077,4 +1074,4 @@ This document has no actions for IANA.
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to xx for their reviews and comments.
+Mohamed Boucadair contributed to early versions of this document.
