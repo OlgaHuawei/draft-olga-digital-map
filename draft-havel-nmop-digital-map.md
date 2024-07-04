@@ -22,7 +22,7 @@ author:
     org: Huawei
     email: benoit.claise@huawei.com
   -
-    fullname: Oscar González de Dios
+    fullname: Oscar Gonzalez de Dios
     org: Telefonica
     email: oscar.gonzalezdedios@telefonica.com
   -
@@ -33,10 +33,6 @@ author:
     fullname: Thomas Graf
     org: Swisscom
     email: thomas.graf@swisscom.com
-  -
-    fullname: Mohamed Boucadair
-    org: Orange
-    email: mohamed.boucadair@orange.com
 
 contributor:
   -
@@ -57,12 +53,10 @@ informative:
 
 --- abstract
 
-This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and 
-some of its augmentations. First, the concept of Digital Map is defined and its connection to the Digital Twin is 
-explained. Next to Digital Map requirements and use cases, the document identifies a set of open issues encountered 
-during the modelling phases, the missing features in RFC 8345, and some perspectives on how to address them.
+This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and some of its augmentations. The document identifies a set of open issues encountered during the modelling phases, the missing features in RFC 8345, and some perspectives on how to address them.
+For definition of Digital Map concepts, requirements and use cases please refer to the "Digital Map: Concept, Requirements, and Use Cases" draft-havel-nmop-digital-map-concept.
 
-Discussion Venues
+Discussion Venues 
 
    This note is to be removed before publishing as an RFC.
 
@@ -114,149 +108,15 @@ The PoC successfully modelled the following:
 
 {::boilerplate bcp14-tagged}
 
-The document uses the following terms
+Please refer to the "Digital Map: Concept, Requirements, and Use Cases" [I-D.havel-nmop-digital-map-concept] for the definition of the following terms used in this document:
+* Digital Twin
++ Topology
++ Topology layer
++ Digital Map
++ Digital Map modelling
++ Digital Map model
++ Digital Map data:
 
-Digital Twin:
-: Virtual instance of a physical system (twin) that is continually
-  updated with the latter's performance, maintenance and health
- status data throughout the physical system's life cycle (as
- defined in  {{Section 2.2 of ?I-D.irtf-nmrg-network-digital-twin-arch}}
-
-Topology:
-: Network topology defines how physical or logical nodes, links and
-  interfaces are related and arranges.  Service topology defines how
-  service components (e.g., VPN instances, customer interfaces, and
-  customer links) between customer sites are interrelated and
-  arranged.  There are at least 8 types of topologies: point to
-  point, bus, ring, star, tree, mesh, hybrid and daisy chain.
-  Topologies may be unidirectional or bidirectional (bus, some
-  rings).
-
-Topology layer:
-: Defines a layer in the multilayer topology.  A multilayer topology
-  models relationships between different layers of connectivity,
-  where each layer represents a connectivity aspect of the network
-  and service that needs to be configured, controlled and monitored.
-: The layer can also represent what needs to be managed by a
-  specific user, for example IGP layer can be of interest to the
-  user troubleshooting the routing, while the optical layer may be
-  of interest to the user managing the optical network.
-:  Some topology layers may relate closely to OSI layers, like L1 topology
-   for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
-   IPv6 topologies.
-: Some topology layers represent the control
-   aspects of Layer 3, like OSPF, IS-IS, or BGP.
-:  The top layer represents
-   the service view of the connectivity, that can differ for
-   different types of services and for different providers/solutions.
-
-Digital Map:
-: Basis for the Digital Twin that provides a virtual instance of the
-    topological information of the network.  It provides the core
-    multi-layer topology model and data for the Digital Twin and
-    connects them to the other Digital Twin models and data.
-
-Digital Map modelling:
-: The set of principles, guidelines, and conventions to model the
-      Digital Map using the IETF [RFC8345] approach.  They cover the
-      network types (layers and sublayers), entity types, entity roles
-      (network, node, termination point or link), entity properties and
-      relationship types between entities.
-
-Digital Map model:
-: Defines the core topological entities, their role in the network,
-  core properties and relationships both inside each layer and
-  between the layers.
-:  It is the basic topological model that is
-   linked to other functional parts of the Digital Twin and connects
-   them all: configuration, maintenance, assurance (KPIs, status,
-   health, symptoms, etc.), traffic engineering, different behaviors,
-   simulation, emulation, mathematical abstractions, AI algorithms,
-   etc.
-
-Digital Map data:
-: Consists of instances of network and service topologies at
-   different layers.  This includes instances of networks, nodes,
-   links and termination points, topological relationships between
-   nodes, links and termination points inside a network,
-   relationships between instances belonging to different networks,
-   links to functional data for the instances, including
-   configuration, health, symptoms.  
- :The data can be historical, real-time, or future data for 'what-if' scenarios.
-
-# Digital Map and Digital Twin Relationship
-
-## Digital Twin
-
-The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are proposed in 
-the "Digital Twin Network: Concepts and Reference Architecture" {{?I-D.irtf-nmrg-network-digital-twin-arch}}.
-That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.  
-
-The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate, 
-and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods, 
-and expert knowledge.
-
-Also, that document states that a Digital Twin can be seen as an indispensable part of the overall network system 
-and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the 
-application of innovative network technologies (e.g., network planning, construction, maintenance and optimization, 
-improving the automation and intelligence level of the network).
-
-## Digital Map
-
-Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the 
-other Digital Twin models and data.
-
-The Digital Map modelling defines the core topological entities (network, node, link, and interface), their role in 
-the network, core properties, and relationships both inside each layer and between the layers.
-
-The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and 
-connects them all: configuration, maintenance, assurance (KPIs, status, health, symptoms), Traffic Engineering (TE), 
-different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
-
-The Digital Map data consists of virtual instances of network and service topologies at different layers.  
-The Digital Map provides the access to this data via standard APIs for both read and write operations 
-(write operations for offline simulations), with query capabilities and links to other YANG modules 
-(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}}, 
-Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and Assets {{?I-D.palmero-opsawg-dmlmo}}) and non-YANG models.
-
-## Digital Map as a Prerequisite for Digital Twin
-
-One of the important requirements for Digital Twin is to ease correlating all models and 
-data to topological entities at different layers in the layered twin network.  The Digital Map aims to provide a 
-virtual instance of the topological information of the network, based on this Digital Map Model. 
-**Building a Digital Map is prerequisite towards the Digital Twin.**
-
-The Digital Map model/data provide this missing correlation between the topology models/data and all other 
-models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning, 
-simulation ("what-if"), emulations, actions, and behaviors.
-
-Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus 
-more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.
-
-It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some 
-other sources of information.  As an example, a Digital Map should not specifically include all information 
-about the device inventory (product name, vendor, product series, embedded software, and
-hardware/software versions, as specified in Network Inventory (IVY) WG, for example. A pointer to another inventory system 
-might be sufficient or support of means that ease the mapping between inventory and topology.
-
-Similarly, Digital Map should not specifically contain incidents, configuration, 
-data plane monitoring, or even assurance information, simply to name a few.
-
-The following are sample Digital Twin use cases that require Digital Map:
-
-* Generic inventory queries
-+ Service placement feasibility checks
-+ Service-> subservice -> resource
-+ Resource -> subservice -> service
-+ Intent/service assurance
-+ Service E2E and per-link KPIs on the Digital Map (delay, jitter, and loss)
-+ Capacity planning
-+ Network design
-+ Simulation
-- Closed loop
-
-Overall, the Digital Map is needed to break down data islands and have a Digital Twin for emulation and closed loop, 
-which is a catalyst for autonomous networking.
 
 # The IETF Network Topology Approaches
 
@@ -299,49 +159,13 @@ model which augments {{!RFC8345}} with TE topology information as follows:
 * Tunnel, tunnel termination point, local link connectivity, node connectivity matrix, and some supporting and underlay 
 relationships are defined outside of the core RFC 8345 entities and relationships
 
-# Digital Map Requirements
-
-<-- We discussed if requirements should be in a separate document. We would leave them in this document for now, 
-later we can create a separate draft
--->
-
-The following are the core requirements for the Digital Map (note that some of them are supported by default by {{!RFC8345}}):
-
-1.   Basic model with network, node, link, and interface entity types.
-
-2.   Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to customer service and intent views.
-
-3.   Open and programmable Digital Map: This includes "read" operations to retrieve the view of the network, typically as NorthBound 
-Interface (NBI) of Software Defined Networking (SDN) controllers or orchestrators. It also includes 
-"write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters), 
-but for offline simulations, also known as what-if scenarios.  Running a "what-if" analysis requires the ability to take 
-snapshots and to switch easily between them. Note that there is a need to distinguish between a change on the Digital Map 
-for future simulation and a change that reflects the current reality of the network.
-
-4.   Standard based Digital Map Models and APIs, for multi-vendor support:  Digital Map must provide the standard APIs 
-that provide for read/write and queries.  These APIs must also provide the capability to retrieve the links to external data/models.
-
-5.   Digital Map models and APIs must be common over different network domains (campus, core, data center, etc.)
-
-6.   Digital Map must provide semantics for layered network topologies and for linking external models/data.
-
-7.   Digital Map must provide inter-layer and between layer relationships.
-
-8.   Digital Map must be extensible with metadata.
-
-9.   Digital Map must be pluggable:
-    
-     * Must connect to other YANG modules for inventory, configuration, assurance, etc. 
-     * Given that no all involved components can be available using YANG, there is a need to connect digital map YANG model with other modelling mechanisms.
-
-11.  Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and 
-source and sink relationships to termination-points may not be sufficient, we may need to have the direct 
-relationship between the termination points or nodes.
-
 ## Why RFC8345 is a Good Approach for Digital Map Modelling
 
-The main reason for selecting RFC8345 for modelling is its simplicity and that is supports majority of the core 
-requirements. The requirements [1-7] are automatically fulfilled with RFC8345 and extensions:
+The main reason for selecting RFC8345 for modelling is its simplicity and that is supports majority of the core requirements. 
+
+Please refer to the "Digital Map: Concept, Requirements, and Use Cases" {{?I-D.havel-nmop-digital-map-concept}} for more details of the core Digital Map requirements:
+
+The requirements REQ-BASIC-MODEL-SUPPORT, REQ-LAYERED-MODEL, REQ-PROG-OPEN-MODEL, REQ-STD-API-BASED, REQ-COMMON-APP, REQ-SEMANTIC, and REQ-LAYER-NAVIGATE are automatically fulfilled with RFC8345 and extensions:
 
 * Basic model with network, node, link and interface entity types
 
@@ -357,8 +181,10 @@ requirements. The requirements [1-7] are automatically fulfilled with RFC8345 an
 
 * Inter-layer and between-layer relationships
 
-The requirements [6-7] for semantics for layered topology and relationships are partially fulfilled, there may be 
-need for some additional semantics.  Other core requirements [8-10] are not supported by RFC8345:
+The requirements REQ-SEMANTIC for semantics and REQ-LAYER-NAVIGATE for layered topology and relationships are partially fulfilled, there may be 
+need for some additional semantics.  
+
+Other core requirements REQ-EXTENSIBLE, REQ-PLUGG and REQ-GRAPH-TRAVERSAL are not supported by RFC8345:
 
 *  Extensible with metadata
 
@@ -366,35 +192,8 @@ need for some additional semantics.  Other core requirements [8-10] are not supp
 
 *  Optimized for graph traversal
 
-In some cases, for [9] for pluggable to other YANG modules, the links are already done by augmenting 'ietf-network' 
+In some cases, for REQ-PLUGG for pluggable to other YANG modules, the links are already done by augmenting 'ietf-network' 
 and 'ietf-network- topology'. For others, we need to add some mechanisms to link the models and data.
-
-## Design Requirements
-
-The following are design requirements for modelling the Digital Map:
-
-1.  Digital Map should contain only topological information.  Digital Map is not required to contain all data required for 
-all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital 
-Twin data and models to ease navigating in the overall system. For example:
-
-  * ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
-  * Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
-
-2.  Digital Map entities should mainly contain properties used to identify topological entities at different layers, 
-identify their roles, and topological relationships between them.
-
-3.  Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay).
-
-4.  Provide capability for conditional retrieval of parts of Digital Map.
-
-5.  Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external 
-to the Digital Map.
-
-The following are the architectural requirements for the Digital Map:
-
-1.  Scale, performance, ease of integration
-
-2.  Initial discovery and dynamic (change only) synch with the physical network
 
 # Digital Map Modelling Experience
 
@@ -402,43 +201,50 @@ The following are the architectural requirements for the Digital Map:
 
 Based on some shared experience, the following are listed as set of candidate extensions to {{!RFC8345}} for Digital Map modelling and APIs:
 
-*  An alternate approach to model bidirectional links
+RFC8345-GAP-BIDIR:
+: An alternate approach to model bidirectional links
 
-*  An alternate approach to multi-point connectivity
+RFC8345-GAP-MULTI-POINT:
+: An alternate approach to multi-point connectivity
 
-*  Links between domains/networks
+RFC8345-GAP-MULTI-DOMAIN:
+: Links between domains/networks
 
-*  A network decomposition into sub-networks
+RFC8345-GAP-SUBNETWORK:
+: A network decomposition into sub-networks
 
-*  Nodes, links, and termination points belonging to different networks
+RFC8345-GAP-MULTI-NETWORK:
+:  Nodes, links, and termination points belonging to different networks
 
-*  Supporting relationships between different types of entities
+RFC8345-GAP-SUPPORTING:
+:  Supporting relationships between different types of entities
 
-*  More network topology related semantic is needed
+RFC8345-GAP-SEMANTIC:
+:  More network topology related semantic is needed
 
-### Bidirectional Links
+### Bidirectional Links (RFC8345-GAP-BIDIR)
 
-One of the core characteristics of any network topology is the link
-directionality. While data flows are unidirectional, the
-bidirectional links are also common in networking.  Examples are
-Ethernet cables, bidirectional SONET rings, socket connection to the
-server, etc.  We also encounter requirements for simplified service
-layer topology, where we want to model link as bidirectional to be
-supported by unidirectional links at the lower layer.
+   One of the core characteristics of any network topology is the link
+   directionality. While data flows are unidirectional, the
+   bidirectional links are also common in networking.  Examples are
+   Ethernet cables, bidirectional SONET rings, socket connection to the
+   server, etc.  We also encounter requirements for simplified service
+   layer topology, where we want to model link as bidirectional to be
+   supported by unidirectional links at the lower layer.
 
-{{!RFC8345}} defines all links as unidirectional, it does not support
-bidirectional links. It was done intentionally to keep the model as
-simple as possible. While simplifying the model itself, the data
-and APIs are more complex for the cases with bidirectional
-links. In such cases, there is no need to increase the amount of instances / data
-transferred via API, stored in the database, or managed/monitored by modeling
-unidirectional links.
+   {{!RFC8345}} defines all links as unidirectional, it does not support
+   bidirectional links. It was done intentionally to keep the model as
+   simple as possible. While simplifying the model itself, the data
+   and APIs are more complex for the cases with bidirectional
+   links. In such cases, there is no need to increase the amount of instances / data
+   transferred via API, stored in the database, or managed/monitored by modeling
+   unidirectional links.
 
-This document suggests to model the bidirectional
-connections as pairs of unidirectional links.
+   This document suggests to model the bidirectional
+   connections as pairs of unidirectional links.
 
-{{?I-D.davis-opsawg-some-refinements-to-rfc8345}} further elaborates on the need for bidirectional links in the 
-network topologies and in the Digital Map.  It also proposes how RFC8345 can be augmented to support missing components.
+   {{?I-D.davis-opsawg-some-refinements-to-rfc8345}} further elaborates on the need for bidirectional links in the 
+   network topologies and in the Digital Map.  It also proposes how RFC8345 can be augmented to support missing components.
 
 The following are the candidate approaches of how we can address this limitation:
 
@@ -446,11 +252,9 @@ The following are the candidate approaches of how we can address this limitation
 
 * Don't change RFC8345, leave to different augmentations to solve the problem their own way
 
-* Augment RFC8345 via basic approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, 
-fully backward compatible, appears simple and sufficient
+* Augment RFC8345 via basic approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, fully backward compatible, appears simple and sufficient
 
-* Augment RFC8345 via more sophisticated approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, 
-more complex but improves the integrity of the model, same instance structures produced
+* Augment RFC8345 via more sophisticated approach as suggested in {{?I-D.davis-opsawg-some-refinements-to-rfc8345}}, more complex but improves the integrity of the model, same instance structures produced
 
 * Consider RFC8345bis
 
@@ -464,30 +268,30 @@ links in the core topology model defined in ietf-network-topology. The starting 
 destination for unidirectional (although we can also implement it via the existing source and destination when 
 direction BIDIRECTIONAL)
 
-### Multipoint Connectivity
+### Multipoint Connectivity (RFC8345-GAP-MULTI-POINT)
 
-The RFC8345 defines all links as point to point and unidirectional, it does not support multi-point links 
-(hub and spoke, full mesh, complex).  It was done intentionally to keep the model as simple as possible. 
-The RFC suggests to model the multi-point networks via pseudo nodes.
+   The RFC8345 defines all links as point to point and unidirectional, it does not support multi-point links 
+   (hub and spoke, full mesh, complex).  It was done intentionally to keep the model as simple as possible. 
+   The RFC suggests to model the multi-point networks via pseudo nodes.
 
-Same as with unidirectionality, while simplifying the model itself, we are making data and APIs more complex for 
-multi point topologies and we are increasing the amount of data transferred via API, stored in the database or 
-managed/monitored.
+   Same as with unidirectionality, while simplifying the model itself, we are making data and APIs more complex for 
+   multi point topologies and we are increasing the amount of data transferred via API, stored in the database or 
+   managed/monitored.
 
-One of the core characteristics of any network topology is its type and link cardinality.  Any topology model 
-should be able to model any topology type in a simple and explicit way, including point to multipoint, bus, ring, 
-star, tree, mesh, hybrid and daisy chain.  Any topology model should also be able to model any link cardinality in 
-a simple and explicit way, including point to point, point to multipoint, multipoint to multipoint or hybrid.
+   One of the core characteristics of any network topology is its type and link cardinality.  Any topology model 
+   should be able to model any topology type in a simple and explicit way, including point to multipoint, bus, ring, 
+   star, tree, mesh, hybrid and daisy chain.  Any topology model should also be able to model any link cardinality in 
+   a simple and explicit way, including point to point, point to multipoint, multipoint to multipoint or hybrid.
 
-By forcing the implementation of all topology types and all options for cardinality via unidirectional links and 
-pseudo nodes, we are significantly increasing the complexity of APIs and data, but also lacking full topology 
-semantics in the model.  The model cannot be fully used to validate if topology instances are valid or not.
+   By forcing the implementation of all topology types and all options for cardinality via unidirectional links and 
+   pseudo nodes, we are significantly increasing the complexity of APIs and data, but also lacking full topology 
+   semantics in the model.  The model cannot be fully used to validate if topology instances are valid or not.
 
-Note that the point to multipoint network type is also required in some cases at the OSPF layer.
+   Note that the point to multipoint network type is also required in some cases at the OSPF layer.
 
-{{?I-D.davis-opsawg-some-refinements-to-rfc8345}} further elaborates on the need for multipoint connectivity in 
-network topologies and in the Digital Map, in general.  It also proposes how RFC8345 can be augmented to 
-support these missing components.
+   {{?I-D.davis-opsawg-some-refinements-to-rfc8345}} further elaborates on the need for multipoint connectivity in 
+   network topologies and in the Digital Map, in general.  It also proposes how RFC8345 can be augmented to 
+   support these missing components.
 
 The following are the candidate approaches of how we can address this limitation:
 
@@ -513,48 +317,26 @@ links via the existing source and destination
 * role-of-point
 * type-of-link
 
-###  Links Between Networks
+###  Links Between Networks (RFC8345-GAP-MULTI-DOMAIN)
 
    The RFC8345 defines all links as belonging to one network instance
-   and having the source and destination as node and termination point
-   only, not allowing to link to termination point of another network.
-   This does not allow for links between networks in the case of multi-
-   domains or partitioning.  The only way would be to model each domain
-   as node and have links between them.
+   and having the source and destination as node and termination point only, not allowing to link to termination point of another network. This does not allow for links between networks in the case of multi-domains or partitioning.  The only way would be to model each domain as node and have links between them.
 
-   In our IS-IS PoC (following {{?I-D.ogondio-opsawg-isis-topology}}), we
-   modelled IS-IS areas as networks and we needed to extend the
-   capability to have links between different areas.  We added network
-   reference as well to the source / destination of the link.  The
-   {{?RFC8795}} also augments links with external-domain info for the case of
-   links that connect different domains.
+   In our IS-IS PoC (following {{?I-D.ogondio-opsawg-isis-topology}}), we modelled IS-IS areas as networks and we needed to extend the capability to have links between different areas.  We added network reference as well to the source / destination of the link.  The {{?RFC8795}} also augments links with external-domain info for the case of links that connect different domains.
 
-   The IS-IS topology {{?I-D.ogondio-opsawg-isis-topology}} models
-   Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas
-   as attributes of IS-IS nodes.  The RFC8345 extension can be used to
-   model IS-IS areas as networks and IS-IS links between L1-2 nodes as
-   links between two different areas.  This is not problem for OSPF,
-   although the OSPF nodes can belong to multiple areas, the links can
-   belong to only one area.
+   The IS-IS topology {{?I-D.ogondio-opsawg-isis-topology}} models Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas as attributes of IS-IS nodes.  The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links between L1-2 nodes as links between two different areas.  This is not problem for OSPF, although the OSPF nodes can belong to multiple areas, the links can belong to only one area.
 
-   The following are some benefits of lifting the RFC 8345 limitations
-   that all links must belong to only one network instance:
+The following are some benefits of lifting the RFC 8345 limitations that all links must belong to only one network instance:
 
-   *  IS-IS processes would be grouped in an area via the standard IETF
-      RFC8345 network->node relationship.
+*  IS-IS processes would be grouped in an area via the standard IETF RFC8345 network->node relationship.
 
-   *  Applications and algorithms will consume topologies based on the
-      generic entities and relationships, they will not need to
-      understand the meaning of specific IS-IS attributes.
+*  Applications and algorithms will consume topologies based on the generic entities and relationships, they will not need to understand the meaning of specific IS-IS attributes.
 
-   *  The approach would be aligned with the IS-IS topology model and
-      the IS-IS network view in manuals and documentation.
+*  The approach would be aligned with the IS-IS topology model and the IS-IS network view in manuals and documentation.
 
-   *  Provide capability to link different IGP domains and links between
-      them.
+*  Provide capability to link different IGP domains and links between them.
 
-   *  Link between multiple networks/sub-networks is the common concept
-      in network topology.
+*  Link between multiple networks/sub-networks is the common concept in network topology.
 
 The following are the candidate approaches of how we can address this limitation:
 
@@ -572,7 +354,7 @@ in the core topology model defined in ietf-network-topology. The starting point 
 from {{?RFC8795}} that adds the external domain reference to the link via the external network, node and tp reference.
 
 
-###   Networks Part of Other Networks
+###   Networks Part of Other Networks (RFC8345-GAP-SUBNETWORK)
 
    RFC8345 does not model networks being part of other networks,
    therefore cannot model subnetworks and network partitioning.  We
@@ -585,25 +367,22 @@ from {{?RFC8795}} that adds the external domain reference to the link via the ex
 
 The following are the candidate approaches of how we can address this limitation:
 
-   *  Leave it as it is in RFC8345, don't model AS and IS-IS/OSPF domain directly, they would be
-      modelled via the underlying IP network and IS-IS/OSPF enabled
-      routers. This could be achieved via supporting relationship to L3
-      network and L3 nodes
-   * Leave it as it is in RFC8345, leave to different augmentations to solve the problem their own way 
-   * Leave it as it is in RFC8345, model AS, IGP domains and areas as networks and use supporting
-      relationship to model the network topology design, with only areas
-      having nodes. This does not describe the correct nature of the
-      relationship, semantic is missing.
-   * Augment RFC8345 by adding some simple solution to support additional partitioning relationship between
-      networks.
-   * Consider a RFC8345bis 
+*  Leave it as it is in RFC8345, don't model AS and IS-IS/OSPF domain directly, they would be modelled via the underlying IP network and IS-IS/OSPF enabled routers. This could be achieved via supporting relationship to L3 network and L3 nodes
+
+* Leave it as it is in RFC8345, leave to different augmentations to solve the problem their own way 
+
+* Leave it as it is in RFC8345, model AS, IGP domains and areas as networks and use supporting relationship to model the network topology design, with only areas having nodes. This does not describe the correct nature of the relationship, semantic is missing.
+
+* Augment RFC8345 by adding some simple solution to support additional partitioning relationship between networks.
+
+* Consider a RFC8345bis 
 
 We suggest to start to work on RFC8345 bis to provide the backward compatible way to support partitioning of networks 
 in the core network model defined in ietf-network. The solution needs to add a part-of relation between different 
 networks, where one network (e.g. OSPF Domain) can contain multiple networks (e.g. OSPF areas)
 
 
-###   Nodes, tps and links in multiple networks
+###   Nodes, tps and links in multiple networks (RFC8345-GAP-MULTI-NETWORK)
 
    RFC8345 does not allow nodes and TPs to belong to multiple areas
    without splitting them into separate entities with separate keys. In
@@ -633,15 +412,19 @@ We suggest to work on RFC8345 bis to provide the simple backward compatible way 
 of creating multiple instances and the approach of sharing the instances. The solution needs further analysis as it has 
 bigger impact on the topology tree than other enhancements.
 
-###  Missing Supporting Relationships
+###  Missing Supporting Relationships (RFC8345-GAP-SUPPORTING)
 
    RFC8345 defines supporting relationships only between the same type
    of entities.  Networks can only be supported by networks, nodes can
    only be supported by nodes, termination points can only be supported
    by terminations points and links can only be supported by links.
 
-   During the PoC, we encountered the need to have TP supported by node
-   and node supported by Network.  The RFC8795 also adds additional
+   During the PoC, we had a scenario  where at one layer of topology we had a link with TPs where the TPs are logical and did not have underlay TP, but the only underlay connection we were able to define was to underlay nodes. The same happened with nodes and networks.
+   
+   Therefore, we encountered the need to have TP supported by node
+   and node supported by network.  
+   
+   The RFC8795 also adds additional
    underlay relationship between node and topology and link and
    topology, but via a new underlay topology and not via the core
    supporting relationship.
@@ -658,9 +441,9 @@ The following are the candidate approaches to address this limitation:
 We suggest to work on RFC8345 bis to provide the backward compatible way to add the missing supporting relationships:
 tp->supporting->node, node->supporting->network. 
 
-###  Missing Topology Semantics
+###  Missing Topology Semantics (RFC8345-GAP-SEMANTIC)
 
-   We already mentioned that some semantic is missing from the RFC8345
+   Many augmentations add the additional topological semantics, with same concepts modelled in a different way in different augmentations. We already mentioned that some semantic is missing from the RFC8345
    topology model, like bidirectional and multi-point.  The following is
    also missing from the model:
 
@@ -671,22 +454,34 @@ tp->supporting->node, node->supporting->network.
       sequence, etc.
 
    *  Termination point roles.  We are missing semantics for the common
-      topology roles: primary, backup, hub, spoke
+      topology roles: uni, i-nni,e-nni, primary, backup, hub, spoke, 
+   
+   *  Node roles.  We are missing semantics for the common node
+      roles: access, core, metro
+
+   * Link roles. We are missing semantics for the common link 
+     roles: uni, i-nni, e-nni
 
    *  Layers / Sublayers.  We need further analysis to determine in
       network types are sufficient to support all scenarios for layers/
       sublayers.  The network types are more related to technologies so
       in the case that the same technology is used at different layers,
-      we may need some additional information in the model.  For further
-      study.
+      we may need some additional information in the model.  
+      For further study.
 
    *  Tunnels and paths.  We modelled tunnels and paths via {{!RFC8345}} but
       we lost some semantics that is in {{!RFC8795}} .
+
+   *  Node cross-connects.  We did not need to model cross connect / 
+      connectivity metrices in the PoC. In the case it is needed, 
+      {{!RFC8345}} does not provide the capability, semantics that 
+      is in {{!RFC8795}}. For further study.
 
    *  Supporting or underlay.  We modelled all underlay relationships
       via supporting, further analysis is needed to determine pros and
       cons of this approach versus RFC8795 approach of using underlay
       topology.
+   
 
 The following are the candidate approaches to address this limitation:
 
@@ -728,10 +523,9 @@ evaluate if some parts could be moved to RFC8345.
    *  Do we need sublayers as well?  Layers versus sublayers versus
       layered instances?  
 
-      Resolved: Layers/sublayers could be implemented via multiple network types. The new data nodes for layer 
-are present only when the network type for the layer is present. The new data nodes for the sublayer are 
-present when the network types for both layer and sublayer are present. 
-The solution could also enable either single or multiple instances, like in the previous point.
+      Resolved: Layers/sublayers could be implemented via multiple network types. The new data nodes for layer are present only when the network type for the layer is present. The new data nodes for the sublayer are present when the network types for both layer and sublayer are present. The solution could also enable either single or multiple instances, like in the previous point.
+
+      Further analysis: In the case that the same technology is used at different layers, we may need some additional information in the model, in the case that it cannot be modelled via network types + supporting relations.
 
    *  Same technology at service versus underlay?  BGP per VPN vs common
       BGP shared between multiple VPNs.  Different layers, same model,
@@ -739,10 +533,195 @@ The solution could also enable either single or multiple instances, like in the 
    
       Further analysis is needed.
 
-   * There are potential circular dependencies in layering. For example routing can be underlay for tunnels, 
-but tunnel interface can also be in the routing table. 
+   * There are potential circular dependencies in layering. For example routing can be underlay for tunnels, but tunnel interface can also be in the routing table. 
    * 
      Further analysis is needed.
+
+
+#  RFC8345 Augmentation Analysis
+
+##  Why Analysis?
+
+   During our PoC, we decided to use the RFC8345  model and API for the layered topology from the physical to the top layer, accross the domains, without the need to understand any specific information about specific domain, technologies and details required for specific network management functions / use cases. 
+   
+   We took the hat of application developer and used the software architecture guidelines to provide the right level of abstraction for topologies at the controller northbound interfaces. This means that the API client /application must understand and draw the topology from RFC8345 (as originally intended by this draft) without understanding all augmentations that add new topological entities / relations. 
+
+   After determining that the RFC8345 can provide the right level of abstraction for the layered topology (and be improved by addressing gaps via backward compatible way), we wanted to understand if different IETF RFC8345 augmentations add its own topology semantics and if they address any gaps we identified.
+
+##  What did we Analyse?
+   Our goal was to do some high level analysis of all the modules that augment the RFC8345 and understand the following 2 high level points:
+
+   * What is the purpose of augmentation?
+      * Is it augmenting topology for some identified topology gaps?
+      * Is it augmenting topology for some specific functionality, like TE. Functional category TE, Technology Generic.
+      *	Is it augmenting topology for some specific technology, like ISIS. Technology L3 ISIS
+      * Is it augmenting to connect to some other modules, like Inventory, PM?
+
+   * How it the augmented info added
+      * By adding the attributes, events, using the types, new relations (non-topological) no impact on topology. Layered topology can be understood / drawn using the RFC8345.
+      * By adding the topological entities and topological relations – full impact on topology. Layered topology cannot be understood / drawn using the RFC8345.
+      * By adding some additional topological semantics – partial impact on topology (e.g. hub / spoke). Layered topology can be understood/drawn but roles will not be understood.
+
+##  RFC8345 Augmentations that add Topology Semantics
+
+The most important result of our analysis would be extension categories that add new topological entities and new topological relations. This means that we would not be able to use RFC8345 for understand/draw the layered topology. Examples:
+
+* RFC8795 {{?RFC8795}}:
+   * We have TE Topology and TE Nodes, LTPs, TE Links modelled using the abstract RFC8345 topology
+   * we have tunnels and TTPs + underlay outside of abstract RFC8345 topology 
+
+* RFC8542 {{?RFC8542}}:
+   * we have fabric network, fabric and fabric tps modelled using the abstract RFC8345 topology
+   * we have device nodes, device links, device ports + relations between them modelled outside of the abstract RFC8345 topology
+ 
+This means that the API client /application cannot understand and draw the topology from RFC8345 (as originally intended by this draft) without understanding all augmentations that add new topological entities / relations. 
+
+##  Summary of RFC8345 Augmentation Analysis Results
+
+Our full analysis is on github and is still work in progress, waiting for different authors to confirm our conclusions. The full current analysis results can be found on https://github.com/ietf-wg-nmop/Misc/tree/main/Digital-Map-Analysis. 
+
+We will present only the current summary of the RFC8345 Augmentation Analysis in this draft:
+
+* We started our analysis by identifying the 102 YANG modules, based on the info from the YANG catalog.
+* We determined that out of those 102 YANG modules, 27 were deprecated
+* We determined that out of those 102 YANG modules, 23 were expired
+* We determined that out of those 102 YANG modules, 8 were Non-NMDA compliant
+* That left us with 44 modules to analyze, including the 2 RFC8345 modules
+* We then continued to identify the following about each of the modules, please see the subsequent sections for more details:
+   * Authors
+   * Functional Category
+   * Use Cases (outstanding)
+   * Technology
+   * Network Types
+   * Organization
+   * Maturity Level
+   * What modules are imported / augmented
+   * Extensions Categories
+   * What topology concepts they use or add
+* We identified that out of 44 modules analyzed
+   * 41 are importing ietf-network
+   * 33 are importing ietf-network-topology
+   * 12 are importing ietf-te-topology
+   * there may be others using indirectly ietf-te-topology without importing the module, for example we identified that do it via import of ietf-te and te-types
+
+### Authors
+
+We identify authors and we added the column for them to add their comments if they aggree / disagree with our analysis, this is the work in progress.
+
+Our hope is that the authors would be able to review our analysis of their drafts / RFCs and verify our conclusions. We will also discuss with them  specific reasons for their modelling decisions and hope to influence some changes based on the future modelling guidelines.
+
+### Functional Category
+
+We decided to use functional category to understand why the modules were added. We identified the following functional categories:
+
+* TOPOLOGY
+* TE
+* NETWORK SLICE
+* SERVICE
+* VN (Virtual Network)
+* TRANSPORT NETWORK CLIENT SERVICE
+* PM
+* INVENTORY
+* OAM
+* PROVISIONING
+* MAP
+* INCIDENT
+* ENERGY
+* PARTITIONING
+
+
+### Use Cases
+
+We got recommendation to also identify what Use Cases are implemented by which Module.
+
+This is planned for the next version of the draft, to be filled in by Authors.
+
+### Technology
+
+We decided to use technology category to identify if the modules are generic or for specific technology. We identified the following technology categories:
+
+* GENERIC
+* L3
+* ISIS
+* OSPF
+* FABRIC
+* WSON
+* SAP
+* PACKET
+* MPLS
+* ETHERNET
+* MICROWAVE
+* FLEXI-FRID
+* L3SR
+* OPTICAL 
+* OTN
+* FGNM
+
+### Network Types
+
+The module augmented RFC8345 with the following network types that could be used for layers / sublayers of the Digital Map:
+* l2-topology
+* l3-unicast-topology
+* te-topology
+* isis-topology
+* ospfv2-topology
+* fabric-network
+* te-topology
+* wson-topology
+* service
+* sap-network
+* l3-te
+* packet
+* mpls-topology
+* te-topology
+* eth-tran-topology
+* mw-topology
+* network-slice
+* network-inventory-mapping
+* nrp
+* flexi-grid-topology
+* srv6
+* optical-impairment-topology
+* otn-topology
+
+### Organization
+
+All except 1 module are IETF modules. Only the following modules has organization other than IETF:
+
+* BBF module: bbf-network-map
+
+### Maturity Level
+
+We initially used the maturity level from YANG Catalogue, but some modules have not been shown with the correct maturity level and there is outstanding review comment to correct this in the next version of the draft.
+
+### What Modules are Imported
+
+We identify what modules import one or more of the following modules:
+* ietf-network or ietf-network-state
+* ietf-network-topology or ietf-network-topology-state
+* ietf-te-topology or ietf-te-topology-state
+
+This would be useful for the future discussion in regards to some proposals by the TEAS team to use RFC8795 ietf-te-topology as the Digital Map core model and API.
+
+### Extension Categories
+
+This is the most important part of our analysis, what has been added and how. We identified the following categories:
+
+* New attributes
+* New events
+* New non-topological relations
+* New topological entities (list of entities needed for clarification)
+* New topological relations (list of relations needed for clarification)
+* New topological semantics on top of the core mode (e.g. roles hub/spoke, primary backup, ..) (list of semantic needed for clarification)
+* New sublayers (info)
+
+### Topology Concepts
+
+For each of the modules we added some information about what topological concepts were important for each of the modules and which ones are reuse of the core one and which ones are the new once.
+
+##  RFC8345 Augmentations Analysis Conclusion
+
+We determined after the analysis that we need to start working on the guidelines to create a Digital Map. The RFC8345 augmentations are not consistent, which makes it very hard to deploy the multi-layer digital map.
 
 #  Digital Map Modeling Guidelines
 
@@ -797,9 +776,7 @@ layering and add new properties/attributes and references to other modules
 Therefore, we suggest to work on RFC8345 bis to provide the backward compatible way to address all 
 identified limitations. 
 
-The alternative of having the core topology augmentations in either TE modules or technology specific modules is not 
-generic enough and is not in the spirit of having the core topology model to model topology in the consistent manner 
-between different technologies and TE and non-TE topologies.
+The alternative of having the core topology augmentations in either TE modules or technology specific modules is not generic enough and is not in the spirit of having the core topology model to model topology in the consistent manner between different technologies and TE and non-TE topologies.
 
 ## Guidelines for New Technologies/Layers Extensions
 
@@ -900,93 +877,8 @@ There is need to connect YANG network topology to models and data outside of YAN
 
    *  How to support historical
 
-#  Related IETF Activities
 
-##  Network Topology
-
-   Interestingly, we could not find any network topology definition in
-   IETF RFCs (not even in {{!RFC8345}}) or drafts.  However, it's mentioned
-   in multiple documents.  As an example, in Overview and Principles of
-   Internet Traffic Engineering {{?I-D.ietf-teas-rfc3272bis}}, which
-   mentioned:
-
-
-   To conduct performance studies and to support planning of existing
-   and future networks, a routing analysis may be performed to determine
-   the paths the routing protocols will choose for various traffic
-   demands, and to ascertain the utilization of network resources as
-   traffic is routed through the network.  Routing analysis captures the
-   selection of paths through the network, the assignment of traffic
-   across multiple feasible routes, and the multiplexing of IP traffic
-   over traffic trunks (if such constructs exist) and over the
-   underlying network infrastructure.  A model of network topology is
-   necessary to perform routing analysis.  A network topology model may
-   be extracted from:
-
-   *  Network architecture documents
-
-   *  Network designs
-
-   *  Information contained in router configuration files
-
-   *  Routing databases such as the link state database of an interior
-      gateway protocol (IGP)
-
-   *  Routing tables
-
-   *  Automated tools that discover and collate network topology
-      information.
-
-   Topology information may also be derived from servers that monitor
-   network state, and from servers that perform provisioning functions.
-
-##  Core Digital Map Components
-
-   The following standards are core for the Digital Map.
-
-   *  IETF network model and network topology model {{!RFC8345}}
-
-   *  A YANG grouping for geographic location {{?RFC9179}}
-
-   *  IETF modules that augment {{!RFC8345}} for different technologies:
-
-   *  - A YANG data model for Traffic Engineering (TE) Topologies
-      [RFC8795]
-
-   *  - A YANG data model for Layer 2 network topologies [RFC8944]
-
-   *  - A YANG data model for OSFP topology
-      {{?I-D.ogondio-opsawg-ospf-topology}}
-
-   *  - A YANG data model for IS-IS topology
-      {{?I-D.ogondio-opsawg-isis-topology}}
-
-##  Additional Digital Map Components
-
-The Digital Map may need to link to the following models, some are already augmenting [RFC8345], we need further 
-investigation for each of these items:
-
-*  Service Access Point (SAP) {{?RFC9408}}, augments 'ietf-network' data model {{!RFC8345}} by adding the SAP.
-
-*  SAIN {{?RFC9417}} and {{?RFC9418}}
-
-*  Network Inventory Model {{?I-D.draft-ietf-ivy-network-inventory-yang}} is the latest inventory model proposed by ivy, 
-focusing on physical and virtual inventory. Logical inventory is currently outside of the scope. 
-It does not augment RFC8345 like the two drafts that it evolved from {{?I-D.ietf-ccamp-network-inventory-yang}} 
-and {{?I-D.wzwb-opsawg-network-inventory-management}}. The {{?I-D.draft-wzwb-ivy-network-inventory-topology}} 
-correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
-
-*  Data Model for Lifecycle Management and Operations [I-D.palmero-opsawg-dmlmo]
-
-*  KPIs: delay, jitter, loss
-
-*  Attachment Circuits (ACs) {{?I-D.boro-opsawg-ntw-attachment-circuit}} and {{?I-D.boro-opsawg-teas-attachment-circuit}}
-
-*  Configuration: L2SM {{?RFC8466}}, L3SM {{?RFC8299}}, L2NM {{?RFC9291}}, L3NM {{?RFC9182}}
-
-*  Incident Management for Network Services {{?I-D.feng-opsawg-incident-management}}
-
-##  Network Inventory (IVY) Proposed Working
+#  Network Inventory (IVY) Proposed Working
 
    The charter of the Network Inventory (IVY) IETF Working Group (WG)
    can be found at https://datatracker.ietf.org/doc/charter-ietf-ivy/.
@@ -1030,10 +922,10 @@ correlates the network inventory with the general topology via RFC8345 augmentat
 
 Digital Map Modelling and Data are basis for the Digital Twin. During our PoC we have proven that Digital Map can be 
 modelled using {{!RFC8345}}.  Nevertheless, we proposed some extensions/augmentations to {{!RFC8345}} to support 
-Digital Maps. There must be some constraints in regards to how to augment the core Digital Map model for different 
-Layers and Technologies in order to support the approach recommended in RFC8345 and implemented in our PoC. 
-All entities must augment IETF node, IETF network, IETF link or IETF Termination Point and augmentation can only 
-include new properties, events, references. 
+Digital Maps. 
+
+After analysing all augmentations of RFC8345 modules, we determined that there must exist some constraints in regards to how to augment the core Digital Map model for different 
+Layers and Technologies in order to support the approach recommended in RFC8345 and implemented in our PoC. Therefore, we recommend that IETF adopts the guidelines how to augment the core RFC8345 modules for Digital Map. All entities should augment IETF node, IETF network, IETF link or IETF Termination Point and augmentation can only include new properties, events, non-topological references. 
 
 We suggest to start the work on RFC8345 bis to provide the backward compatible way to support the following basic 
 topological features:
@@ -1077,4 +969,6 @@ This document has no actions for IANA.
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to xx for their reviews and comments.
+Many thanks to Mohamed Boucadair <mohamed.boucadair@orange.com> for his valuable contributions, reviews and comments.
+Many thanks to Bo Wu for her review of augmentation analysis and for the recommendations she shared.
+
