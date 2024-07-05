@@ -1,7 +1,7 @@
 ---
 title: "Modeling the Digital Map based on RFC 8345: Sharing Experience and Perspectives"
 abbrev: Digital Map Modelling
-docname: draft-havel-nmop-digital-map-00
+docname: draft-havel-nmop-digital-map-01
 category: info
 
 stand_alone: true
@@ -10,7 +10,7 @@ area: "Operations and Management"
 wg: NMOP
 
 consensus: true
-v: 1
+v: 2
 
 author:
   -
@@ -67,13 +67,12 @@ Discussion Venues
 
 # Introduction
 
-{{!RFC8345}} specifies a topology YANG model with many YANG augmentations for different technologies and service types.  
-The modelling approach based upon {{!RFC8345}} provides a standard IETF-based API.
+{{!RFC8345}} specifies a topology YANG model with many YANG augmentations for different technologies and service types. The modelling approach based upon {{!RFC8345}} provides a standard IETF-based API.
 
-At the time of writing (2024), there are at least 59 YANG modules that are augmenting {{!RFC8345}}; 
-58 IETF-authored modules and 1 BBF-authored module. 14 of these modules have maturity level of 'ratified', 
-17 of them have maturity level of 'adopted', 31 modules have maturity level of 'latest-approved', 
-and 27 of these modules have maturity level of 'initial'.  
+At the time of writing (2024) and according to the YANG catalog, there are at least 92 YANG modules that are augmenting {{!RFC8345}}; 
+91 IETF-authored modules and 1 BBF-authored module. According to the YANG catalog, 19 of these modules have maturity level of 'ratified', 
+18 of them have maturity level of 'adopted', 27 modules have maturity level of 'latest-approved', 
+and 28 of these modules have maturity level of 'initial'.  
 The up-to-date information can be found in the YANG Catalog {{Catalog}}.
 
 From the set of IETF RFCs and I-Ds (at different level of maturity), we designed a Digital Map 
@@ -587,7 +586,7 @@ Our full analysis is on github and is still work in progress, waiting for differ
 
 We will present only the current summary of the RFC8345 Augmentation Analysis in this draft:
 
-* We started our analysis by identifying the 102 YANG modules, based on the info from the YANG catalog.
+* We started our analysis by identifying the 102 YANG modules, based on the info from the YANG catalog at the moment we started analysis.
 * We determined that out of those 102 YANG modules, 27 were deprecated
 * We determined that out of those 102 YANG modules, 23 were expired
 * We determined that out of those 102 YANG modules, 8 were Non-NMDA compliant
@@ -741,7 +740,8 @@ We determined after the analysis that we need to start working on the guidelines
    for all technologies and layers in the Digital Map. We already discussed some options for individual limitations in
    the previous sections, here is the summary:
 
-    1. Use the current RFC8345 approach, leave to different augmentations to solve the problem their own way 
+    1. Use the current RFC8345 approach, leave to different augmentations 
+    to solve the problem their own way 
 
     2. Augment RFC8345 network, node, link and termination point for any
     changes needed from a new digital map module
@@ -829,7 +829,7 @@ This can be a separate draft.  Guidelines with examples?  Add reference to this 
 -->
 
 
-## Guidelines for Digital Maps Connectiont to Other Components
+## Guidelines for Digital Maps Connections to Other Components
 
 Digital Map must be pluggable:
   
