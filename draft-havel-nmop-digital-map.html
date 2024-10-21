@@ -11,32 +11,36 @@
 <meta content="Ahmed Elhassany" name="author">
 <meta content="Thomas Graf" name="author">
 <meta content='
-       This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and some of its augmentations. The document identifies a set of open issues encountered during the modelling phases, the missing features in RFC 8345, and some perspectives on how to address them.
-For definition of Digital Map concepts, requirements and use cases please refer to the "Digital Map: Concept, Requirements, and Use Cases" document. 
+       This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and 
+some of its augmentations. The document identifies a set of open issues encountered during the modelling phases, 
+the missing features in RFC 8345, and some perspectives on how to address them.
+For definition of Digital Map concepts, requirements and use cases please refer to the 
+"Digital Map: Concept, Requirements, and Use Cases" document. 
        Discussion Venues 
        This note is to be removed before publishing as an RFC. 
        Source for this draft and an issue tracker can be found at
    https://github.com/OlgaHuawei. 
     ' name="description">
-<meta content="xml2rfc 3.22.0" name="generator">
+<meta content="xml2rfc 3.23.2" name="generator">
 <meta content="draft-havel-nmop-digital-map-01" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.22.0
+  xml2rfc 3.23.2
     Python 3.10.12
     ConfigArgParse 1.7
-    google-i18n-address 3.1.0
+    google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.4
     lxml 4.9.4
-    platformdirs 4.2.2
+    platformdirs 4.3.6
     pycountry 24.6.1
-    PyYAML 6.0.1
+    pydyf 0.9.0
+    PyYAML 6.0.2
     requests 2.32.3
     setuptools 59.6.0
     wcwidth 0.2.13
-    weasyprint 62.3
+    weasyprint 61.2
 -->
-<link href="/usr/src/app/tmp/cd9ee8c8-baee-4987-adf0-3cb2a810c3bc/draft-havel-nmop-digital-map.xml" rel="alternate" type="application/rfc+xml">
+<link href="/usr/src/app/tmp/061a258c-eba0-4953-8fee-c8851bca8d4f/draft-havel-nmop-digital-map.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -1167,7 +1171,7 @@ section .olCompact {
 tt, code {
   background-color: transparent;
 }
-p tt, p code, li tt, li code {
+p tt, p code, li tt, li code, dt tt, dt code {
   background-color: #f8f8f8;
 }
 /* Tweak the pre margin -- 0px doesn't come out well */
@@ -1219,11 +1223,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Digital Map Modelling</td>
-<td class="right">July 2024</td>
+<td class="right">October 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 6 January 2025</td>
+<td class="center">Expires 24 April 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1236,12 +1240,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-havel-nmop-digital-map-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-05" class="published">5 July 2024</time>
+<time datetime="2024-10-21" class="published">21 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-06">6 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-04-24">24 April 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1270,8 +1274,11 @@ li > p:last-of-type:only-child {
 <h1 id="title">Modeling the Digital Map based on RFC 8345: Sharing Experience and Perspectives</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and some of its augmentations. The document identifies a set of open issues encountered during the modelling phases, the missing features in RFC 8345, and some perspectives on how to address them.
-For definition of Digital Map concepts, requirements and use cases please refer to the "Digital Map: Concept, Requirements, and Use Cases" document.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document shares experience in modelling Digital Map based on the IETF RFC 8345 topology YANG modules and 
+some of its augmentations. The document identifies a set of open issues encountered during the modelling phases, 
+the missing features in RFC 8345, and some perspectives on how to address them.
+For definition of Digital Map concepts, requirements and use cases please refer to the 
+"Digital Map: Concept, Requirements, and Use Cases" document.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">Discussion Venues<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 <p id="section-abstract-3">This note is to be removed before publishing as an RFC.<a href="#section-abstract-3" class="pilcrow">¶</a></p>
 <p id="section-abstract-4">Source for this draft and an issue tracker can be found at
@@ -1296,7 +1303,7 @@ For definition of Digital Map concepts, requirements and use cases please refer 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1377,7 +1384,10 @@ For definition of Digital Map concepts, requirements and use cases please refer 
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-open-issues-for-further-ana" class="internal xref">Open Issues (for Further Analysis or Resolved)</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-plug-in-other-ietf-yang-dat" class="internal xref">Plug-in other IETF YANG data models (RFC8345-GAP-PLUGG)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-open-issues-for-further-ana" class="internal xref">Open Issues (for Further Analysis or Resolved)</a></p>
 </li>
             </ul>
 </li>
@@ -1496,7 +1506,8 @@ For definition of Digital Map concepts, requirements and use cases please refer 
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> specifies a topology YANG model with many YANG augmentations for different technologies and service types. The modelling approach based upon <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> provides a standard IETF-based API.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> specifies a topology YANG model with many YANG augmentations for different technologies and service types. 
+The modelling approach based upon <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> provides a standard IETF-based API.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">At the time of writing (2024) and according to the YANG catalog, there are at least 92 YANG modules that are augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>; 
 91 IETF-authored modules and 1 BBF-authored module. According to the YANG catalog, 19 of these modules have maturity level of 'ratified', 
 18 of them have maturity level of 'adopted', 27 modules have maturity level of 'latest-approved', 
@@ -1523,9 +1534,9 @@ easy to augment the base model to support new technologies?<a href="#section-1-4
           <p id="section-1-4.5.1">Can the base model be augmented for any new layer and technologies?<a href="#section-1-4.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-5">This memo documents an experience in the modeling aspects of the Digital Map, based on a PoC implementation, 
-basically documenting the effort and the open issues encountered so far.  During the PoC, we also identified a set of 
-requirements and verified the PoC approach by demoing it iteratively.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-5">This memo documents an experience in the modeling aspects of the Digital Map, based on a PoC implementation, basically 
+documenting the effort and the open issues encountered so far. During the PoC, we also identified a set of requirements 
+and verified the PoC approach by demoing it iteratively.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Practically, we developed a PoC with a real lab, based on multi-vendor devices, with <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> as the base YANG module.<br>
 The PoC successfully modelled the following:<a href="#section-1-6" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -1536,10 +1547,10 @@ The PoC successfully modelled the following:<a href="#section-1-6" class="pilcro
           <p id="section-1-7.2.1">Layer 3 network topology (used <span>[<a href="#RFC8346" class="cite xref">RFC8346</a>]</span>)<a href="#section-1-7.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-7.3">
-          <p id="section-1-7.3.1">OSPF routing topology (aligned with [I-D.ogondio-opsawg-ospf-topology])<a href="#section-1-7.3.1" class="pilcrow">¶</a></p>
+          <p id="section-1-7.3.1">OSPF routing topology (aligned with [I-D.ogondio-nmop-ospf-topology])<a href="#section-1-7.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-7.4">
-          <p id="section-1-7.4.1">IS-IS routing topology (aligned with <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>)<a href="#section-1-7.4.1" class="pilcrow">¶</a></p>
+          <p id="section-1-7.4.1">IS-IS routing topology (aligned with <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span>)<a href="#section-1-7.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-7.5">
           <p id="section-1-7.5.1">BGP routing topology<a href="#section-1-7.5.1" class="pilcrow">¶</a></p>
@@ -1557,6 +1568,20 @@ The PoC successfully modelled the following:<a href="#section-1-6" class="pilcro
           <p id="section-1-7.9.1">L3VPN service<a href="#section-1-7.9.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-1-8">We are further verifying this PoC by implementing it iteratevely at the IETF Hackathons and engaging the wider community, 
+starting with IETF120 Hackathon <span>[<a href="#Digital_Map_Hackathon" class="cite xref">Digital_Map_Hackathon</a>]</span>. 
+The Hackathon open source is available at <span>[<a href="#Digital_Map_Hackathon_Code" class="cite xref">Digital_Map_Hackathon_Code</a>]</span><a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">We delivered the IETF120 hackathon, with the plan to incrementally add more functionality in the future hackathons.
+The multi-vendor operator LAB was used for this hackathon (with Huawei, Cisco, Juniper deviced).
+The goal of the Digital Map Hackathons (starting from IETF120) is to demonstrate how operators can use 
+the IETF Topology YANG models to represent a real carrier network.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">We started with one particular problem space: 
+How to use IETF topology model to represent a real carrier network based on IS-IS and OSPF domains 
+(target for planning/simulation purposes). The IETF120 Hackathon focused on generic topology queries, and started to 
+compare IS-IS topology drafts augmenting RFC8345 versus potential RFC8345bis (gaps identified in RFC8345) approaches.
+We also started analysis and prototype how to retrieve performance metrics or configuration attributes 
+(defined in IS-IS Data Model for the IS-IS Protocol <span>[<a href="#RFC9130" class="cite xref">RFC9130</a>]</span> and retrieved via device API) 
+northbound from the Controller via RFC8345 API and its IS-IS augmentation.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <div id="terminology">
 <section id="section-1.1">
         <h3 id="name-terminology">
@@ -1566,13 +1591,14 @@ The PoC successfully modelled the following:<a href="#section-1-6" class="pilcro
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">Please refer to the "Digital Map: Concept, Requirements, and Use Cases" <span>[<a href="#I-D.havel-nmop-digital-map-concept" class="cite xref">I-D.havel-nmop-digital-map-concept</a>]</span> for the definition of the following terms used in this document:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">Please refer to the "Digital Map: Concept, Requirements, and Use Cases" <span>[<a href="#I-D.havel-nmop-digital-map-concept" class="cite xref">I-D.havel-nmop-digital-map-concept</a>]</span> for 
+the definition of the following terms used in this document:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.1-3.1">
-            <p id="section-1.1-3.1.1">Digital Twin<a href="#section-1.1-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-3.1.1">Topology<a href="#section-1.1-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-3.2">
-            <p id="section-1.1-3.2.1">Topology<a href="#section-1.1-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-3.2.1">Multi-layered Topology<a href="#section-1.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-3.3">
             <p id="section-1.1-3.3.1">Topology layer<a href="#section-1.1-3.3.1" class="pilcrow">¶</a></p>
@@ -1663,8 +1689,10 @@ relationships are defined outside of the core RFC 8345 entities and relationship
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-why-rfc8345-is-a-good-appro" class="section-name selfRef">Why RFC8345 is a Good Approach for Digital Map Modelling</a>
         </h3>
 <p id="section-2.3-1">The main reason for selecting RFC8345 for modelling is its simplicity and that is supports majority of the core requirements.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
-<p id="section-2.3-2">Please refer to the "Digital Map: Concept, Requirements, and Use Cases" <span>[<a href="#I-D.havel-nmop-digital-map-concept" class="cite xref">I-D.havel-nmop-digital-map-concept</a>]</span> for more details of the core Digital Map requirements:<a href="#section-2.3-2" class="pilcrow">¶</a></p>
-<p id="section-2.3-3">The requirements REQ-BASIC-MODEL-SUPPORT, REQ-LAYERED-MODEL, REQ-PROG-OPEN-MODEL, REQ-STD-API-BASED, REQ-COMMON-APP, REQ-SEMANTIC, and REQ-LAYER-NAVIGATE are automatically fulfilled with RFC8345 and extensions:<a href="#section-2.3-3" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">Please refer to the "Digital Map: Concept, Requirements, and Use Cases" <span>[<a href="#I-D.havel-nmop-digital-map-concept" class="cite xref">I-D.havel-nmop-digital-map-concept</a>]</span> for 
+more details of the core Digital Map requirements:<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<p id="section-2.3-3">The requirements REQ-BASIC-MODEL-SUPPORT, REQ-LAYERED-MODEL, REQ-PROG-OPEN-MODEL, REQ-STD-API-BASED, REQ-COMMON-APP, 
+REQ-SEMANTIC, and REQ-LAYER-NAVIGATE are automatically fulfilled with RFC8345 and extensions:<a href="#section-2.3-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.3-4.1">
             <p id="section-2.3-4.1.1">Basic model with network, node, link and interface entity types<a href="#section-2.3-4.1.1" class="pilcrow">¶</a></p>
@@ -1703,7 +1731,7 @@ need for some additional semantics.<a href="#section-2.3-5" class="pilcrow">¶</
 </li>
         </ul>
 <p id="section-2.3-8">In some cases, for REQ-PLUGG for pluggable to other YANG modules, the links are already done by augmenting 'ietf-network' 
-and 'ietf-network- topology'. For others, we need to add some mechanisms to link the models and data.<a href="#section-2.3-8" class="pilcrow">¶</a></p>
+and 'ietf-network-topology'. For others, we need to add some mechanisms to link the models and data.<a href="#section-2.3-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1718,7 +1746,8 @@ and 'ietf-network- topology'. For others, we need to add some mechanisms to link
         <h3 id="name-what-is-not-in-the-base-mod">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-what-is-not-in-the-base-mod" class="section-name selfRef">What Is Not in The Base Model?</a>
         </h3>
-<p id="section-3.1-1">Based on some shared experience, the following are listed as set of candidate extensions to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for Digital Map modelling and APIs:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">Based on some shared experience, the following are listed as set of candidate extensions to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for 
+Digital Map modelling and APIs:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3.1-2">
           <dt id="section-3.1-2.1">RFC8345-GAP-BIDIR:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-2.2">
@@ -1753,6 +1782,11 @@ and 'ietf-network- topology'. For others, we need to add some mechanisms to link
 <dt id="section-3.1-2.13">RFC8345-GAP-SEMANTIC:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-2.14">
             <p id="section-3.1-2.14.1">More network topology related semantic is needed<a href="#section-3.1-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.1-2.15">RFC8345-GAP-PLUGG:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.1-2.16">
+            <p id="section-3.1-2.16.1">How to connect in a generic way to other YANG modules and data<a href="#section-3.1-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1881,17 +1915,27 @@ links via the existing source and destination<a href="#section-3.1.2-10.1.1" cla
           <h4 id="name-links-between-networks-rfc8">
 <a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-links-between-networks-rfc8" class="section-name selfRef">Links Between Networks (RFC8345-GAP-MULTI-DOMAIN)</a>
           </h4>
-<p id="section-3.1.3-1">The RFC8345 defines all links as belonging to one network instance
-   and having the source and destination as node and termination point only, not allowing to link to termination point of another network. This does not allow for links between networks in the case of multi-domains or partitioning.  The only way would be to model each domain as node and have links between them.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-2">In our IS-IS PoC (following <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span>), we modelled IS-IS areas as networks and we needed to extend the capability to have links between different areas.  We added network reference as well to the source / destination of the link.  <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> also augments links with external-domain info for the case of links that connect different domains.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-3">The IS-IS topology <span>[<a href="#I-D.ogondio-opsawg-isis-topology" class="cite xref">I-D.ogondio-opsawg-isis-topology</a>]</span> models Autonomous System (AS) or IS-IS domain as a network, and IS-IS areas as attributes of IS-IS nodes.  The RFC8345 extension can be used to model IS-IS areas as networks and IS-IS links between L1-2 nodes as links between two different areas.  This is not problem for OSPF, although the OSPF nodes can belong to multiple areas, the links can belong to only one area.<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-4">The following are some benefits of lifting the RFC 8345 limitations that all links must belong to only one network instance:<a href="#section-3.1.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-1">The RFC8345 defines all links as belonging to one network instance and having the source and destination as node and 
+termination point only, not allowing to link to termination point of another network. This does not allow for links 
+between networks in the case of multi-domains or partitioning. The only way would be to model each domain as 
+node and have links between them.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">In our IS-IS PoC and Hackathon (following <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span>), we modelled IS-IS areas as networks 
+and we needed to extend the capability to have links between different areas.  We added network reference as well to 
+the source / destination of the link.  <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> also augments links with external-domain info for the case of 
+links that connect different domains.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-3">The IS-IS topology <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span> models Autonomous System (AS) or IS-IS domain as a network, 
+and IS-IS areas as attributes of IS-IS nodes.  The RFC8345 extension can be used to model IS-IS areas as networks and 
+IS-IS links between L1-2 nodes as links between two different areas.  This is not problem for OSPF, although the OSPF 
+nodes can belong to multiple areas, the links can belong to only one area.<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-4">The following are some benefits of lifting the RFC 8345 limitations that all links must belong to only one network 
+instance:<a href="#section-3.1.3-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.3-5.1">
               <p id="section-3.1.3-5.1.1">IS-IS processes would be grouped in an area via the standard IETF RFC8345 network-&gt;node relationship.<a href="#section-3.1.3-5.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.3-5.2">
-              <p id="section-3.1.3-5.2.1">Applications and algorithms will consume topologies based on the generic entities and relationships, they will not need to understand the meaning of specific IS-IS attributes.<a href="#section-3.1.3-5.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.1.3-5.2.1">Applications and algorithms will consume topologies based on the generic entities and relationships, 
+they will not need to understand the meaning of specific IS-IS attributes.<a href="#section-3.1.3-5.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.3-5.3">
               <p id="section-3.1.3-5.3.1">The approach would be aligned with the IS-IS topology model and the IS-IS network view in manuals and documentation.<a href="#section-3.1.3-5.3.1" class="pilcrow">¶</a></p>
@@ -2006,7 +2050,9 @@ bigger impact on the topology tree than other enhancements.<a href="#section-3.1
    of entities.  Networks can only be supported by networks, nodes can
    only be supported by nodes, termination points can only be supported
    by terminations points and links can only be supported by links.<a href="#section-3.1.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.6-2">During the PoC, we had a scenario  where at one layer of topology we had a link with TPs where the TPs are logical and did not have underlay TP, but the only underlay connection we were able to define was to underlay nodes. The same happened with nodes and networks.<a href="#section-3.1.6-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.6-2">During the PoC, we had a scenario  where at one layer of topology we had a link with TPs where the TPs are 
+   logical and did not have underlay TP, but the only underlay connection we were able to define was to 
+   underlay nodes. The same happened with nodes and networks.<a href="#section-3.1.6-2" class="pilcrow">¶</a></p>
 <p id="section-3.1.6-3">Therefore, we encountered the need to have TP supported by node
    and node supported by network.<a href="#section-3.1.6-3" class="pilcrow">¶</a></p>
 <p id="section-3.1.6-4">The RFC8795 also adds additional
@@ -2035,7 +2081,8 @@ tp-&gt;supporting-&gt;node, node-&gt;supporting-&gt;network.<a href="#section-3.
           <h4 id="name-missing-topology-semantics-">
 <a href="#section-3.1.7" class="section-number selfRef">3.1.7. </a><a href="#name-missing-topology-semantics-" class="section-name selfRef">Missing Topology Semantics (RFC8345-GAP-SEMANTIC)</a>
           </h4>
-<p id="section-3.1.7-1">Many augmentations add the additional topological semantics, with same concepts modelled in a different way in different augmentations. We already mentioned that some semantic is missing from the RFC8345
+<p id="section-3.1.7-1">Many augmentations add the additional topological semantics, with same concepts modelled in a different way 
+   in different augmentations. We already mentioned that some semantic is missing from the RFC8345
    topology model, like bidirectional and multi-point.  The following is
    also missing from the model:<a href="#section-3.1.7-1" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2103,54 +2150,117 @@ evaluate if some parts could be moved to RFC8345.<a href="#section-3.1.7-5" clas
 </div>
 </section>
 </div>
-<div id="open-issues-for-further-analysis-or-resolved">
+<div id="plug-in-other-ietf-yang-data-models-rfc8345-gap-plugg">
 <section id="section-3.2">
-        <h3 id="name-open-issues-for-further-ana">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-open-issues-for-further-ana" class="section-name selfRef">Open Issues (for Further Analysis or Resolved)</a>
+        <h3 id="name-plug-in-other-ietf-yang-dat">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-plug-in-other-ietf-yang-dat" class="section-name selfRef">Plug-in other IETF YANG data models (RFC8345-GAP-PLUGG)</a>
         </h3>
-<p id="section-3.2-1">The following are the open issues that need further analysis or have been resolved:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">We need a new RFC8345 augmentation for the purpose of connecting IETF topology modules to other IETF YANG modules. 
+In some cases, this are already done by augmenting 'ietf-network'  <br>
+and 'ietf-network-topology'. For others, we need to add some mechanisms to link the IETF topology to other
+models and data.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">The mechanims must specify the following:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-2.1">
-            <p id="section-3.2-2.1.1">Do we need separation of L2 and L3 topologies?<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.1.2">
-During the PoC we encountered different solutions with separate
+<li class="normal" id="section-3.2-3.1">
+            <p id="section-3.2-3.1.1">What category? What is the category of the external YANG model (e.g. configuration, assurance, performance, ..)<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-3.2">
+            <p id="section-3.2-3.2.1">Which protocol? Is the information retrieved via netconf, restconf, ..<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-3.3">
+            <p id="section-3.2-3.3.1">Which server? Where the information can be retrieved from (the same controller or some other restconf/netconf server)<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-3.4">
+            <p id="section-3.2-3.4.1">Which instance? How to connect IETF topology module instances to other IETF YANG module instances (because we have different keys)<a href="#section-3.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-3.5">
+            <p id="section-3.2-3.5.1">Which path? What yang paths contain external data for network, node, termination-point, link<a href="#section-3.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-4">There are two  ways how this can be defined:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-5.1">
+            <p id="section-3.2-5.1.1">USER DEFINED: External user defines how to connect topology to external YANG module in a generic way via some Digital Map API. 
+This information is than retrieved from the application via the Digital Map API and application can automatically 
+build the request for retrieval of external data.<a href="#section-3.2-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-5.2">
+            <p id="section-3.2-5.2.1">CONTROLLER DELEGATED: Delegated to the controller, who gives back info how to connect to external modules for each instance<a href="#section-3.2-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-6">The following are the candidate approaches how we can address this limitation:<a href="#section-3.2-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-7.1">
+            <p id="section-3.2-7.1.1">BASIC: Dont propose any new mechanism, leave to different augmentations to solve the problem their own way<a href="#section-3.2-7.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-7.2">
+            <p id="section-3.2-7.2.1">AUGMENT: Augment RFC8345 with some Digital Map plugin module<a href="#section-3.2-7.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-7.3">
+            <p id="section-3.2-7.3.1">NEW-MODULE: Create a new Digital Map plugin module that is used for building relations between the Digital Map model/data and 
+other IETF models/data<a href="#section-3.2-7.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-8">We implemented the basic approach in IETF120 Hackathon, where we duplicated the properties of IS-IS at the controller API
+via augmenting the RFC8345 with technology specific module. This was done just to explain the problem, knowing that
+the more sofisticated solution is needed. We need to implement more advanced option for connecting ietf-l2-isis-topology 
+to ietf-isis. The solution must be generic to support any other augmentation and yang files. We suggest to analyze the 
+second (AUGMENT) and third (NEW-MODULE) approach in the IETF121 hackathon, together with 2 approaches how that 
+information can be defined (USER DEFINED or CONTROLLER DELEGATED) and come back with the reccomendation.<a href="#section-3.2-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="open-issues-for-further-analysis-or-resolved">
+<section id="section-3.3">
+        <h3 id="name-open-issues-for-further-ana">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-open-issues-for-further-ana" class="section-name selfRef">Open Issues (for Further Analysis or Resolved)</a>
+        </h3>
+<p id="section-3.3-1">The following are the open issues that need further analysis or have been resolved:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.3-2.1">
+            <p id="section-3.3-2.1.1">Do we need separation of L2 and L3 topologies?<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.1.2">
+During the PoC/Hackathon we encountered different solutions with separate
 set of requirements.  In one solution, the L2 and L3 topology were
 the same with separate set of attributes, while in another
 solution we had difference in L2 and L3 topology (e.g.  Links
-Aggregation, Switches and Routers).<a href="#section-3.2-2.1.2" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.1.3">
+Aggregation, Switches and Routers).<a href="#section-3.3-2.1.2" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.1.3">
 The RFC8944 defines L2 topology and RFC8346 defines the L3
 topology.  They allow to have either one or two instances of this
-topology.<a href="#section-3.2-2.1.3" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.1.4">
+topology.<a href="#section-3.3-2.1.3" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.1.4">
 The decision if we need separate network instances for L2 and L3
 topologies may be based on specific network topology and
-provider's preferences.<a href="#section-3.2-2.1.4" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.1.5">
+provider's preferences.<a href="#section-3.3-2.1.4" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.1.5">
 Resolved: the RFC8345 is flexible and it can support both the same network instance with L2 + L3 augmentations 
 or separate network instances with supporting relationship between. The operator should decide what option is 
-needed for their solution.<a href="#section-3.2-2.1.5" class="pilcrow">¶</a></p>
+needed for their solution.<a href="#section-3.3-2.1.5" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">Do we need sublayers as well?  Layers versus sublayers versus
-layered instances?<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.2.2">
-Resolved: Layers/sublayers could be implemented via multiple network types. The new data nodes for layer are present only when the network type for the layer is present. The new data nodes for the sublayer are present when the network types for both layer and sublayer are present. The solution could also enable either single or multiple instances, like in the previous point.<a href="#section-3.2-2.2.2" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.2.3">
-Further analysis: In the case that the same technology is used at different layers, we may need some additional information in the model, in the case that it cannot be modelled via network types + supporting relations.<a href="#section-3.2-2.2.3" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.2">
+            <p id="section-3.3-2.2.1">Do we need sublayers as well?  Layers versus sublayers versus
+layered instances?<a href="#section-3.3-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.2.2">
+Resolved: Layers/sublayers could be implemented via multiple network types. The new data nodes for layer are present only when the network type for the layer is present. The new data nodes for the sublayer are present when the network types for both layer and sublayer are present. The solution could also enable either single or multiple instances, like in the previous point.<a href="#section-3.3-2.2.2" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.2.3">
+Further analysis: In the case that the same technology is used at different layers, we may need some additional information in the model, in the case that it cannot be modelled via network types + supporting relations.<a href="#section-3.3-2.2.3" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.3">
-            <p id="section-3.2-2.3.1">Same technology at service versus underlay?  BGP per VPN vs common
+          <li class="normal" id="section-3.3-2.3">
+            <p id="section-3.3-2.3.1">Same technology at service versus underlay?  BGP per VPN vs common
 BGP shared between multiple VPNs.  Different layers, same model,
-relationship define the layer.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2.3.2">
-Further analysis is needed.<a href="#section-3.2-2.3.2" class="pilcrow">¶</a></p>
+relationship define the layer.<a href="#section-3.3-2.3.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.3.2">
+Further analysis is needed.<a href="#section-3.3-2.3.2" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.4">
-            <p id="section-3.2-2.4.1">There are potential circular dependencies in layering. For example routing can be underlay for tunnels, but tunnel interface can also be in the routing table.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.4">
+            <p id="section-3.3-2.4.1">There are potential circular dependencies in layering. For example routing can be underlay for tunnels, but tunnel interface can also be in the routing table.<a href="#section-3.3-2.4.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.4.2">
+Further analysis is needed.<a href="#section-3.3-2.4.2" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.5">
-            <p id="section-3.2-2.5.1">Further analysis is needed.<a href="#section-3.2-2.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.5">
+            <p id="section-3.3-2.5.1">Best way to build the connection to other YANG modules for navigation.<a href="#section-3.3-2.5.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2.5.2">
+Further analysis and prototypes at the future Hackathons<a href="#section-3.3-2.5.2" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -2167,7 +2277,7 @@ Further analysis is needed.<a href="#section-3.2-2.3.2" class="pilcrow">¶</a></
         <h3 id="name-why-analysis">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-why-analysis" class="section-name selfRef">Why Analysis?</a>
         </h3>
-<p id="section-4.1-1">During our PoC, we decided to use the RFC8345  model and API for the layered topology from the physical to the top layer, accross the domains, without the need to understand any specific information about specific domain, technologies and details required for specific network management functions / use cases.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">During our PoC and Hackathon, we decided to use the RFC8345  model and API for the layered topology from the physical to the top layer, accross the domains, without the need to understand any specific information about specific domain, technologies and details required for specific network management functions / use cases.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">We took the hat of application developer and used the software architecture guidelines to provide the right level of abstraction for topologies at the controller northbound interfaces. This means that the API client /application must understand and draw the topology from RFC8345 (as originally intended by this draft) without understanding all augmentations that add new topological entities / relations.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">After determining that the RFC8345 can provide the right level of abstraction for the layered topology (and be improved by addressing gaps via backward compatible way), we wanted to understand if different IETF RFC8345 augmentations add its own topology semantics and if they address any gaps we identified.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
@@ -2779,6 +2889,9 @@ The following are some existing approaches proposed in IETF:<a href="#section-5.
             <p id="section-5.3-4.4.1">How to connect network topology to performance monitoring <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span><a href="#section-5.3-4.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
+<p id="section-5.3-5">We did the initial implementation during the IETF120 Hackathon that focused on showing the problem via duplicating the 
+attributes of IETF-ISIS in RFC8345 augmentations. We need better solution and will continue analysis and prototype 
+in the future Hackathons.<a href="#section-5.3-5" class="pilcrow">¶</a></p>
 <div id="how-to-connect-yang-models-with-other-modelling-mechanisms">
 <section id="section-5.3.1">
           <h4 id="name-how-to-connect-yang-models-">
@@ -2857,11 +2970,15 @@ layer)<a href="#section-5.5-2.4.1" class="pilcrow">¶</a></p>
       <h2 id="name-conclusions">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-conclusions" class="section-name selfRef">Conclusions</a>
       </h2>
-<p id="section-6-1">Digital Map Modelling and Data are basis for the Digital Twin. During our PoC we have proven that Digital Map can be 
-modelled using <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.  Nevertheless, we proposed some extensions/augmentations to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> to support 
-Digital Maps.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">After analysing all augmentations of RFC8345 modules, we determined that there must exist some constraints in regards to how to augment the core Digital Map model for different 
-Layers and Technologies in order to support the approach recommended in RFC8345 and implemented in our PoC. Therefore, we recommend that IETF adopts the guidelines how to augment the core RFC8345 modules for Digital Map. All entities should augment IETF node, IETF network, IETF link or IETF Termination Point and augmentation can only include new properties, events, non-topological references.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-1">Digital Map Modelling and Data are needed for the current Operator Use Cases, and are also basis for the Digital Twin. 
+During our PoC and Hackathon we have proven that Digital Map can be modelled using <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<br>
+Nevertheless, we proposed some extensions/augmentations to <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> to support Digital Maps.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">After analysing all augmentations of RFC8345 modules, we determined that there must exist some constraints in 
+regards to how to augment the core Digital Map model for different Layers and Technologies in order to support the 
+approach recommended in RFC8345 and implemented in our PoC/Hackathon. Therefore, we recommend that IETF adopts the 
+guidelines how to augment the core RFC8345 modules for Digital Map. 
+All entities should augment IETF node, IETF network, IETF link or IETF Termination Point and augmentation can 
+only include new properties, events, non-topological references.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">We suggest to start the work on RFC8345 bis to provide the backward compatible way to support the following basic 
 topological features:<a href="#section-6-3" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2887,6 +3004,10 @@ topological features:<a href="#section-6-3" class="pilcrow">¶</a></p>
           <p id="section-6-4.7.1">additional semantics required for core topologies<a href="#section-6-4.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-6-5">We also suggest to start working on a new draft that would define the RFC8345 augmentation or new modules for the purpose of
+* connecting IETF topology module to other IETF YANG modules (what yang paths are connected to node, termination-point)
+* defining what IETF topology module instances are related to the IETF YANG module instances (because we have different keys)
+* avoid duplication the properties in RFC8345 augmentations<a href="#section-6-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -2919,6 +3040,7 @@ considerations are not reiterated here.<a href="#section-7-4" class="pilcrow">¶
 <p id="section-8-1">This document has no actions for IANA.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="sec-combined-references">
 <section id="section-9">
       <h2 id="name-references">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
@@ -2970,8 +3092,12 @@ considerations are not reiterated here.<a href="#section-7-4" class="pilcrow">¶
 <span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V.</span>, <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Shah, H.</span>, and <span class="refAuthor">O. Gonzalez de Dios</span>, <span class="refTitle">"YANG Data Model for Traffic Engineering (TE) Topologies"</span>, <span class="seriesInfo">RFC 8795</span>, <span class="seriesInfo">DOI 10.17487/RFC8795</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8795">https://www.rfc-editor.org/rfc/rfc8795</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8944">[RFC8944]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Dong, J.</span>, <span class="refAuthor">Wei, X.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">A. Liu</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Network Topologies"</span>, <span class="seriesInfo">RFC 8944</span>, <span class="seriesInfo">DOI 10.17487/RFC8944</span>, <time datetime="2020-11" class="refDate">November 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8944">https://www.rfc-editor.org/rfc/rfc8944</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9130">[RFC9130]</dt>
+      <dd>
+<span class="refAuthor">Litkowski, S., Ed.</span>, <span class="refAuthor">Yeung, D.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Zhang, J.</span>, and <span class="refAuthor">L. Lhotka</span>, <span class="refTitle">"YANG Data Model for the IS-IS Protocol"</span>, <span class="seriesInfo">RFC 9130</span>, <span class="seriesInfo">DOI 10.17487/RFC9130</span>, <time datetime="2022-10" class="refDate">October 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9130">https://www.rfc-editor.org/rfc/rfc9130</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2985,6 +3111,14 @@ considerations are not reiterated here.<a href="#section-7-4" class="pilcrow">¶
 <dt id="Catalog">[Catalog]</dt>
         <dd>
 <span class="refAuthor">YANG Catalog</span>, <span class="refTitle">"YANG Impact Analysis"</span>, <span>n.d.</span>, <span>&lt;<a href="https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26">https://yangcatalog.org/yang-search/impact_analysis/ietf-network-topology@2018-02-26</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Digital_Map_Hackathon">[Digital_Map_Hackathon]</dt>
+        <dd>
+<span class="refAuthor">NMOP</span>, <span class="refTitle">"Digital Map Hackathon IETF 120 Presentation"</span>, <span>n.d.</span>, <span>&lt;<a href="https://datatracker.ietf.org/meeting/120/materials/slides-120-hackathon-sessd-digital-map-hackathon-00">https://datatracker.ietf.org/meeting/120/materials/slides-120-hackathon-sessd-digital-map-hackathon-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Digital_Map_Hackathon_Code">[Digital_Map_Hackathon_Code]</dt>
+        <dd>
+<span class="refAuthor">NMOP</span>, <span class="refTitle">"Digital Map Hackathon IETF 120 Code"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/digital-map-exp/digital-map-public">https://github.com/digital-map-exp/digital-map-public</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.davis-opsawg-some-refinements-to-rfc8345">[I-D.davis-opsawg-some-refinements-to-rfc8345]</dt>
         <dd>
@@ -3004,11 +3138,11 @@ considerations are not reiterated here.<a href="#section-7-4" class="pilcrow">¶
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-14</span>, <time datetime="2024-07-05" class="refDate">5 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-14">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netmod-rfc8407bis-19</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-19">https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="I-D.ogondio-opsawg-isis-topology">[I-D.ogondio-opsawg-isis-topology]</dt>
+<dt id="I-D.ogondio-nmop-isis-topology">[I-D.ogondio-nmop-isis-topology]</dt>
         <dd>
-<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Lopez, V.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"A YANG Data Model for Intermediate System to intermediate System (IS-IS) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-opsawg-isis-topology-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-isis-topology-01">https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-isis-topology-01</a>&gt;</span>. </dd>
+<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Lopez, V.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"A YANG Data Model for Intermediate System to intermediate System (IS-IS) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-nmop-isis-topology-00</span>, <time datetime="2024-03-04" class="refDate">4 March 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-isis-topology-00">https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-isis-topology-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8542">[RFC8542]</dt>
         <dd>
@@ -3022,6 +3156,7 @@ considerations are not reiterated here.<a href="#section-7-4" class="pilcrow">¶
 </section>
 </div>
 </section>
+</div>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
